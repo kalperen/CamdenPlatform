@@ -9,6 +9,7 @@ import numpy as np
 from tf_pose.estimator import TfPoseEstimator
 from tf_pose.networks import get_graph_path, model_wh
 
+
 logger = logging.getLogger('TfPoseEstimator')
 logger.setLevel(logging.DEBUG)
 ch = logging.StreamHandler()
@@ -49,8 +50,21 @@ if __name__ == '__main__':
 
     image = TfPoseEstimator.draw_humans(image, humans, imgcopy=False)
 
-    print("Number of human detected in the image:")
-    print(len(humans))
+    # applying data structure
+    list_humans = []
+    for human in humans:
+        list_human = []
+        for i in human.body_parts:
+            joint_coord = []
+            joint_coord.append(human.body_parts[i].part_idx)
+            joint_coord.append(human.body_parts[i].x)
+            joint_coord.append(human.body_parts[i].y)
+            list_human.append(joint_coord)
+        list_humans.append(list_human)
+
+    print(list_humans)
+
+
 
     #print(e)
     import matplotlib.pyplot as plt
@@ -62,7 +76,9 @@ if __name__ == '__main__':
 
     plt.show()
 
-# Other not required plots
+
+
+    # Other not required plots
 '''
     bgimg = cv2.cvtColor(image.astype(np.uint8), cv2.COLOR_BGR2RGB)
     bgimg = cv2.resize(bgimg, (e.heatMat.shape[1], e.heatMat.shape[0]), interpolation=cv2.INTER_AREA)
