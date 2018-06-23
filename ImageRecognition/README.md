@@ -16,7 +16,7 @@ create data that will be then labeled in order to be classified.
 
 ## Installation
 
-1. Feature extraction
+### Feature extraction
 
 We recommend creating a new Conda Environment and installing all the requirements as follows:
 
