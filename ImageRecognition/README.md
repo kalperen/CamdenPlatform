@@ -45,4 +45,4 @@ $ python run.py --model=mobilenet_thin --resize=432x368 --image=./images/p1.jpg
 $ python run_webcam.py --model=mobilenet_thin --resize=432x368 --camera=0
 ```
 
-# Warning: This is repository is not completed yet
+# Warning: This repository is not completed yet
