@@ -9,7 +9,7 @@ import cv2
 import numpy as np
 from tf_pose.estimator import TfPoseEstimator
 from tf_pose.networks import get_graph_path, model_wh
-
+from string import digits
 
 logger = logging.getLogger('TfPoseEstimator')
 logger.setLevel(logging.DEBUG)
@@ -57,6 +57,7 @@ if __name__ == '__main__':
 
     directory = os.fsencode(args.directory)
 
+    #Goes over a whole directory to generate training data
     for file in os.listdir(directory):
         filename = os.fsdecode(file)
         if filename.endswith(".jpg"):
@@ -68,43 +69,41 @@ if __name__ == '__main__':
             t = time.time()
             humans = e.inference(image, resize_to_default=(w > 0 and h > 0), upsample_size=args.resize_out_ratio)
             elapsed = time.time() - t
-            #print(humans)
-
-            # applying data structure
-            string_humans = ""
-            list_humans = []
+            
             string_human = filename + ","
+            #Strip the all digits from the filename so that we categorize correctly
+            remove_digits = str.maketrans('', '', digits)
+            string_human = string_human.translate(remove_digits)
+            #Go over all the humans in the photo
             for human in humans:
-                list_human = []
+                #For every single limb that each human has
                 for i in range(0, 17):
                     try:
-                        joint_coord = []
-                        joint_coord.append(human.body_parts[i].part_idx)
-                        joint_coord.append(human.body_parts[i].x)
-                        joint_coord.append(human.body_parts[i].y)
-                        list_human.append(joint_coord)
+                        #record the limb coordinates
                         string_human += "\"[" + str(human.body_parts[i].x) + "," + str(
                         human.body_parts[i].y) + "]\","
-
+                    #If there are no coordinates for a certain limb record null
                     except KeyError:
                         string_human += "null,"
+                #Go to the next line after each human in the picture
                 string_human = string_human + "\n"
-            string_humans += string_human
+            #If the user wants to write to an output file
             if args.output is not None:
                 if os.path.isfile(args.output):
                     f = open(args.output,'a+')
-                    f.write(string_humans)
+                    f.write(string_human)
                     f.close()
+                #If the output file does not exist yet, first populate the string with category headings
                 else:
                     f = open(args.output,'a+')
-                    f.write("Position, Nose, Neck, RShoulder, RElbow, RWrist, LShoulder, LElbow, LWrist, MidHip, RHip, RKnee, RAnkle, LHip, LKnee, LAnkle, REye, LEye, REar\n"+string_humans)
+                    f.write("Position, Nose, Neck, RShoulder, RElbow, RWrist, LShoulder, LElbow, LWrist, MidHip, RHip, RKnee, RAnkle, LHip, LKnee, LAnkle, REye, LEye, REar\n"+string_human)
                     f.close()
 
-    import matplotlib.pyplot as plt
-
-    fig = plt.figure()
-    a = fig.add_subplot(1, 1, 1)
-    a.set_title('Result')
-    plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
-
-    plt.show()
+    # import matplotlib.pyplot as plt
+    #
+    # fig = plt.figure()
+    # a = fig.add_subplot(1, 1, 1)
+    # a.set_title('Result')
+    # plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+    #
+    # plt.show()
