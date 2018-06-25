@@ -71,7 +71,7 @@ if __name__ == '__main__':
             #print(humans)
 
             # applying data structure
-            string_humans = "Position, Nose, Neck, RShoulder, RElbow, RWrist, LShoulder, LElbow, LWrist, MidHip, RHip, RKnee, RAnkle, LHip, LKnee, LAnkle, REye, LEye, REar, LEar\n"
+            string_humans = ""
             list_humans = []
             string_human = filename + ","
             for human in humans:
@@ -83,21 +83,23 @@ if __name__ == '__main__':
                         joint_coord.append(human.body_parts[i].x)
                         joint_coord.append(human.body_parts[i].y)
                         list_human.append(joint_coord)
-                         # string_out = string_humans +"\"[" + str(human.body_parts[i].x) + "," + str(human.body_parts[i].y)+"]\","
                         string_human += "\"[" + str(human.body_parts[i].x) + "," + str(
                         human.body_parts[i].y) + "]\","
 
                     except KeyError:
                         string_human += "null,"
-
-
-
                 string_human = string_human + "\n"
             string_humans += string_human
             if args.output is not None:
-                f = open(args.output,'a+')
-                f.write(string_humans)
-                f.close()
+                if os.path.isfile(args.output):
+                    f = open(args.output,'a+')
+                    f.write(string_humans)
+                    f.close()
+                else:
+                    f = open(args.output,'a+')
+                    f.write("Position, Nose, Neck, RShoulder, RElbow, RWrist, LShoulder, LElbow, LWrist, MidHip, RHip, RKnee, RAnkle, LHip, LKnee, LAnkle, REye, LEye, REar\n"+string_humans)
+                    f.close()
+
     import matplotlib.pyplot as plt
 
     fig = plt.figure()
