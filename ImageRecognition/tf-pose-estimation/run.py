@@ -71,20 +71,25 @@ if __name__ == '__main__':
             #print(humans)
 
             # applying data structure
+            string_humans = "Position, Nose, Neck, RShoulder, RElbow, RWrist, LShoulder, LElbow, LWrist, MidHip, RHip, RKnee, RAnkle, LHip, LKnee, LAnkle, REye, LEye, REar, LEar\n"
             list_humans = []
             for human in humans:
                 list_human = []
+                string_humans = string_humans + "EMPTY,"
                 for i in human.body_parts:
                     joint_coord = []
                     joint_coord.append(human.body_parts[i].part_idx)
                     joint_coord.append(human.body_parts[i].x)
                     joint_coord.append(human.body_parts[i].y)
                     list_human.append(joint_coord)
+                    string_humans = string_humans +"\"[" + str(human.body_parts[i].x) + "," + str(human.body_parts[i].y)+"]\","
                 list_humans.append(list_human)
-            #print(list_humans)
+                string_humans = string_humans + "\n"
+            print(list_humans)
+            print(string_humans)
             if args.output is not None:
                 f = open(args.output,'a+')
-                f.write(' '.join(str(x) for x in list_humans))
+                f.write(string_humans)
                 f.close()
     import matplotlib.pyplot as plt
 
