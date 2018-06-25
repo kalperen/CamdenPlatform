@@ -1,3 +1,4 @@
+.DS_Store
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -105,7 +106,7 @@ ENV/
 *.npy
 timeline*.json
 
-# project customs 
+# project customs
 tmp
 models/graph/cmu*/*.pb
 models/trained/*/checkpoint

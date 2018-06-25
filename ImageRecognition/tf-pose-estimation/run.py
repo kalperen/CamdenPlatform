@@ -30,6 +30,7 @@ if __name__ == '__main__':
     parser.add_argument('--resize-out-ratio', type=float, default=4.0,
                         help='if provided, resize heatmaps before they are post-processed. default=1.0')
     parser.add_argument('--directory', type=str, default='./images/', help='')
+    parser.add_argument('--output', type=str)
 
     args = parser.parse_args()
 
@@ -80,8 +81,11 @@ if __name__ == '__main__':
                     joint_coord.append(human.body_parts[i].y)
                     list_human.append(joint_coord)
                 list_humans.append(list_human)
-            print(list_humans)
-
+            #print(list_humans)
+            if args.output is not None:
+                f = open(args.output,'a+')
+                f.write(' '.join(str(x) for x in list_humans))
+                f.close()
     import matplotlib.pyplot as plt
 
     fig = plt.figure()

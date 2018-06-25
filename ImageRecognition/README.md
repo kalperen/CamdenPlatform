@@ -1,6 +1,6 @@
 # Image Recognition
 
-This folder contains an image classifier to determine human body postures fromo live video footage.
+This folder contains an image classifier to determine human body postures from live video footage.
 
 ## References
 
