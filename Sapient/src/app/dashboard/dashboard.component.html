@@ -1,0 +1,9 @@
+<h1>DashBoard</h1>
+
+<div *ngFor='let widget of widgets'> 
+    <a routerLink="/detail/{{widget.sensorId}}">
+      {{widget.sensorType}}
+    </a>
+</div>
+
+<button (click)="addDevice()">Add Device</button>
