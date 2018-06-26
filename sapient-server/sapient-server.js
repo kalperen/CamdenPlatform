@@ -41,5 +41,40 @@ app.post('/addDevice', function(req, res) {
         res.send(deviceInfo);
     });
 })
+
+app.get('/devices', function (req, res) {
+    registry.list((err, deviceList) => {
+        deviceList.forEach((device) => {
+            let key = device.authentication ? device.authentication.symmetricKey.primaryKey : '<no primary key>';
+            console.log(device.deviceId + ': ' + key);
+        });
+        res.send(deviceList);
+    });
+})
+
+app.get('/device/:deviceId', function (req, res) {
+    registry.get(req.params.deviceId, (err, device) => {
+        if (!err){
+            console.log(device);
+            res.send(device);
+        } else {
+            console.log("error: " + err);
+        }
+        
+    });
+})
+
+app.delete('/device/:deviceId', function (req, res) {
+    registry.delete(req.params.deviceId, printAndContinue('delete'));
+})
+
+function printAndContinue(op, next) {
+    return function printResult(err, deviceInfo, res) {
+      if (err) console.log(op + ' error: ' + err.toString());
+      if (res) console.log(op + ' status: ' + res.statusCode + ' ' + res.statusMessage);
+      if (deviceInfo) console.log(op + ' device info: ' + JSON.stringify(deviceInfo));
+      if (next) next();
+    };
+  }
  
 app.listen(3000)
