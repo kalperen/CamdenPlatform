@@ -40,27 +40,13 @@ if __name__ == '__main__':
     else:
         e = TfPoseEstimator(get_graph_path(args.model), target_size=(w, h))
 
-    # estimate human poses from a single image !
-    print("args image")
-    print(args.image)
-    image = common.read_imgfile(args.image, None, None)
-    if image is None:
-        logger.error('Image can not be read, path=%s' % args.image)
-        sys.exit(-1)
-    t = time.time()
-    humans = e.inference(image, resize_to_default=(w > 0 and h > 0), upsample_size=args.resize_out_ratio)
-    elapsed = time.time() - t
-
-    logger.info('inference image: %s in %.4f seconds.' % (args.image, elapsed))
-
-    image = TfPoseEstimator.draw_humans(image, humans, imgcopy=False)
-
     directory = os.fsencode(args.directory)
 
     #Goes over a whole directory to generate training data
     for file in os.listdir(directory):
         filename = os.fsdecode(file)
-        if filename.endswith(".jpg"):
+
+        if filename.endswith(".jpg") and not filename.startswith("."):
             dir = "./images/" + filename
             image = common.read_imgfile(dir, None, None)
             if image is None:
@@ -69,22 +55,23 @@ if __name__ == '__main__':
             t = time.time()
             humans = e.inference(image, resize_to_default=(w > 0 and h > 0), upsample_size=args.resize_out_ratio)
             elapsed = time.time() - t
-            
+
             string_human = filename + ","
             #Strip the all digits from the filename so that we categorize correctly
             remove_digits = str.maketrans('', '', digits)
-            string_human = string_human.translate(remove_digits)
+            string_human = string_human.translate(remove_digits).replace('.jpg', '')
+
             #Go over all the humans in the photo
             for human in humans:
                 #For every single limb that each human has
                 for i in range(0, 17):
                     try:
                         #record the limb coordinates
-                        string_human += "\"[" + str(human.body_parts[i].x) + "," + str(
-                        human.body_parts[i].y) + "]\","
+                        string_human += "\"" + str(human.body_parts[i].x) + "," + str(
+                        human.body_parts[i].y) + "\","
                     #If there are no coordinates for a certain limb record null
                     except KeyError:
-                        string_human += "null,"
+                        string_human += "0,"
                 #Go to the next line after each human in the picture
                 string_human = string_human + "\n"
             #If the user wants to write to an output file
@@ -96,7 +83,7 @@ if __name__ == '__main__':
                 #If the output file does not exist yet, first populate the string with category headings
                 else:
                     f = open(args.output,'a+')
-                    f.write("Position, Nose, Neck, RShoulder, RElbow, RWrist, LShoulder, LElbow, LWrist, MidHip, RHip, RKnee, RAnkle, LHip, LKnee, LAnkle, REye, LEye, REar\n"+string_human)
+                    f.write("position, nose, neck, rshoulder, relbow, rwrist, lshoulder, lelbow, lwrist, midhip, rhip, rknee, rankle, lhip, lknee, lankle, reye, leye, rear\n"+string_human)
                     f.close()
 
     # import matplotlib.pyplot as plt
