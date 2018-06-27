@@ -85,7 +85,7 @@ if __name__ == '__main__':
                 #If the output file does not exist yet, first populate the string with category headings
                 else:
                     f = open(args.output,'a+')
-                    f.write("position, noseX, noseY, neckX, neckY, rshoulderX, rshouldery, relbowX, relbowY, rwristX, rwristY, lshoulderX, lshoulderY, lelbowX, lelbowY, lwristX, lwristY, midhipX, midhipY, rhipX, rhipY, rkneeX, rkneeY, rankleX, rankleY, lhipX, lhipY, lkneeX, lkneeY, lankleX, lankleY, reyeX, reyeY, leyeX, leyeY, rearX, rearY\n"+string_human)
+                    f.write("position, noseX, noseY, neckX, neckY, rshoulderX, rshoulderY, relbowX, relbowY, rwristX, rwristY, lshoulderX, lshoulderY, lelbowX, lelbowY, lwristX, lwristY, midhipX, midhipY, rhipX, rhipY, rkneeX, rkneeY, rankleX, rankleY, lhipX, lhipY, lkneeX, lkneeY, lankleX, lankleY, reyeX, reyeY, leyeX, leyeY, rearX, rearY\n"+string_human)
                     f.close()
 
 #def csv_output:

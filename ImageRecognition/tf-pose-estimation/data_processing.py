@@ -1,7 +1,10 @@
 import pandas as pd
 
-columns = ['position', 'nose', 'neck', 'rshoulder', 'relbow', 'rwrist', 'lshoulder', 'lelbow',
-        'lwrist', 'midhip', 'rhip', 'rknee', 'rankle', 'lhip', 'lknee', 'lankle', 'reye', 'leye', 'rear']
+columns = ['position', 'noseX', 'noseY', 'neckX', 'neckY', 'rshoulderX','rshoulderY', 'relbowX', 'relbowY', 'rwristX',
+           'rwristY', 'lshoulderX','lshoulderY', 'lelbowX', 'lelbowY', 'lwristX','lwristY', 'midhipX','midhipY',
+           'rhipX','rhipY', 'rkneeX','rkneeY', 'rankleX', 'rankleY', 'lhipX','lhipY', 'lkneeX','lkneeY', 'lankleX',
+           'lankleY', 'reyeX', 'reyeY', 'leyeX','leyeY', 'rearX', 'rearY']
+
 
 def encode_var(dataset, variable):
     series = pd.Series(dataset[variable])
@@ -10,38 +13,30 @@ def encode_var(dataset, variable):
     dataset = dataset.join(encoded_domains)
     return dataset
 
-def encode_coord(dataset, var):
-    #dataset[var] = dataset[var].astype('float64')
+
+def clean_up_data(dataset):
+    dataset = (dataset.fillna('0.0'))
+    dataset = dataset.astype(float).astype('float64')
+    dataset = dataset.astype(float).fillna(0.0)
     return dataset
 
-def encode_coord2(dataset, var):
-    series = dataset[var]
-    encoded = pd.get_dummies(series, var)
-    dataset = dataset.drop(var, axis=1)
-    dataset = dataset.join(encoded)
+
+def array_cleaning(dataset):
+    dataset = (dataset.fillna('0.0,0.0'))
+    sp = []
+    for item in dataset:
+        xy = item.split(',')
+        joint_list.append(xy)
+    nparray = np.array(joint_list)
+    np_float = nparray.astype(np.float)
+    dataset = np_float.tolist()
     return dataset
 
-def encode_coord3(dataset, var):
-    newColumns = dataset[var].str.get_dummies(sep=',')
-    dataset = dataset.drop(var, axis=1)
-    dataset = dataset.join(newColumns)
-    return dataset
 
 def get_data(columns=columns):
-    # importing the dataset
 
-    train_data = pd.read_csv('/Users/shahrozahmed/Desktop/IR_data/TrainingDat.csv', usecols=columns)
-    validation_data = pd.read_csv('/Users/shahrozahmed/Desktop/IR_data/validationDat.csv', usecols=columns)
-
-    #
-    #
-    # X_train = train_data.iloc[:, 1:len(train_data.columns)].values  # drop position
-    # y_train = train_data.iloc[:, 0].values  # predict position
-    #
-    # X_valid = validation_data.iloc[:, 1:len(train_data.columns)].values  # drop position
-    # y_valid = validation_data.iloc[:, 0].values  # predict position
-    #
-    # return X_train, y_train, X_valid, y_valid, train_data, validation_data
+    train_data = pd.read_csv('/Users/shahrozahmed/Desktop/IR_data/training.csv', usecols=columns)
+    validation_data = pd.read_csv('/Users/shahrozahmed/Desktop/IR_data/validation.csv', usecols=columns)
 
     # # encode position - train data
     encode_var(train_data, "position")
@@ -51,138 +46,133 @@ def get_data(columns=columns):
     print("0")
 
     # encode nose - train data
-
-    train_data.nose = train_data.nose.astype(float).astype('float64')
-    train_data.nose =\
-        train_data.nose.astype(float).fillna(0.0)
-    encode_coord(train_data, "nose")
+    clean_up_data(train_data.noseX)
+    clean_up_data(train_data.noseY)
     # encode nose - validation data
-    validation_data.nose = validation_data.nose.astype(float).fillna(0.0)
-    encode_coord(validation_data, "nose")
+    clean_up_data(validation_data.noseX)
+    clean_up_data(validation_data.noseY)
 
     print("1")
     # encode neck - train data
-    train_data.neck = train_data.neck.astype(float).fillna(0.0)
-    encode_coord(train_data, "neck")
+    clean_up_data(train_data.neckX)
+    clean_up_data(train_data.neckY)
     # encode neck - validation data
-    validation_data.neck = validation_data.neck.astype(float).fillna(0.0)
-    encode_coord(validation_data, "neck")
+    clean_up_data(validation_data.neckX)
+    clean_up_data(validation_data.neckY)
 
     print("2")
     # encode rshoulder - train data
-    train_data.rshoulder = train_data.rshoulder.astype(float).fillna(0.0)
-    encode_coord(train_data, "rshoulder")
+    clean_up_data(train_data.rshoulderX)
+    clean_up_data(train_data.rshoulderY)
     # encode rshoulder - validation data
-    validation_data.rshoulder = validation_data.rshoulder.astype(float).fillna(0.0)
-    encode_coord(validation_data, "rshoulder")
+    clean_up_data(validation_data.rshoulderX)
+    clean_up_data(validation_data.rshoulderY)
 
     print("2.5")
     # encode relbow - train data
-    train_data.relbow = train_data.relbow.astype(float).fillna(0.0)
-    encode_coord(train_data, "relbow")
+    clean_up_data(train_data.relbowX)
+    clean_up_data(train_data.relbowY)
     # encode relbow - validation data
-    validation_data.relbow = validation_data.relbow.astype(float).fillna(0.0)
-    encode_coord(validation_data, "relbow")
+    clean_up_data(validation_data.relbowX)
+    clean_up_data(validation_data.relbowY)
 
-    print("3")
     # encode rwrist - train data
-    train_data.rwrist = train_data.rwrist.astype(float).fillna(0.0)
-    encode_coord(train_data, "rwrist")
+    clean_up_data(train_data.rwristX)
+    clean_up_data(train_data.rwristY)
     # encode rwrist - validation data
-    validation_data.rwrist = validation_data.rwrist.astype(float).fillna(0.0)
-    encode_coord(validation_data, "rwrist")
+    clean_up_data(validation_data.rwristX)
+    clean_up_data(validation_data.rwristY)
 
-    print("4")
     # encode lshoulder - train data
-    train_data.lshoulder = train_data.lshoulder.astype(float).fillna(0.0)
-    encode_coord(train_data, "lshoulder")
+    clean_up_data(train_data.lshoulderX)
+    clean_up_data(train_data.lshoulderY)
     # encode lshoulder - validation data
-    validation_data.lshoulder = validation_data.lshoulder.astype(float).fillna(0.0)
-    encode_coord(validation_data, "lshoulder")
+    clean_up_data(validation_data.lshoulderX)
+    clean_up_data(validation_data.lshoulderY)
 
     # encode lelbow - train data
-    train_data.lelbow = train_data.lelbow.astype(float).fillna(0.0)
-    encode_coord(train_data, "lelbow")
+    clean_up_data(train_data.lelbowX)
+    clean_up_data(train_data.lelbowY)
     # encode lelbow - validation data
-    validation_data.lelbow = validation_data.lelbow.astype(float).fillna(0.0)
-    encode_coord(validation_data, "lelbow")
+    clean_up_data(validation_data.lelbowX)
+    clean_up_data(validation_data.lelbowY)
 
     # encode lwrist - train data
-    train_data.lwrist = train_data.lwrist.astype(float).fillna(0.0)
-    encode_coord(train_data, "lwrist")
+    clean_up_data(train_data.lwristX)
+    clean_up_data(train_data.lwristY)
     # encode lwrist - validation data
-    validation_data.lwrist = validation_data.lwrist.astype(float).fillna(0.0)
-    encode_coord(validation_data, "lwrist")
+    clean_up_data(validation_data.lwristX)
+    clean_up_data(validation_data.lwristY)
 
     # encode midhip - train data
-    train_data.midhip = train_data.midhip.astype(float).fillna(0.0)
-    encode_coord(train_data, "midhip")
+    clean_up_data(train_data.midhipX)
+    clean_up_data(train_data.midhipY)
     # encode midhip - validation data
-    validation_data.midhip = validation_data.midhip.astype(float).fillna(0.0)
-    encode_coord(validation_data, "midhip")
+    clean_up_data(validation_data.midhipX)
+    clean_up_data(validation_data.midhipY)
 
     # encode rhip - train data
-    train_data.rhip = train_data.rhip.astype(float).fillna(0.0)
-    encode_coord(train_data, "rhip")
+    clean_up_data(train_data.rhipX)
+    clean_up_data(train_data.rhipY)
     # encode rhip - validation data
-    validation_data.rhip = validation_data.rhip.astype(float).fillna(0.0)
-    encode_coord(validation_data, "rhip")
+    clean_up_data(validation_data.rhipX)
+    clean_up_data(validation_data.rhipY)
 
     # encode rknee - train data
-    train_data.rknee = train_data.rknee.astype(float).fillna(0.0)
-    encode_coord(train_data, "rknee")
+    clean_up_data(train_data.rkneeX)
+    clean_up_data(train_data.rkneeY)
     # encode rknee - validation data
-    validation_data.rknee = validation_data.rknee.astype(float).fillna(0.0)
-    encode_coord(validation_data, "rknee")
+    clean_up_data(validation_data.rkneeX)
+    clean_up_data(validation_data.rkneeY)
 
     # encode rankle - train data
-    train_data.rankle = train_data.rankle.astype(float).fillna(0.0)
-    encode_coord(train_data, "rankle")
+    clean_up_data(train_data.rankleX)
+    clean_up_data(train_data.rankleY)
     # encode rankle - validation data
-    validation_data.rankle = validation_data.rankle.astype(float).fillna(0.0)
-    encode_coord(validation_data, "rankle")
+    clean_up_data(validation_data.rankleX)
+    clean_up_data(validation_data.rankleY)
 
     # encode lhip - train data
-    train_data.lhip = train_data.lhip.astype(float).fillna(0.0)
-    encode_coord(train_data, "lhip")
+    clean_up_data(train_data.lhipX)
+    clean_up_data(train_data.lhipY)
     # encode lhip - validation data
-    validation_data.lhip = validation_data.lhip.astype(float).fillna(0.0)
-    encode_coord(validation_data, "lhip")
+    clean_up_data(validation_data.lhipX)
+    clean_up_data(validation_data.lhipY)
 
     # encode lknee - train data
-    train_data.lknee = train_data.lknee.astype(float).fillna(0.0)
-    encode_coord(train_data, "lknee")
+    clean_up_data(train_data.lkneeX)
+    clean_up_data(train_data.lkneeY)
     # encode lknee - validation data
-    validation_data.lknee = validation_data.lknee.astype(float).fillna(0.0)
-    encode_coord(validation_data, "lknee")
+    clean_up_data(validation_data.lkneeX)
+    clean_up_data(validation_data.lkneeY)
 
     # encode lankle - train data
-    train_data.lankle = train_data.lankle.astype(float).fillna(0.0)
-    encode_coord(train_data, "lankle")
+    clean_up_data(train_data.lankleX)
+    clean_up_data(train_data.lankleY)
     # encode lankle - validation data
-    validation_data.lankle = validation_data.lankle.astype(float).fillna(0.0)
-    encode_coord(validation_data, "lankle")
+    clean_up_data(validation_data.lankleX)
+    clean_up_data(validation_data.lankleY)
 
     # encode reye - train data
-    train_data.reye = train_data.reye.astype(float).fillna(0.0)
-    encode_coord(train_data, "reye")
+    clean_up_data(train_data.reyeX)
+    clean_up_data(train_data.reyeY)
     # encode reye - validation data
-    validation_data.reye = validation_data.reye.astype(float).fillna(0.0)
-    encode_coord(validation_data, "reye")
+    clean_up_data(validation_data.reyeX)
+    clean_up_data(validation_data.reyeY)
 
     # encode leye - train data
-    train_data.leye = train_data.leye.astype(float).fillna(0.0)
-    encode_coord(train_data, "leye")
+    clean_up_data(train_data.leyeX)
+    clean_up_data(train_data.leyeY)
     # encode leye - validation data
-    validation_data.leye = validation_data.leye.astype(float).fillna(0.0)
-    encode_coord(validation_data, "leye")
+    clean_up_data(validation_data.leyeX)
+    clean_up_data(validation_data.leyeY)
 
     # encode rear - train data
-    train_data.rear = train_data.rear.astype(float).fillna(0.0)
-    encode_coord(train_data, "rear")
+    clean_up_data(train_data.rearX)
+    clean_up_data(train_data.rearY)
     # encode rear - validation data
-    validation_data.rear = validation_data.rear.astype(float).fillna(0.0)
-    encode_coord(validation_data, "rear")
+    clean_up_data(validation_data.rearX)
+    clean_up_data(validation_data.rearY)
 
 # determine data rows
     X_train = train_data.iloc[:, 1:len(train_data.columns)].values  # drop position
