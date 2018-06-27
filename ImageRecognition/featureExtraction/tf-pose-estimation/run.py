@@ -40,10 +40,10 @@ if __name__ == '__main__':
     else:
         e = TfPoseEstimator(get_graph_path(args.model), target_size=(w, h))
 
+    print(args.directory)
     directory = os.fsencode(args.directory)
-
-    #if directory.endswith(".csv"):
-
+    print(directory)
+    string_humans =""
     #Goes over a whole directory to generate training data
     for file in os.listdir(directory):
         filename = os.fsdecode(file)
@@ -76,16 +76,15 @@ if __name__ == '__main__':
                         string_human += "0.0,0.0,"
                 #Go to the next line after each human in the picture
                 string_human = string_human + "\n"
-            #If the user wants to write to an output file
-            if args.output is not None:
-                if os.path.isfile(args.output):
-                    f = open(args.output,'a+')
-                    f.write(string_human)
-                    f.close()
-                #If the output file does not exist yet, first populate the string with category headings
-                else:
-                    f = open(args.output,'a+')
-                    f.write("position, noseX, noseY, neckX, neckY, rshoulderX, rshoulderY, relbowX, relbowY, rwristX, rwristY, lshoulderX, lshoulderY, lelbowX, lelbowY, lwristX, lwristY, midhipX, midhipY, rhipX, rhipY, rkneeX, rkneeY, rankleX, rankleY, lhipX, lhipY, lkneeX, lkneeY, lankleX, lankleY, reyeX, reyeY, leyeX, leyeY, rearX, rearY\n"+string_human)
-                    f.close()
-
-#def csv_output:
+            string_humans += string_human
+    #If the user wants to write to an output file
+    if args.output is not None:
+        if os.path.isfile(args.output):
+            f = open(args.output,'a+')
+            f.write(string_human)
+            f.close()
+        #If the output file does not exist yet, first populate the string with category headings
+        else:
+            f = open(args.output,'a+')
+            f.write("position,noseX,noseY,neckX,neckY,rshoulderX,rshoulderY,relbowX,relbowY,rwristX,rwristY,lshoulderX,lshoulderY,lelbowX,lelbowY,lwristX,lwristY,midhipX,midhipY,rhipX,rhipY,rkneeX,rkneeY,rankleX,rankleY,lhipX,lhipY,lkneeX,lkneeY,lankleX,lankleY,reyeX,reyeY,leyeX,leyeY\n"+string_humans)
+            f.close()

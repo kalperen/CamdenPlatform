@@ -3,7 +3,7 @@ import pandas as pd
 columns = ['position', 'noseX', 'noseY', 'neckX', 'neckY', 'rshoulderX','rshoulderY', 'relbowX', 'relbowY', 'rwristX',
            'rwristY', 'lshoulderX','lshoulderY', 'lelbowX', 'lelbowY', 'lwristX','lwristY', 'midhipX','midhipY',
            'rhipX','rhipY', 'rkneeX','rkneeY', 'rankleX', 'rankleY', 'lhipX','lhipY', 'lkneeX','lkneeY', 'lankleX',
-           'lankleY', 'reyeX', 'reyeY', 'leyeX','leyeY', 'rearX', 'rearY']
+           'lankleY', 'reyeX', 'reyeY', 'leyeX','leyeY']
 
 
 def encode_var(dataset, variable):
@@ -35,8 +35,8 @@ def array_cleaning(dataset):
 
 def get_data(columns=columns):
 
-    train_data = pd.read_csv('/Users/shahrozahmed/Desktop/IR_data/training.csv', usecols=columns)
-    validation_data = pd.read_csv('/Users/shahrozahmed/Desktop/IR_data/validation.csv', usecols=columns)
+    train_data = pd.read_csv('/Users/alperen/Desktop/CamdenPlatform/ImageRecognition/featureExtraction/train.csv', usecols=columns)
+    validation_data = pd.read_csv('/Users/alperen/Desktop/CamdenPlatform/ImageRecognition/featureExtraction/validation.csv', usecols=columns)
 
     # # encode position - train data
     encode_var(train_data, "position")
@@ -162,13 +162,6 @@ def get_data(columns=columns):
     clean_up_data(validation_data.leyeX)
     clean_up_data(validation_data.leyeY)
 
-    # encode rear - train data
-    clean_up_data(train_data.rearX)
-    clean_up_data(train_data.rearY)
-    # encode rear - validation data
-    clean_up_data(validation_data.rearX)
-    clean_up_data(validation_data.rearY)
-
 # determine data rows
     X_train = train_data.iloc[:, 1:len(train_data.columns)].values  # drop position
     y_train = train_data.iloc[:, 0].values  # predict position
@@ -177,5 +170,3 @@ def get_data(columns=columns):
     y_valid = validation_data.iloc[:, 0].values  # predict position
 
     return X_train, y_train, X_valid, y_valid, train_data, validation_data
-
-
