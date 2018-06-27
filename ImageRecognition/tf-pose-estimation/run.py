@@ -42,6 +42,8 @@ if __name__ == '__main__':
 
     directory = os.fsencode(args.directory)
 
+    #if directory.endswith(".csv"):
+
     #Goes over a whole directory to generate training data
     for file in os.listdir(directory):
         filename = os.fsdecode(file)
@@ -71,7 +73,7 @@ if __name__ == '__main__':
                         1-human.body_parts[i].y) + ","
                     #If there are no coordinates for a certain limb record null
                     except KeyError:
-                        string_human += "0,"
+                        string_human += "0.0,0.0,"
                 #Go to the next line after each human in the picture
                 string_human = string_human + "\n"
             #If the user wants to write to an output file
@@ -86,11 +88,4 @@ if __name__ == '__main__':
                     f.write("position, noseX, noseY, neckX, neckY, rshoulderX, rshouldery, relbowX, relbowY, rwristX, rwristY, lshoulderX, lshoulderY, lelbowX, lelbowY, lwristX, lwristY, midhipX, midhipY, rhipX, rhipY, rkneeX, rkneeY, rankleX, rankleY, lhipX, lhipY, lkneeX, lkneeY, lankleX, lankleY, reyeX, reyeY, leyeX, leyeY, rearX, rearY\n"+string_human)
                     f.close()
 
-    # import matplotlib.pyplot as plt
-    #
-    # fig = plt.figure()
-    # a = fig.add_subplot(1, 1, 1)
-    # a.set_title('Result')
-    # plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
-    #
-    # plt.show()
+#def csv_output:
