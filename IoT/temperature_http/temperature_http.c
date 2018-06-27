@@ -15,16 +15,16 @@
 static const char* connectionString = IOT_CONFIG_CONNECTION_STRING;
 
 // Define the Model used to serialize
-BEGIN_NAMESPACE(WeatherStation);
+BEGIN_NAMESPACE(Model);
 
-DECLARE_MODEL(ContosoAnemometer,
+DECLARE_MODEL(TemperatureSensor,
 WITH_DATA(ascii_char_ptr, DeviceId),
-WITH_DATA(int, WindSpeed),
-WITH_DATA(float, Temperature),
-WITH_DATA(float, Humidity)
+WITH_DATA(ascii_char_ptr, SensorType),
+WITH_DATA(ascii_char_ptr, MeasurementUnit),
+WITH_DATA(float, Value)
 );
 
-END_NAMESPACE(WeatherStation);
+END_NAMESPACE(Model);
 
 static char propText[1024];
 static unsigned int messageTrackingId;
@@ -125,7 +125,7 @@ void http_run(void)
             }
             else
             {
-                ContosoAnemometer* myWeather;
+                TemperatureSensor* myWeather;
 
 
 #ifdef SET_TRUSTED_CERT_IN_SAMPLES
@@ -136,7 +136,7 @@ void http_run(void)
                 }
 #endif // SET_TRUSTED_CERT_IN_SAMPLES
 
-                myWeather = CREATE_MODEL_INSTANCE(WeatherStation, ContosoAnemometer);
+                myWeather = CREATE_MODEL_INSTANCE(Model, TemperatureSensor);
                 if (myWeather == NULL)
                 {
                     (void)printf("Failed on CREATE_MODEL_INSTANCE\r\n");
@@ -150,19 +150,21 @@ void http_run(void)
                     }
                     else
                     {
+                        
                         int sensorValue = analogRead(1); 
   
                         float voltage = sensorValue * (3300/1024); // in milliVolt 
    
                         float temperature = (voltage - 500 ) / 10;
+                        
                         myWeather->DeviceId = "MyMKR1000";
-                        myWeather->WindSpeed = avgWindSpeed + (rand() % 4 + 2);
-                        myWeather->Temperature = temperature;
-                        myWeather->Humidity = minHumidity + (rand() % 20);
+                        myWeather->SensorType = "Temperature";
+                        myWeather->MeasurementUnit = "C";
+                        myWeather->Value = temperature;
                         {
                             unsigned char* destination;
                             size_t destinationSize;
-                            if (SERIALIZE(&destination, &destinationSize, myWeather->DeviceId, myWeather->WindSpeed, myWeather->Temperature, myWeather->Humidity) != CODEFIRST_OK)
+                            if (SERIALIZE(&destination, &destinationSize, myWeather->DeviceId, myWeather->SensorType, myWeather->MeasurementUnit, myWeather->Value) != CODEFIRST_OK)
                             {
                                 (void)printf("Failed to serialize\r\n");
                             }
