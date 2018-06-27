@@ -43,8 +43,6 @@ def get_data(columns=columns):
     # # encode position - validation data
     encode_var(validation_data, "position")
 
-    print("0")
-
     # encode nose - train data
     clean_up_data(train_data.noseX)
     clean_up_data(train_data.noseY)
@@ -52,7 +50,6 @@ def get_data(columns=columns):
     clean_up_data(validation_data.noseX)
     clean_up_data(validation_data.noseY)
 
-    print("1")
     # encode neck - train data
     clean_up_data(train_data.neckX)
     clean_up_data(train_data.neckY)
@@ -60,7 +57,6 @@ def get_data(columns=columns):
     clean_up_data(validation_data.neckX)
     clean_up_data(validation_data.neckY)
 
-    print("2")
     # encode rshoulder - train data
     clean_up_data(train_data.rshoulderX)
     clean_up_data(train_data.rshoulderY)
@@ -68,7 +64,6 @@ def get_data(columns=columns):
     clean_up_data(validation_data.rshoulderX)
     clean_up_data(validation_data.rshoulderY)
 
-    print("2.5")
     # encode relbow - train data
     clean_up_data(train_data.relbowX)
     clean_up_data(train_data.relbowY)
