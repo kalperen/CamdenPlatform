@@ -150,35 +150,37 @@ void http_run(void)
                     }
                     else
                     {
-                        
-                        int sensorValue = analogRead(1); 
+                        while (true){
+                          int sensorValue = analogRead(1); 
+    
+                          float voltage = sensorValue * (3300/1024); // in milliVolt 
+     
+                          float temperature = (voltage - 500 ) / 10;
+                          
+                          myWeather->DeviceId = "MyMKR1000";
+                          myWeather->SensorType = "Temperature";
+                          myWeather->MeasurementUnit = "C";
+                          myWeather->Value = temperature;
+                          {
+                              unsigned char* destination;
+                              size_t destinationSize;
+                              if (SERIALIZE(&destination, &destinationSize, myWeather->DeviceId, myWeather->SensorType, myWeather->MeasurementUnit, myWeather->Value) != CODEFIRST_OK)
+                              {
+                                  (void)printf("Failed to serialize\r\n");
+                              }
+                              else
+                              {
+                                sendMessage(iotHubClientHandle, destination, destinationSize);
+                              }
+                          }
+                          IOTHUB_CLIENT_STATUS status;
   
-                        float voltage = sensorValue * (3300/1024); // in milliVolt 
-   
-                        float temperature = (voltage - 500 ) / 10;
-                        
-                        myWeather->DeviceId = "MyMKR1000";
-                        myWeather->SensorType = "Temperature";
-                        myWeather->MeasurementUnit = "C";
-                        myWeather->Value = temperature;
-                        {
-                            unsigned char* destination;
-                            size_t destinationSize;
-                            if (SERIALIZE(&destination, &destinationSize, myWeather->DeviceId, myWeather->SensorType, myWeather->MeasurementUnit, myWeather->Value) != CODEFIRST_OK)
-                            {
-                                (void)printf("Failed to serialize\r\n");
-                            }
-                            else
-                            {
-                              sendMessage(iotHubClientHandle, destination, destinationSize);
-                            }
-                        }
-                        IOTHUB_CLIENT_STATUS status;
-
-                        while ((IoTHubClient_LL_GetSendStatus(iotHubClientHandle, &status) == IOTHUB_CLIENT_OK) && (status == IOTHUB_CLIENT_SEND_STATUS_BUSY))
-                        {
-                            IoTHubClient_LL_DoWork(iotHubClientHandle);
-                            ThreadAPI_Sleep(100);
+                          while ((IoTHubClient_LL_GetSendStatus(iotHubClientHandle, &status) == IOTHUB_CLIENT_OK) && (status == IOTHUB_CLIENT_SEND_STATUS_BUSY))
+                          {
+                              IoTHubClient_LL_DoWork(iotHubClientHandle);
+                              ThreadAPI_Sleep(100);
+                          }
+                          ThreadAPI_Sleep(5000);
                         }
                     }
 
@@ -190,10 +192,6 @@ void http_run(void)
         }
         platform_deinit();
     }
-    
-     //ThreadAPI_Sleep(1000);
-    
-    //run();
 }
 
 void run(void)
