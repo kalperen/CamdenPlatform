@@ -67,8 +67,8 @@ if __name__ == '__main__':
                 for i in range(0, 17):
                     try:
                         #record the limb coordinates
-                        string_human += "\"" + str(human.body_parts[i].x) + "," + str(
-                        human.body_parts[i].y) + "\","
+                        string_human += str(human.body_parts[i].x) + "," + str(
+                        1-human.body_parts[i].y) + ","
                     #If there are no coordinates for a certain limb record null
                     except KeyError:
                         string_human += "0,"
@@ -83,7 +83,7 @@ if __name__ == '__main__':
                 #If the output file does not exist yet, first populate the string with category headings
                 else:
                     f = open(args.output,'a+')
-                    f.write("position, nose, neck, rshoulder, relbow, rwrist, lshoulder, lelbow, lwrist, midhip, rhip, rknee, rankle, lhip, lknee, lankle, reye, leye, rear\n"+string_human)
+                    f.write("position, noseX, noseY, neckX, neckY, rshoulderX, rshouldery, relbowX, relbowY, rwristX, rwristY, lshoulderX, lshoulderY, lelbowX, lelbowY, lwristX, lwristY, midhipX, midhipY, rhipX, rhipY, rkneeX, rkneeY, rankleX, rankleY, lhipX, lhipY, lkneeX, lkneeY, lankleX, lankleY, reyeX, reyeY, leyeX, leyeY, rearX, rearY\n"+string_human)
                     f.close()
 
     # import matplotlib.pyplot as plt
