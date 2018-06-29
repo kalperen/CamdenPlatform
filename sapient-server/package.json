@@ -5,7 +5,8 @@
   "main": "sapient-server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node sapient-server.js"
+    "start": "node sapient-server.js",
+    "devstart": "nodemon sapient-server.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,5 +15,8 @@
     "body-parser": "^1.15.2",
     "documentdb": "^1.14.4",
     "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.5"
   }
 }

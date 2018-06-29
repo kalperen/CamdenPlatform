@@ -15,13 +15,14 @@ import { Widget } from '../widget';
 export class DashboardComponent implements OnInit {
   
   widgets: Widget[];
-  private serverUrl = "http://localhost:3000/addDevice";
+  private serverUrl = "http://localhost:3000/devices/addDevice";
   private deviceId;
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'
     })
   };
+
   constructor(
     public widgetService: WidgetService,
     private http: HttpClient
@@ -47,7 +48,7 @@ export class DashboardComponent implements OnInit {
       err => {
         console.log("Error occured: " + err);
       }
-    );;
+    );
   }
 
 }
