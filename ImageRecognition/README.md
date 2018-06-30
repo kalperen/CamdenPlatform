@@ -45,4 +45,31 @@ $ python run.py --model=mobilenet_thin --resize=432x368 --image=./images/p1.jpg
 $ python run_webcam.py --model=mobilenet_thin --resize=432x368 --camera=0
 ```
 
+### Feature extraction
+
+Create a folder named images in featureExtraction/tf-pose-estimation/. Place all the images that you
+will be using for training in your model and that you want features to be extracted from.
+
+```
+$ cd featureExtraction/tf-pose-estimation/
+$ mkdir images
+```
+
+This command will loop over all the images in images/ folder and write the extracted features
+into data.csv
+
+```
+$ python run.py --resize=432x368 --output=data.csv
+```
+
+### Classification
+
+Change the directories in classification/data_processing.py to match your own training.csv and validation.csv
+files. Then run:
+
+```
+$ python classification/MLPClassifier.py
+```
+
+
 # Warning: This repository is not completed yet
