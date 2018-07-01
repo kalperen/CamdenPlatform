@@ -58,13 +58,16 @@ if __name__ == '__main__':
             humans = e.inference(image, resize_to_default=(w > 0 and h > 0), upsample_size=args.resize_out_ratio)
             elapsed = time.time() - t
 
-            string_human = filename + ","
+            label = filename + ","
             #Strip the all digits from the filename so that we categorize correctly
             remove_digits = str.maketrans('', '', digits)
-            string_human = string_human.translate(remove_digits).replace('.jpg', '')
 
+            label = label.translate(remove_digits).replace('.jpg', '')
+
+            string_human = ""
             #Go over all the humans in the photo
             for human in humans:
+                string_human = string_human + label
                 #For every single limb that each human has
                 for i in range(0, 17):
                     try:
@@ -76,6 +79,7 @@ if __name__ == '__main__':
                         string_human += "0.0,0.0,"
                 #Go to the next line after each human in the picture
                 string_human = string_human + "\n"
+
             string_humans += string_human
     #If the user wants to write to an output file
     if args.output is not None:

@@ -44,12 +44,32 @@ if __name__ == '__main__':
     ret_val, image = cam.read()
     logger.info('cam image=%dx%d' % (image.shape[1], image.shape[0]))
 
+    string_humans =""
     while True:
         ret_val, image = cam.read()
 
         logger.debug('image process+')
         humans = e.inference(image, resize_to_default=(w > 0 and h > 0), upsample_size=args.resize_out_ratio)
 
+
+        string_human = ""
+        #Go over all the humans in the photo
+        for human in humans:
+
+            #For every single limb that each human has
+            for i in range(0, 17):
+                try:
+                    #record the limb coordinates
+                    string_human += str(human.body_parts[i].x) + "," + str(
+                    1-human.body_parts[i].y) + ","
+                #If there are no coordinates for a certain limb record null
+                except KeyError:
+                    string_human += "0.0,0.0,"
+            #Go to the next line after each human in the picture
+            string_human = string_human + "\n"
+
+        string_humans += string_human + "\n"
+        print(string_humans)
         logger.debug('postprocess+')
         image = TfPoseEstimator.draw_humans(image, humans, imgcopy=False)
 
