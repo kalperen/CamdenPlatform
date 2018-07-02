@@ -4,6 +4,7 @@ var express = require('express'),
 
 var deviceRouter = require('./routes/devices');
 var telemetriesRouter = require('./routes/telemetries');
+var sensorTypesRouter = require('./routes/sensorTypes');
  
 var app = express()
 
@@ -25,5 +26,6 @@ app.use(function(req, res, next) {
 
 app.use('/devices', deviceRouter);
 app.use('/telemetries', telemetriesRouter);
+app.use('/sensorTypes', sensorTypesRouter);
  
 app.listen(3000)

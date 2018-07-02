@@ -1,6 +1,13 @@
-<h1> {{ widget.sensorType  }} </h1>
+<div *ngIf="widget">
+    <h1> {{ widget.sensorType | uppercase }} </h1>
+</div>
+
 <!-- Here the widget will print itself, using the print method 
 which will be different foe every imlementation of the widget -->
-<div>Lorem Ipsum</div>
+<div *ngIf="telemetries">
+    <div *ngFor='let telemetry of telemetries'> 
+        <p>{{ telemetry.measurementValue }} {{telemetry.measurementUnit}}</p>
+    </div>
+</div>
 
 <button (click)="goBack()">go back</button>

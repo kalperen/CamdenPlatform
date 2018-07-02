@@ -21,7 +21,6 @@ router.post('/getTelemetries', function(req, res) {
     query += (req.body.lowerBoundTime != null) ? "c['_ts'] > " + req.body.lowerBoundTime + " AND " : "";
     query += (req.body.upperBoundTime != null) ? "c['_ts'] < " + req.body.upperBoundTime + " AND " : "" ;
     query += "1 = 1";
-    console.log(query);
 
     //TODO:
     //once it works, think about SQL injection

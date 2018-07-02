@@ -30,7 +30,7 @@ export class DashboardComponent implements OnInit {
 
   getWidgets(): void {
     this.widgetService.getWidgets()
-      .subscribe(heroes => this.widgets = heroes);
+      .subscribe(widgets => this.widgets = widgets);
   }
 
   ngOnInit() {
@@ -39,7 +39,6 @@ export class DashboardComponent implements OnInit {
 
   addDevice(): void{
     this.deviceId = "test-device-" + (1000) * Math.random();
-    console.log(this.deviceId);
     this.http.post(this.serverUrl, { deviceId: this.deviceId }, this.httpOptions)
     .subscribe(
       res => {
