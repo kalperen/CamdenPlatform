@@ -5,6 +5,7 @@ module.exports = function (context, IoTHubMessages) {
     var deviceId = "";
     var sensorType = "";
     var measurementUnit = "";
+    var d = new Date();
 
     IoTHubMessages.forEach(message => {
         context.log(`Processed message: ${message}`);
@@ -17,8 +18,13 @@ module.exports = function (context, IoTHubMessages) {
     var output = {
         "deviceId": deviceId,
         "measurementUnit": measurementUnit,
-        "value": value,
-        "sensorType": sensorType
+        "measurementValue": value,
+        "sensorType": sensorType,
+        "year": d.getFullYear(),
+        "month": d.getMonth(),
+        "day": d.getDate(),
+        "hour": d.getHours(),
+        "minutes": d.getMinutes()
     };
 
     context.log(`Output content: ${output}`);
