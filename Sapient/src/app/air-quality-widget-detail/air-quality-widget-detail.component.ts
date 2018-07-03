@@ -8,11 +8,11 @@ import { TelemetryService }  from '../telemetry.service';
 import { Telemetry } from '../telemetry';
 
 @Component({
-  selector: 'app-widget-detail',
-  templateUrl: './widget-detail.component.html',
-  styleUrls: ['./widget-detail.component.css']
+  selector: 'app-air-quality-widget-detail',
+  templateUrl: './air-quality-widget-detail.component.html',
+  styleUrls: ['./air-quality-widget-detail.component.css']
 })
-export class WidgetDetailComponent implements OnInit {
+export class AirQualityWidgetDetailComponent implements OnInit {
   @Input() widget: Widget;
   telemetries: Telemetry[];
 
