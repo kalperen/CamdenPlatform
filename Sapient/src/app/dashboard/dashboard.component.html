@@ -4,6 +4,7 @@
     <a routerLink="/detail/{{widget.sensorId}}">
       {{widget.sensorType}}
     </a>
+    <app-widget sensorId='{{widget.sensorId}}'></app-widget>
 </div>
 
 <button (click)="addDevice()">Add Device</button>

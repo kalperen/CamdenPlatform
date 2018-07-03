@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { WidgetComponent } from './widget/widget.component';
+import { WidgetDetailComponent } from './widget-detail/widget-detail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    WidgetComponent
+    WidgetComponent,
+    WidgetDetailComponent
   ],
   imports: [
     BrowserModule,

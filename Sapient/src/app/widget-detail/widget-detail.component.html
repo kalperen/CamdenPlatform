@@ -1,5 +1,5 @@
 <div *ngIf="widget">
-    <h4> {{ widget.sensorType | uppercase }} </h4>
+    <h1> {{ widget.sensorType | uppercase }} </h1>
 </div>
 
 <!-- Here the widget will print itself, using the print method 
@@ -9,3 +9,5 @@ which will be different foe every imlementation of the widget -->
         <p>{{ telemetry.measurementValue }} {{telemetry.measurementUnit}}</p>
     </div>
 </div>
+
+<button (click)="goBack()">go back</button>

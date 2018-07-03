@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, ElementRef } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { WidgetService }  from '../widget.service';
 import { Widget } from '../widget'
@@ -7,28 +8,27 @@ import { TelemetryService }  from '../telemetry.service';
 import { Telemetry } from '../telemetry';
 
 @Component({
-  selector: 'app-widget',
-  templateUrl: './widget.component.html',
-  styleUrls: ['./widget.component.css']
+  selector: 'app-widget-detail',
+  templateUrl: './widget-detail.component.html',
+  styleUrls: ['./widget-detail.component.css']
 })
-
-export class WidgetComponent implements OnInit {
+export class WidgetDetailComponent implements OnInit {
   @Input() widget: Widget;
-  @Input() sensorId: string;
   telemetries: Telemetry[];
 
   constructor(
     private route: ActivatedRoute,
     private widgetService: WidgetService,
     private telemetryService: TelemetryService,
-    private elm: ElementRef) {}
+    private location: Location) { }
 
   ngOnInit() {
     this.getWidget();
   }
 
   getWidget(): void {
-    this.widgetService.getWidget(this.sensorId)
+    const sensorId = this.route.snapshot.paramMap.get('sensorId');
+    this.widgetService.getWidget(sensorId)
       .subscribe(widget => {this.widget = widget; this.getTelemetries();});
   }
 
@@ -39,5 +39,9 @@ export class WidgetComponent implements OnInit {
 
     this.telemetryService.getTelemetries(telemetryQuery)
       .subscribe(telemetries => this.telemetries = telemetries);
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }
