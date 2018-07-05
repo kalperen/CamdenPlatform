@@ -2,26 +2,13 @@ from data_processing import get_data
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
-from sklearn.neural_network import MLPClassifier
+from sklearn.ensemble import GradientBoostingClassifier
 from sklearn import ensemble
 from sklearn.externals import joblib
+
 data, labels = get_data()
 
-# print(data.shape)
-# print(target.shape)
-# X_train, X_test, y_train, y_test = train_test_split(data, target, test_size=0.4, random_state=0)
-#
-#
-# print(X_train.shape)
-# print(y_train.shape)
-# clf = MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(8, 16), random_state=1, activation='logistic')
-# clf.fit(X_train, y_train)
-# print("\nTRAIN:")
-# print(str(clf.score(X_train, y_train)*100) + "%")
-# print("\nTEST:")
-# print(str(clf.score(X_test, y_test)*100) + "%")
-
-print("Multi layer perceptron")
+print("\nGradient Boosted Trees")
 avg_train = 0
 avg_test = 0
 fold_number=0
@@ -35,7 +22,9 @@ for train_indices, test_indices in kf.split(data):
     Y_train = [labels[ii] for ii in train_indices]
     Y_test = [labels[ii] for ii in test_indices]
 
-    clf = MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(8, 16), random_state=1, activation='logistic')
+    params = {'n_estimators': 1000, 'max_depth': 4, 'min_samples_split': 2,
+              'learning_rate': 0.01, 'loss': 'ls'}
+    clf = GradientBoostingClassifier(n_estimators=500, learning_rate=1.0,max_depth=4, random_state=0, loss='deviance')
     clf.fit(X_train, Y_train)
     print("Fold #"+str(fold_number))
     fold_number+=1
@@ -46,6 +35,10 @@ for train_indices, test_indices in kf.split(data):
     print(str(clf.score(X_test, Y_test)*100) + "%\n")
     avg_test += clf.score(X_test, Y_test)*100
 
+
+print(X_test)
+print(clf.predict(X_test))
 print("\nAverage train: " + str(avg_train/10))
 print("\nAverage test: " + str(avg_test/10))
-joblib.dump(clf, "gradient.pkl")
+
+joblib.dump(clf, "clf.pkl")
