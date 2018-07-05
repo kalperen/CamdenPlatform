@@ -5,6 +5,8 @@ import time
 import cv2
 import numpy as np
 
+from sklearn.externals import joblib
+
 from tf_pose.estimator import TfPoseEstimator
 from tf_pose.networks import get_graph_path, model_wh
 
@@ -44,32 +46,45 @@ if __name__ == '__main__':
     ret_val, image = cam.read()
     logger.info('cam image=%dx%d' % (image.shape[1], image.shape[0]))
 
-    string_humans =""
+    array_humans = []
+
+    clf = joblib.load('gradient.pkl')
     while True:
         ret_val, image = cam.read()
 
         logger.debug('image process+')
         humans = e.inference(image, resize_to_default=(w > 0 and h > 0), upsample_size=args.resize_out_ratio)
 
-
-        string_human = ""
         #Go over all the humans in the photo
         for human in humans:
-
+            array_human = []
             #For every single limb that each human has
-            for i in range(0, 17):
+            for i in range(0, 16):
                 try:
                     #record the limb coordinates
-                    string_human += str(human.body_parts[i].x) + "," + str(
-                    1-human.body_parts[i].y) + ","
+                    array_human.append(human.body_parts[i].x)
+                    array_human.append(human.body_parts[i].y)
                 #If there are no coordinates for a certain limb record null
                 except KeyError:
-                    string_human += "0.0,0.0,"
-            #Go to the next line after each human in the picture
-            string_human = string_human + "\n"
+                    array_human.append(0.0)
+                    array_human.append(0.0)
+            array_humans.append(array_human)
+            array_human = []
+        print("single")
+        #print(len(array_humans[0]))
+        #array_humans.append(array_human)
+        print("multiple")
+        print(len(array_humans))
 
-        string_humans += string_human + "\n"
-        print(string_humans)
+        if len(array_humans) > 0:
+            print(clf.predict(array_humans))
+
+
+        #time.sleep(2)
+        #del array_human[:]
+        del array_humans[:]
+        #time.sleep(5)
+        #time.sleep(2)
         logger.debug('postprocess+')
         image = TfPoseEstimator.draw_humans(image, humans, imgcopy=False)
 
