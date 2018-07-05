@@ -1,10 +1,12 @@
 import pandas as pd
+import os
 
 cols = ['position', 'noseX', 'noseY', 'neckX', 'neckY', 'rshoulderX', 'rshoulderY', 'relbowX', 'relbowY', 'rwristX',
            'rwristY', 'lshoulderX', 'lshoulderY', 'lelbowX', 'lelbowY', 'lwristX', 'lwristY', 'midhipX', 'midhipY',
            'rhipX', 'rhipY', 'rkneeX', 'rkneeY', 'rankleX', 'rankleY', 'lhipX', 'lhipY', 'lkneeX', 'lkneeY', 'lankleX',
            'lankleY', 'reyeX', 'reyeY']
 
+csv_dir = os.path.normpath(os.getcwd() + os.sep + os.pardir) + "/tf-pose-estimation/data.csv"
 
 def encode_var(dataset, variable):
     series = pd.Series(dataset[variable])
@@ -34,7 +36,7 @@ def array_cleaning(dataset):
 
 
 def get_data(columns=cols,
-             data_dir="/Users/alperen/Desktop/CamdenPlatform/ImageRecognition/featureExtraction/tf-pose-estimation/data.csv"):
+             data_dir=csv_dir):
     train_data = pd.read_csv(data_dir, usecols=columns)
 
     if ("position" in columns):
