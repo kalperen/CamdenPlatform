@@ -39,7 +39,7 @@ setInterval(function(){
   var temperature = 20 + (Math.random() * 15);
 
   // Add the telemetry to the message body.
-  var data = JSON.stringify({ Value: temperature, SensorType: "Temperature", MeasurementUnit: "C", DeviceId: "MyNodeDevice" });
+  var data = JSON.stringify({ Value: temperature, SensorType: "Temperature", MeasurementUnit: "C", DeviceId: "MySecondNodeDevice" });
   var message = new Message(data);
 
   // Add a custom application property to the message.

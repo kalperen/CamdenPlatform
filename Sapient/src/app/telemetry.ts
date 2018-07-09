@@ -1,6 +1,11 @@
 export class Telemetry {
     sensorType: string;
-    sensorId: string;
+    deviceId: string;
     measurementUnit: string;
-    value: number;
+    measurementValue: number;
+    hour: number;
+    minutes: number;
+    year: number;
+    month: number;
+    day: number;
 }
