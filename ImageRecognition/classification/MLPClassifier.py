@@ -35,7 +35,7 @@ for train_indices, test_indices in kf.split(data):
     Y_train = [labels[ii] for ii in train_indices]
     Y_test = [labels[ii] for ii in test_indices]
 
-    clf = MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(8, 16), random_state=1, activation='logistic')
+    clf = MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(4, 16), random_state=1, activation='logistic')
     clf.fit(X_train, Y_train)
     print("Fold #"+str(fold_number))
     fold_number+=1

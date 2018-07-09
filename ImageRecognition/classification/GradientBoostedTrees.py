@@ -36,8 +36,9 @@ for train_indices, test_indices in kf.split(data):
     avg_test += clf.score(X_test, Y_test)*100
 
 
-print(X_test)
-print(clf.predict(X_test))
+#print(X_test)
+
+#print(clf.predict(X_test))
 print("\nAverage train: " + str(avg_train/10))
 print("\nAverage test: " + str(avg_test/10))
 

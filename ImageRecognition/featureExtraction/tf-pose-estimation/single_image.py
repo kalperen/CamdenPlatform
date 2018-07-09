@@ -8,7 +8,7 @@ import cv2
 import numpy as np
 from tf_pose.estimator import TfPoseEstimator
 from tf_pose.networks import get_graph_path, model_wh
-
+from sklearn.externals import joblib
 logger = logging.getLogger('TfPoseEstimator')
 logger.setLevel(logging.DEBUG)
 ch = logging.StreamHandler()
@@ -45,10 +45,35 @@ if __name__ == '__main__':
     humans = e.inference(image, resize_to_default=(w > 0 and h > 0), upsample_size=args.resize_out_ratio)
     elapsed = time.time() - t
 
+    clf = joblib.load('gradient.pkl')
+    array_humans = []
+    #Go over all the humans in the photo
+    for human in humans:
+        array_human = []
+        #For every single limb that each human has
+        for i in range(0, 16):
+            try:
+                #record the limb coordinates
+                array_human.append(human.body_parts[i].x)
+                array_human.append(human.body_parts[i].y)
+            #If there are no coordinates for a certain limb record null
+            except KeyError:
+                array_human.append(0.0)
+                array_human.append(0.0)
+        array_humans.append(array_human)
+        array_human = []
+    print("single")
+    #print(len(array_humans[0]))
+    #array_humans.append(array_human)
+    print("multiple")
+    print(len(array_humans))
+
+    if len(array_humans) > 0:
+        print(clf.predict(array_humans))
+
     logger.info('inference image: %s in %.4f seconds.' % (args.image, elapsed))
 
     image = TfPoseEstimator.draw_humans(image, humans, imgcopy=False)
-
     import matplotlib.pyplot as plt
 
     fig = plt.figure()

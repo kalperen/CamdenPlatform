@@ -48,7 +48,7 @@ if __name__ == '__main__':
 
     array_humans = []
 
-    clf = joblib.load('gradient.pkl')
+    clf = joblib.load('mlp.pkl')
     while True:
         ret_val, image = cam.read()
 
