@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import { WidgetService } from '../widget.service';
 import { Widget } from '../widget';
+import { ManageDevicesDialogComponent } from '../manage-devices-dialog/manage-devices-dialog.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,7 +27,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     public widgetService: WidgetService,
-    private http: HttpClient
+    private http: HttpClient,
+    public dialog: MatDialog
   ) { }
 
   getWidgets(): void {
@@ -48,6 +51,16 @@ export class DashboardComponent implements OnInit {
         console.log("Error occured: " + err);
       }
     );
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ManageDevicesDialogComponent, {
+      width: '250px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
 }

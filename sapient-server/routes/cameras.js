@@ -34,10 +34,10 @@ router.get('/getCameras', function(req, res) {
     });
 })
 
-router.delete('/deleteCamera', function(req, res) {
+router.delete('/deleteCamera/:cameraId', function(req, res) {
     res.setHeader('Content-Type', 'application/json');
 
-    var query = "SELECT * FROM c WHERE c.cameraId = '" + req.body.cameraId + "'";
+    var query = "SELECT * FROM c WHERE c.cameraId = '" + req.params.cameraId + "'";
 
     var querySpec = {
         'query': query
