@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import { WidgetService } from '../widget.service';
@@ -12,22 +11,13 @@ import { ManageDevicesDialogComponent } from '../manage-devices-dialog/manage-de
   styleUrls: ['./dashboard.component.css']
 })
 
-
-
 export class DashboardComponent implements OnInit {
   
   widgets: Widget[];
-  private serverUrl = "http://localhost:3000/devices/addDevice";
   private deviceId;
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':  'application/json'
-    })
-  };
 
   constructor(
     public widgetService: WidgetService,
-    private http: HttpClient,
     public dialog: MatDialog
   ) { }
 
@@ -38,19 +28,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getWidgets();
-  }
-
-  addDevice(): void{
-    this.deviceId = "test-device-" + (1000) * Math.random();
-    this.http.post(this.serverUrl, { deviceId: this.deviceId }, this.httpOptions)
-    .subscribe(
-      res => {
-        console.log(res);
-      },
-      err => {
-        console.log("Error occured: " + err);
-      }
-    );
   }
 
   openDialog(): void {
