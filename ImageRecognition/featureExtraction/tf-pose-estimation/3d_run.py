@@ -83,6 +83,22 @@ if __name__ == '__main__':
             remove_digits = str.maketrans('', '', digits)
             label = label.translate(remove_digits).replace('.jpg', '')
 
+            string_human = ""
+            # Go over all the humans in the photo
+            for human in pose_3d:
+                string_human = string_human + label
+                for i in range(0, 17):
+                    try:
+                        print("x:" + str(human[0][i]) + ", y:" + str(human[1][i]) + ", z:" + str(human[2][i]))
+                        string_human += str(human[0][i]) + "," + str(human[1][i]) + "," + str(human[2][i]) + ","
+
+                    except KeyError:
+                        string_human += "0.0,0.0,0.0"
+
+                string_human = string_human + "\n"
+            string_humans += string_human
+            logger.info('inference image: %s in %.4f seconds.' % (dir, elapsed))
+
             image = TfPoseEstimator.draw_humans(image, humans, imgcopy=False)
 
             import matplotlib.pyplot as plt
@@ -96,3 +112,4 @@ if __name__ == '__main__':
             tmp2_even = np.amax(np.absolute(tmp2[1::2, :, :]), axis=0)
 
             plt.show()
+
