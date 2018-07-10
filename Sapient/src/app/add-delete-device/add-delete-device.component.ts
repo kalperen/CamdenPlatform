@@ -1,6 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {MAT_DIALOG_DATA} from '@angular/material';
+
+
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { ManageDevicesDialogComponent } from '../manage-devices-dialog/manage-devices-dialog.component';
+
+
 
 @Component({
   selector: 'app-add-delete-device',
@@ -19,7 +24,8 @@ export class AddDeleteDeviceComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private http: HttpClient
+    private http: HttpClient,
+    private dialogRef: MatDialogRef<ManageDevicesDialogComponent>
   ) { }
 
   ngOnInit() {
@@ -30,11 +36,18 @@ export class AddDeleteDeviceComponent implements OnInit {
       this.addDevice();
     else
       this.deleteDevice();
+    this.dialogRef.close();
   }
 
   addDevice(): void{
     let endpoint = (this.data.device == 'Device') ? 'devices/addDevice' : 'cameras/addCamera';
-    this.http.post(this.serverUrl + endpoint, { deviceId: this.deviceId }, this.httpOptions)
+    let data = {};
+    if (this.data.device == 'Device'){
+      data = { deviceId: this.deviceId };
+    } else {
+      data = { cameraId: this.deviceId };
+    }
+    this.http.post(this.serverUrl + endpoint, data, this.httpOptions)
     .subscribe(
       res => {
         console.log(res);
