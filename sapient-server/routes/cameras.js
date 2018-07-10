@@ -34,10 +34,12 @@ router.get('/getCameras', function(req, res) {
     });
 })
 
-router.delete('/deleteCamera', function(req, res) {
+router.delete('/deleteCamera/:cameraId', function(req, res) {
     res.setHeader('Content-Type', 'application/json');
 
-    var query = "SELECT * FROM c WHERE c.cameraId = '" + req.body.cameraId + "'";
+    console.log(req.params.cameraId);
+
+    var query = "SELECT * FROM c WHERE c.cameraId = '" + req.params.cameraId + "'";
 
     var querySpec = {
         'query': query
@@ -45,7 +47,7 @@ router.delete('/deleteCamera', function(req, res) {
 
     client.queryDocuments(collectionUrl, querySpec).toArray(function(err, results) {
         if (err) console.log(' error: ' + err.toString());
-        console.log(collectionUrl + "/" + results[0].id);
+        console.log(results);
         client.deleteDocument(collectionUrl + '/docs/' + results[0].id, function (err) {
             if (err) {
                 console.log(' error: ' + err);

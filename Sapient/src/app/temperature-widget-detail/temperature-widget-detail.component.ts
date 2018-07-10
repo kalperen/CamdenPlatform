@@ -70,7 +70,7 @@ export class TemperatureWidgetDetailComponent implements OnInit {
     for (let sensor in sensors){
       let v = {
         y: sensors[sensor].measurements,
-        x: sensors[sensor].times
+        x: sensors[sensor].times,
         name: sensor
       }
       data.push(v);

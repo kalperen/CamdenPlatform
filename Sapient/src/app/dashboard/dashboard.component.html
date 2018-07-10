@@ -1,10 +1,12 @@
-<h3>DashBoard</h3>
+<h3 class="mat-typography">Dashboard</h3>
 
-<div *ngFor='let widget of widgets'> 
-    <a routerLink="/detail/{{widget.sensorId}}/{{widget.sensorId}}">
-      {{widget.sensorType}}
-    </a>
-    <app-widget sensorId='{{widget.sensorId}}'></app-widget>
-</div>
+<mat-grid-list cols="2" rowHeight="2:1" gutterSize= "5px" class="mat-typography">
+  <mat-grid-tile *ngFor='let widget of widgets'> 
+      <a routerLink="/detail/{{widget.sensorId}}/{{widget.sensorId}}">
+        {{widget.sensorType}}
+      </a>
+      <app-widget sensorId='{{widget.sensorId}}'></app-widget>
+  </mat-grid-tile>
+</mat-grid-list>
 
-<button (click)="addDevice()">Add Device</button>
+<button mat-fab color="primary" (click)="openDialog()"></button>

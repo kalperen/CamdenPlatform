@@ -1,0 +1,10 @@
+<p>
+  {{data.operation}} {{data.device}}:
+</p>
+
+<form>
+  <mat-form-field>
+    <input matInput [(ngModel)]="deviceId" placeholder="DeviceId" name="deviceId">
+  </mat-form-field>
+  <button mat-button (click)="makeOperation()">Ok</button>
+</form>
