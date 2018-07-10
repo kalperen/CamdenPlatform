@@ -5,14 +5,11 @@ import sys
 import time
 from string import digits
 
-import cv2
 import numpy as np
 from lifting.prob_model import Prob3dPose
 from tf_pose import common
 from tf_pose.estimator import TfPoseEstimator
 from tf_pose.networks import get_graph_path, model_wh
-
-# Shahroz imports
 
 logger = logging.getLogger('TfPoseEstimator')
 logger.setLevel(logging.DEBUG)
@@ -89,7 +86,7 @@ if __name__ == '__main__':
                 string_human = string_human + label
                 for i in range(0, 17):
                     try:
-                        print("x:" + str(human[0][i]) + ", y:" + str(human[1][i]) + ", z:" + str(human[2][i]))
+                        # print("x:" + str(human[0][i]) + ", y:" + str(human[1][i]) + ", z:" + str(human[2][i]))
                         string_human += str(human[0][i]) + "," + str(human[1][i]) + "," + str(human[2][i]) + ","
 
                     except KeyError:
@@ -101,6 +98,7 @@ if __name__ == '__main__':
 
             image = TfPoseEstimator.draw_humans(image, humans, imgcopy=False)
 
+            '''
             import matplotlib.pyplot as plt
             fig = plt.figure()
             a = fig.add_subplot(1, 1, 1)
@@ -112,4 +110,20 @@ if __name__ == '__main__':
             tmp2_even = np.amax(np.absolute(tmp2[1::2, :, :]), axis=0)
 
             plt.show()
+            '''
 
+    if args.output is not None:
+        if os.path.isfile(args.output):
+            f = open(args.output, 'a+')
+            f.write(string_humans)
+            f.close()
+        # If the output file does not exist yet, first populate the string with category headings
+        else:
+            f = open(args.output, 'a+')
+            f.write(
+                "position,noseX,noseY,noseZ,neckX,neckY,neckZ,rshoulderX,rshoulderY,rshoulderZ,relbowX,relbowY,relbowZ,"
+                "rwristX,rwristY,rwristZ,lshoulderX,lshoulderY,lshoulderZ,lelbowX,lelbowY,lelbowZ,lwristX,lwristY,"
+                "lwristZ,midhipX,midhipY,midhipZ,rhipX,rhipY,rhipZ,rkneeX,rkneeY,rkneeZ,rankleX,rankleY,rankleZ,lhipX,"
+                "lhipY,lhipZ,lkneeX,lkneeY,lkneeZ,lankleX,lankleY,lankleZ,reyeX,reyeY,reyeZ,leyeX,leyeY,leyeZ\n"
+                + string_humans)
+            f.close()
