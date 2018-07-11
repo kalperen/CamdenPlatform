@@ -42,4 +42,4 @@ for train_indices, test_indices in kf.split(data):
 print("\nAverage train: " + str(avg_train/10))
 print("\nAverage test: " + str(avg_test/10))
 
-joblib.dump(clf, "clf.pkl")
+#joblib.dump(clf, "gbt.pkl")

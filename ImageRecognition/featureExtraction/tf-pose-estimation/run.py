@@ -3,6 +3,7 @@ import logging
 import sys
 import time
 import os
+import helpers
 
 from tf_pose import common
 import cv2
@@ -67,18 +68,25 @@ if __name__ == '__main__':
             string_human = ""
             #Go over all the humans in the photo
             for human in humans:
-                string_human = string_human + label
+                current_human = '' + label
                 #For every single limb that each human has
                 for i in range(0, 17):
                     try:
                         #record the limb coordinates
-                        string_human += str(human.body_parts[i].x) + "," + str(
+                        current_human += str(human.body_parts[i].x) + "," + str(
                         1-human.body_parts[i].y) + ","
                     #If there are no coordinates for a certain limb record null
                     except KeyError:
-                        string_human += "0.0,0.0,"
-                #Go to the next line after each human in the picture
-                string_human = string_human + "\n"
+                        current_human += "0.0,0.0,"
+                #remove the trailing comma from the string
+                current_human = current_human[:-1]
+                if helpers.clean_string_data(current_human) is None:
+                    current_human = ''
+                else:
+                    current_human += "\n"
+
+                string_human += current_human
+                current_human = ''
 
             string_humans += string_human
     #If the user wants to write to an output file
