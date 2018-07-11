@@ -17,6 +17,10 @@ mat-grid-tile {
     overflow: scroll;
 }
 
+mat-grid-list{
+    margin-top: 10px;
+}
+
 a {
     color: white;
     position: absolute;

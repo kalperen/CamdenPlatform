@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'detail/temperature/:sensorId', component: TemperatureWidgetDetailComponent },
-  { path: 'detail/air/:sensorId', component: AirQualityWidgetDetailComponent }
+  { path: 'detail/air/:sensorId', component: AirQualityWidgetDetailComponent },
   { path: 'detail/light/:sensorId', component: AirQualityWidgetDetailComponent }
 ];
 

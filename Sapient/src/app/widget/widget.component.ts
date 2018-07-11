@@ -16,6 +16,7 @@ export class WidgetComponent implements OnInit {
   @Input() widget: Widget;
   @Input() sensorId: string;
   telemetries: Telemetry[];
+  avg: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -38,6 +39,16 @@ export class WidgetComponent implements OnInit {
     }
 
     this.telemetryService.getTelemetries(telemetryQuery)
-      .subscribe(telemetries => this.telemetries = telemetries);
+      .subscribe(telemetries => {
+        var count = 0;
+        var total = 0;
+        for (let t of telemetries){
+          count++;
+          total += t.measurementValue;
+        }
+        this.avg = total/count;
+        console.log("avg " + this.avg);
+        this.telemetries = telemetries;
+      });
   }
 }

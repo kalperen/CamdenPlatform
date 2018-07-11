@@ -1,12 +1,27 @@
 <h3 class="mat-typography">Dashboard</h3>
 
-<mat-grid-list cols="2" rowHeight="2:1" gutterSize= "5px" class="mat-typography">
-  <mat-grid-tile *ngFor='let widget of widgets'> 
-      <a routerLink="/detail/{{widget.sensorId}}/{{widget.sensorId}}">
-        {{widget.sensorType}}
-      </a>
-      <app-widget sensorId='{{widget.sensorId}}'></app-widget>
-  </mat-grid-tile>
-</mat-grid-list>
+<mat-tab-group mat-stretch-tabs>
+    <mat-tab label="Sensors"> 
+        <mat-grid-list cols="2" rowHeight="2:1" gutterSize= "5px" class="mat-typography">
+          <mat-grid-tile *ngFor='let widget of widgets'> 
+              <a routerLink="/detail/{{widget.sensorId}}/{{widget.sensorId}}">
+                {{widget.sensorType}}
+              </a>
+              <app-widget sensorId='{{widget.sensorId}}'></app-widget>
+          </mat-grid-tile>
+        </mat-grid-list>  
+    </mat-tab>
+    <mat-tab label="Cameras"> 
+        <mat-grid-list cols="2" rowHeight="2:1" gutterSize= "5px" class="mat-typography">
+          <mat-grid-tile *ngFor='let camera of cameras'> 
+              <a>
+                {{camera.cameraId}}
+              </a>
+              <app-camera cameraId='{{camera.cameraId}}'></app-camera>
+          </mat-grid-tile>
+        </mat-grid-list>   
+    </mat-tab>
+  </mat-tab-group>
+
 
 <button mat-fab color="primary" (click)="openDialog()"></button>

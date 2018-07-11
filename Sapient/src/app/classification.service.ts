@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
-import { Telemetry } from './telemetry';
+import { Classification } from './classification';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -14,19 +14,19 @@ const httpOptions = {
   providedIn: 'root'
 })
 
-export class TelemetryService {
-  private serverUrl = "http://localhost:3000/telemetries/getTelemetries";
+export class ClassificationService {
+  private serverUrl = "http://localhost:3000/classifications/getClassifications";
 
   constructor(private http: HttpClient) { }
 
-  getTelemetries(telemetryQuery : Object) : Observable<Telemetry[]>{
+  getClassifications(classificationQuery : Object) : Observable<Classification[]>{
 
     //remove null fields from object
-    Object.keys(telemetryQuery).forEach((key) => (telemetryQuery[key] == null) && delete telemetryQuery[key]);
+    Object.keys(classificationQuery).forEach((key) => (classificationQuery[key] == null) && delete classificationQuery[key]);
 
-    return this.http.post<Telemetry[]>(this.serverUrl, telemetryQuery, httpOptions).pipe(
-      tap((telemetries: Telemetry[]) => console.log(telemetries)),
-      catchError(this.handleError<Telemetry[]>('getTelemetries'))
+    return this.http.post<Classification[]>(this.serverUrl, classificationQuery, httpOptions).pipe(
+      tap((classifications: Classification[]) => console.log(classifications)),
+      catchError(this.handleError<Classification[]>('getClassifications'))
     );
   }
 

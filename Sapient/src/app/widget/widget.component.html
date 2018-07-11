@@ -5,7 +5,5 @@
 <!-- Here the widget will print itself, using the print method 
 which will be different foe every imlementation of the widget -->
 <div *ngIf="telemetries">
-    <div *ngFor='let telemetry of telemetries'> 
-        <p>{{ telemetry.measurementValue }} {{telemetry.measurementUnit}}</p>
-    </div>
+        <p>Avg: {{ avg }} {{telemetries[0].measurementUnit}}</p>
 </div>

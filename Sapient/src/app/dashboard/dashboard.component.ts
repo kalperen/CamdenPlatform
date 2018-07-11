@@ -3,6 +3,8 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import { WidgetService } from '../widget.service';
 import { Widget } from '../widget';
+import { CameraService } from '../camera.service';
+import { Camera } from '../camera';
 import { ManageDevicesDialogComponent } from '../manage-devices-dialog/manage-devices-dialog.component';
 
 @Component({
@@ -14,20 +16,28 @@ import { ManageDevicesDialogComponent } from '../manage-devices-dialog/manage-de
 export class DashboardComponent implements OnInit {
   
   widgets: Widget[];
+  cameras: Camera[];
   private deviceId;
 
   constructor(
     public widgetService: WidgetService,
+    public cameraService: CameraService,
     public dialog: MatDialog
   ) { }
+
+  ngOnInit() {
+    this.getWidgets();
+    this.getCameras();
+  }
 
   getWidgets(): void {
     this.widgetService.getWidgets()
       .subscribe(widgets => this.widgets = widgets);
   }
 
-  ngOnInit() {
-    this.getWidgets();
+  getCameras(): void {
+    this.cameraService.getCameras()
+      .subscribe(cameras => this.cameras = cameras);
   }
 
   openDialog(): void {
