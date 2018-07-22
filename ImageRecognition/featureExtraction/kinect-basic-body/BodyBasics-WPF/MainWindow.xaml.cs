@@ -348,7 +348,14 @@ namespace Microsoft.Samples.Kinect.BodyBasics
 
                             // create string and file path to write out csv file 
                             var csvcontent = new System.Text.StringBuilder();
-                            string csvpath = @"C:\Users\shahroz\Desktop\kinect.csv";
+                            string currentPath = Directory.GetCurrentDirectory();
+                            Console.WriteLine(currentPath);
+
+                            string imgRec = Path.GetFullPath(Path.Combine(currentPath, @"..\..\..\..\..\..\"));
+                            Console.WriteLine(imgRec);
+
+                            string csvpath = Path.GetFullPath(imgRec + @"\Datasets\kinect_output.csv");
+                            Console.WriteLine(csvpath);
 
                             if (!File.Exists(csvpath))
                             {
@@ -384,7 +391,7 @@ namespace Microsoft.Samples.Kinect.BodyBasics
                             File.AppendAllText(csvpath, csvcontent.ToString());
 
                             // Run the classifier with training data
-                            RunMLP();
+                            RunMLP(imgRec);
 
                             this.DrawBody(joints, jointPoints, dc, drawPen);
                             this.DrawHand(body.HandLeftState, jointPoints[JointType.HandLeft], dc);
@@ -397,9 +404,9 @@ namespace Microsoft.Samples.Kinect.BodyBasics
 
 
                             Console.ReadLine();
-                            if (File.Exists(@"C:\Users\shahroz\Desktop\kinect.csv"))
+                            if (File.Exists(csvpath))
                             {
-                                File.Delete(@"C:\Users\shahroz\Desktop\kinect.csv");
+                                File.Delete(csvpath);
                             }
 
                         }
@@ -412,12 +419,11 @@ namespace Microsoft.Samples.Kinect.BodyBasics
             }
         }
 
-        private void RunMLP()
+        private void RunMLP(String file)
         {
             try
             {
-
-                string fileName = @"C:\Users\shahroz\Desktop\\MLPClassifierKinect.py";
+                string fileName = Path.GetFullPath(file + @"\classification\MLPClassifierKinect.py");
                 Process p = new Process
                 {
                     StartInfo = new ProcessStartInfo(@"C:\Program Files (x86)\Python37-32\python.exe", fileName)
