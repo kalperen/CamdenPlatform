@@ -1,0 +1,17 @@
+C:\Users\shahroz\Downloads\BodyBasics-WPF\bin\AnyCPU\Debug\BodyBasics-WPF.exe.config
+C:\Users\shahroz\Downloads\BodyBasics-WPF\bin\AnyCPU\Debug\BodyBasics-WPF.exe
+C:\Users\shahroz\Downloads\BodyBasics-WPF\bin\AnyCPU\Debug\BodyBasics-WPF.pdb
+C:\Users\shahroz\Downloads\BodyBasics-WPF\bin\AnyCPU\Debug\Microsoft.Kinect.dll
+C:\Users\shahroz\Downloads\BodyBasics-WPF\bin\AnyCPU\Debug\Microsoft.Kinect.xml
+C:\Users\shahroz\Downloads\BodyBasics-WPF\obj\Debug\BodyBasics-WPF.csprojAssemblyReference.cache
+C:\Users\shahroz\Downloads\BodyBasics-WPF\obj\Debug\MainWindow.baml
+C:\Users\shahroz\Downloads\BodyBasics-WPF\obj\Debug\MainWindow.g.cs
+C:\Users\shahroz\Downloads\BodyBasics-WPF\obj\Debug\App.g.cs
+C:\Users\shahroz\Downloads\BodyBasics-WPF\obj\Debug\BodyBasics-WPF_MarkupCompile.cache
+C:\Users\shahroz\Downloads\BodyBasics-WPF\obj\Debug\BodyBasics-WPF.g.resources
+C:\Users\shahroz\Downloads\BodyBasics-WPF\obj\Debug\Microsoft.Samples.Kinect.BodyBasics.Properties.Resources.resources
+C:\Users\shahroz\Downloads\BodyBasics-WPF\obj\Debug\BodyBasics-WPF.csproj.GenerateResource.cache
+C:\Users\shahroz\Downloads\BodyBasics-WPF\obj\Debug\BodyBasics-WPF.csproj.CoreCompileInputs.cache
+C:\Users\shahroz\Downloads\BodyBasics-WPF\obj\Debug\BodyBasics-WPF.csproj.CopyComplete
+C:\Users\shahroz\Downloads\BodyBasics-WPF\obj\Debug\BodyBasics-WPF.exe
+C:\Users\shahroz\Downloads\BodyBasics-WPF\obj\Debug\BodyBasics-WPF.pdb
