@@ -16,6 +16,9 @@ namespace Microsoft.Samples.Kinect.BodyBasics
     using System.Windows.Media;
     using System.Windows.Media.Imaging;
     using Microsoft.Kinect;
+    using IronPython.Hosting;
+    using Microsoft.Scripting.Hosting;
+    using System.Threading;
 
     /// <summary>
     /// Interaction logic for MainWindow
@@ -126,6 +129,9 @@ namespace Microsoft.Samples.Kinect.BodyBasics
         /// Current status text to display
         /// </summary>
         private string statusText = null;
+
+
+        private Thread script_thread;
 
         /// <summary>
         /// Initializes a new instance of the MainWindow class.
@@ -321,6 +327,7 @@ namespace Microsoft.Samples.Kinect.BodyBasics
 
             if (dataReceived)
             {
+                int humanCounter = 0;
                 using (DrawingContext dc = this.drawingGroup.Open())
                 {
                     // Draw a transparent background to set the render size
@@ -335,11 +342,28 @@ namespace Microsoft.Samples.Kinect.BodyBasics
                         {
                             this.DrawClippedEdges(body, dc);
 
+                            humanCounter++;
                             IReadOnlyDictionary<JointType, Joint> joints = body.Joints;
 
                             // convert the joint points to depth (display) space
                             Dictionary<JointType, Point> jointPoints = new Dictionary<JointType, Point>();
 
+                            // create string and file path to write out csv file 
+                            var csvcontent = new System.Text.StringBuilder();
+                            string csvpath = @"C:\Users\shahroz\Desktop\kinect.csv";
+
+                            if (!File.Exists(csvpath))
+                            {
+                                csvcontent.Append("Position,SpineBaseX,SpineBaseY,SpineBaseZ,SpineMidX,SpineMidY,SpineMidZ,NeckX,NeckY,NeckZ,HeadX,HeadY,HeadZ,ShoulderLeftX," +
+                                    "ShoulderLeftY,ShoulderLeftZ,ElbowLeftX,ElbowLeftY,ElbowLeftZ,WristLeftX,WristLeftY,WristLeftZ,HandLeftX,HandLeftY,HandLeftZ," +
+                                    "ShoulderRightX,ShoulderRightY,ShoulderRightZ,ElbowRightX,ElbowRightY,ElbowRightZ,WristRightX,WristRightY,WristRightZ,HandRightX," +
+                                    "HandRightY,HandRightZ,HipLeftX,HipLeftY,HipLeftZ,KneeLeftX,KneeLeftY,KneeLeftZ,AnkleLeftX,AnkleLeftY,AnkleLeftZ,FootLeftX," +
+                                    "FootLeftY,FootLeftZ,HipRightX,HipRightY,HipRightZ,KneeRightX,KneeRightY,KneeRightZ,AnkleRightX,AnkleRightY,AnkleRightZ,FootRightX," +
+                                    "FootRightY,FootRightZ,SpineShoulderX,SpineShoulderY,SpineShoulderZ,HandTipLeftX,HandTipLeftY,HandTipLeftZ,ThumbLeftX,ThumbLeftY," +
+                                    "ThumbLeftZ,HandTipRightX,HandTipRightY,HandTipRightZ,ThumbRightX,ThumbRightY,ThumbRightZ," + Environment.NewLine);
+                            }
+
+                            string human = "";
                             foreach (JointType jointType in joints.Keys)
                             {
                                 // sometimes the depth(Z) of an inferred joint may show as negative
@@ -352,13 +376,35 @@ namespace Microsoft.Samples.Kinect.BodyBasics
 
                                 DepthSpacePoint depthSpacePoint = this.coordinateMapper.MapCameraPointToDepthSpace(position);
                                 jointPoints[jointType] = new Point(depthSpacePoint.X, depthSpacePoint.Y);
+
+                                // write to string their 3d positions
+                                human += position.X + "," + position.Y + "," + position.Z + ",";
                             }
+                            
+                            Console.WriteLine("NA," + human);
+                            csvcontent.Append("NA," + human + Environment.NewLine);
+                            File.AppendAllText(csvpath, csvcontent.ToString());
+
+                            
 
                             this.DrawBody(joints, jointPoints, dc, drawPen);
-
                             this.DrawHand(body.HandLeftState, jointPoints[JointType.HandLeft], dc);
                             this.DrawHand(body.HandRightState, jointPoints[JointType.HandRight], dc);
+                            
+
+                            // var input = Console.ReadLine();
+                            // var py = Python.CreateEngine();
+                            //py.ExecuteFile(@"C:\Users\shahroz\Desktop\\MLPClassifierKinect.py");
+
+
+                            Console.ReadLine();
+                            if (File.Exists(@"C:\Users\shahroz\Desktop\kinect.csv"))
+                            {
+                                File.Delete(@"C:\Users\shahroz\Desktop\kinect.csv");
+                            }
+
                         }
+
                     }
 
                     // prevent drawing outside of our render area
@@ -366,6 +412,9 @@ namespace Microsoft.Samples.Kinect.BodyBasics
                 }
             }
         }
+
+
+     
 
         /// <summary>
         /// Draws a body

@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>Tensor.Algorithm</name></assembly>
+<members>
+<member name="F:Tensor.Algorithm.Rat.DnmMinusOne">
+<summary>
+ the denominator minus one
+</summary>
+</member>
+<member name="F:Tensor.Algorithm.Rat.Num">
+<summary>
+ the numerator
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.Rat.num(Tensor.Algorithm.Rat)">
+<summary>
+ numerator
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.Rat.isPosInf(Tensor.Algorithm.Rat)">
+<summary>
+ True if a is positive infinity.
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.Rat.isNegInf(Tensor.Algorithm.Rat)">
+<summary>
+ True if a is negative infinity.
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.Rat.isNaN(Tensor.Algorithm.Rat)">
+<summary>
+ True if a is not-a-number.
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.Rat.isInteger(Tensor.Algorithm.Rat)">
+<summary>
+ True if a is an integer, i.e. its denominator is one.
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.Rat.isInf(Tensor.Algorithm.Rat)">
+<summary>
+ True if a is infinity.
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.Rat.isFinite(Tensor.Algorithm.Rat)">
+<summary>
+ True if a is a finite number.
+</summary>
+</member>
+<member name="P:Tensor.Algorithm.Rat.Pretty">
+<summary>
+ Pretty string representation.
+</summary>
+</member>
+<member name="P:Tensor.Algorithm.Rat.IsPosInf">
+<summary>
+ True is this is positive infinity.
+</summary>
+</member>
+<member name="P:Tensor.Algorithm.Rat.IsNegInf">
+<summary>
+ True is this is negative infinity.
+</summary>
+</member>
+<member name="P:Tensor.Algorithm.Rat.IsNaN">
+<summary>
+ True if this is not-a-number.
+</summary>
+</member>
+<member name="P:Tensor.Algorithm.Rat.IsInt">
+<summary>
+ True if this is an integer, i.e. denominator is one.
+</summary>
+</member>
+<member name="P:Tensor.Algorithm.Rat.IsInf">
+<summary>
+ True is this is infinity.
+</summary>
+</member>
+<member name="P:Tensor.Algorithm.Rat.IsFinite">
+<summary>
+ True if this is a finite number (not infinity and not NaN).
+</summary>
+</member>
+<member name="P:Tensor.Algorithm.Rat.Dnm">
+<summary>
+ the denominator
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.Rat.dnm(Tensor.Algorithm.Rat)">
+<summary>
+ denominator
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.Rat.CheckInt">
+<summary>
+ Fails if this is not an integer rational.
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.Rat.#ctor(System.UInt64)">
+<summary>
+ Constructs an integer rational number.
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.Rat.#ctor(System.Int64)">
+<summary>
+ Constructs an integer rational number.
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.Rat.#ctor(System.UInt32)">
+<summary>
+ Constructs an integer rational number.
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.Rat.#ctor(System.Int32)">
+<summary>
+ Constructs an integer rational number.
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.Rat.#ctor(System.Numerics.BigInteger)">
+<summary>
+ Constructs an integer rational number.
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.Rat.#ctor(System.UInt64,System.UInt64)">
+<summary>
+ Constructs a fraction from numerator and denominator.
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.Rat.#ctor(System.Int64,System.Int64)">
+<summary>
+ Constructs a fraction from numerator and denominator.
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.Rat.#ctor(System.UInt32,System.UInt32)">
+<summary>
+ Constructs a fraction from numerator and denominator.
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.Rat.#ctor(System.Int32,System.Int32)">
+<summary>
+ Constructs a fraction from numerator and denominator.
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.Rat.#ctor(System.Numerics.BigInteger,System.Numerics.BigInteger)">
+<summary>
+ Constructs a fraction from numerator and denominator.
+</summary>
+</member>
+<member name="T:Tensor.Algorithm.Rat">
+<summary>
+ A rational number, i.e. a fraction of arbitrary precision.
+</summary>
+</member>
+<member name="P:Tensor.Algorithm.NPZFile.Path">
+<summary>
+ path to this .npz file
+</summary>
+</member>
+<member name="P:Tensor.Algorithm.NPZFile.Names">
+<summary>
+ returns all variable names in the .npz file
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.NPZFile.Open(System.String)">
+<summary>
+ opens the specified .npz file
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.NPZFile.Get``1(System.String)">
+<summary>
+ gets the variable with the specified name from the .npz file
+</summary>
+</member>
+<member name="T:Tensor.Algorithm.NPZFile">
+<summary>
+ A Numpy .npz data file.
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.BigIntegerExtensions.BigInteger.Bezout.Static(System.Numerics.BigInteger,System.Numerics.BigInteger)">
+<summary>
+ Computes the GCD of a and b and the coefficients of Bezout&apos;s identity using 
+ the extended Euclidean algorithm.
+ Returns a tuple of (gcd, x, y) so that: a*x + b*y = gcd(a,b).
+ The returned GCD is always non-negative and gcd(0, 0)=0.
+</summary>
+</member>
+<member name="T:Tensor.Algorithm.BigIntegerExtensions">
+<summary>
+ Extensions to System.Numerics.BigInteger.
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.RatRecognizers.|RatFrac|RatInt|RatPosInf|RatNegInf|RatNaN|(Tensor.Algorithm.Rat)">
+<summary>
+ RatFrac(num,dnm) matches a true (finite) fraction and 
+ RatInteger(value) matches an integer rational number.
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.RatRecognizers.|Rat|(Tensor.Algorithm.Rat)">
+<summary>
+ decomposes a rational into its numerator and denominator
+</summary>
+</member>
+<member name="T:Tensor.Algorithm.RatRecognizers">
+<summary>
+ Active recognizers for rational numbers.
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.Decomposition.ZCA.Reverse``1(Tensor.Tensor{``0},Tensor.Algorithm.Decomposition.PCAInfo{``0})">
+<summary>
+ Reverses ZCA whitening.
+ `whitened` must be of the form [sample, component].
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.Decomposition.ZCA.Perform``1(Tensor.Tensor{``0})">
+<summary>
+ Apply ZCA whitening. 
+ `data` must be of the form [sample, feature].
+ Returns a tensor of the form [sample, component].
+</summary>
+</member>
+<member name="T:Tensor.Algorithm.Decomposition.ZCA">
+<summary>
+ ZCA whitening
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.Decomposition.PCA.Reverse``1(Tensor.Tensor{``0},Tensor.Algorithm.Decomposition.PCAInfo{``0})">
+<summary>
+ Reverses PCA whitening.
+ `whitened` must be of the form [sample, component].
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.Decomposition.PCA.Perform``1(Tensor.Tensor{``0},Microsoft.FSharp.Core.FSharpOption{System.Int64})">
+<summary>
+ Apply Principal Component Analysis (PCA) whitening. 
+ `data` must be of the form [sample, feature].
+ `nComps` optionally specifies how many components to keep.
+ Returns a tensor of the form [sample, component].
+</summary>
+</member>
+<member name="T:Tensor.Algorithm.Decomposition.PCA">
+<summary>
+ Principal Component Analysis (PCA)
+</summary>
+</member>
+<member name="P:Tensor.Algorithm.Decomposition.PCAInfo`1.Axes">
+<summary>
+ the axes corresponding to the principal components
+</summary>
+</member>
+<member name="P:Tensor.Algorithm.Decomposition.PCAInfo`1.Variances">
+<summary>
+ the variances of the principal components in descending order
+</summary>
+</member>
+<member name="P:Tensor.Algorithm.Decomposition.PCAInfo`1.Means">
+<summary>
+ the means of the features (for centering the data)
+</summary>
+</member>
+<member name="T:Tensor.Algorithm.Decomposition.PCAInfo`1">
+<summary>
+ Information about a performed PCA or ZCA.
+</summary>
+</member>
+<member name="T:Tensor.Algorithm.Decomposition">
+<summary>
+ Matrix decomposition functions.
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.LinAlg.integerInverse(Tensor.Tensor{System.Numerics.BigInteger})">
+<summary>
+ Computes the inverse I, solvability constraints S and null-space N of the specified integer matrix M,
+ which can be of any shape and rank.
+ The inversion is carried out over the domain of integers.
+ The return values is a tuple (I, S, N), which fulfilles the following properties:
+ Inverse:     M .* I .* M = M.
+ Solvability: S .* M = 0.
+ Null-space:  M .* N = 0.
+ The equation system M .* x = y is solvable when S .* y = 0 and I .* y is an integer vector.
+ In this case, the set of solutions is given by x = I .* y + N .* z where z is any integer vector.    
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.LinAlg.smithNormalForm(Tensor.Tensor{System.Numerics.BigInteger})">
+ <summary>Computes the Smith Normal Form S of integer matrix A and returns a tuple
+ (U, S, V) so that S = U .* A .* V, where U and V are invertible matrices and
+ S is a positive, diagonal matrix with the property that each element of the diagonal
+ divides all of its successors.</summary> 
+ <remarks>The Smith Normal Form exists for a matrix of any shape or rank.</remarks>
+</member>
+<member name="M:Tensor.Algorithm.LinAlg.generalInverse``1(Tensor.Tensor{``0})">
+<summary>
+ Computes the generalized inverse I, solvability constraints S 
+ and null-space N of the specified matrix L.
+ L can be of any shape and rank.
+ The return values is a tuple (I, S, N).
+ The following properties are fulfilled.
+ Inverse:     M .* I .* M = M.
+ Solvability: S .* M = 0.
+ Null-space:  M .* N = 0.
+ This has the following consequences for a linear equation system of the
+ form y = M .* x:
+ If y comes from the solvable space (i.e. S .* y = 0), 
+ then the value x = I .* y gives one solution of y = M .* x.
+ Adding any linear combination of the columns of N to this x yields 
+ another solution, i.e. y = M .* x = M .* (x + N .* z) for any z.
+ If x contains no component from the null-space (i.e. N^T .* x = 0),
+ then we can recover x from y = M .* x by x = I .* y.
+ (TODO: check last sentence, because it was violated in test1)
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.LinAlg.rowEchelon``1(Tensor.Tensor{``0})">
+<summary>
+ Computes the reduced row echelon form of the specified matrix.
+ Returns a tuple of 
+ (row echelon form, number of non-zero rows, list of non-normalized columns).
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.LinAlg.rowEchelonAugmented``1(Tensor.Tensor{``0},Tensor.Tensor{``0})">
+<summary>
+ Computes the reduced row echelon form of matrix L augmented with matrix A.
+ Returns a tuple of 
+ (row echelon form, number of non-zero rows, list of non-normalized columns,
+  transformed augmentation matrix).
+</summary>
+</member>
+<member name="T:Tensor.Algorithm.LinAlg">
+<summary>
+ Linear algebra algorithms
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.NPYFile.load``1(System.String)">
+<summary>
+ loads a .npy file from the specified path 
+</summary>
+</member>
+<member name="M:Tensor.Algorithm.NPYFile.loadFromStream``1(System.IO.Stream,System.String)">
+<summary>
+ loads a .npy file from the specified stream
+</summary>
+</member>
+<member name="T:Tensor.Algorithm.NPYFile">
+<summary>
+ methods for accessing Numpy .npy data files.
+</summary>
+</member>
+</members>
+</doc>
