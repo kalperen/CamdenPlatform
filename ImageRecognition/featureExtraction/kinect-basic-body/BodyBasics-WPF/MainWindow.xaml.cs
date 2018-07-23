@@ -128,9 +128,6 @@ namespace Microsoft.Samples.Kinect.BodyBasics
         /// </summary>
         private string statusText = null;
 
-
-        private Thread script_thread;
-
         /// <summary>
         /// Initializes a new instance of the MainWindow class.
         /// </summary>
@@ -349,13 +346,13 @@ namespace Microsoft.Samples.Kinect.BodyBasics
                             // create string and file path to write out csv file 
                             var csvcontent = new System.Text.StringBuilder();
                             string currentPath = Directory.GetCurrentDirectory();
-                            Console.WriteLine(currentPath);
-
                             string imgRec = Path.GetFullPath(Path.Combine(currentPath, @"..\..\..\..\..\..\"));
-                            Console.WriteLine(imgRec);
 
-                            string csvpath = Path.GetFullPath(imgRec + @"\Datasets\kinect_output.csv");
-                            Console.WriteLine(csvpath);
+
+                            // string csvpath = Path.GetFullPath(imgRec + @"\Datasets\kinect_output.csv");
+                            string csvpath = @"C:\Users\shahroz\Documents\CamdenPlatform\ImageRecognition\Datasets\kinect_output.csv";
+
+
 
                             if (!File.Exists(csvpath))
                             {
@@ -423,7 +420,8 @@ namespace Microsoft.Samples.Kinect.BodyBasics
         {
             try
             {
-                string fileName = Path.GetFullPath(file + @"\classification\MLPClassifierKinect.py");
+                // string fileName = Path.GetFullPath(file + @"\classification\MLPClassifierKinect.py");
+                string fileName = @"C:\Users\shahroz\Documents\CamdenPlatform\ImageRecognition\classification\MLPClassifierKinect.py";
                 Process p = new Process
                 {
                     StartInfo = new ProcessStartInfo(@"C:\Program Files (x86)\Python37-32\python.exe", fileName)
