@@ -4,9 +4,8 @@ sudo: true
 
 language: node_js
 
-branches:
-  only:
-    -master
-
 script:
-  - gradle clean assemble sapientAllStart -Ptest.mode=local -Ptest.output=true
+  - gradle sapientAllStart -Ptest.mode=local -Ptest.output=true
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
