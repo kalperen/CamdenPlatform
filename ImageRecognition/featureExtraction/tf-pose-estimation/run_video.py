@@ -52,7 +52,7 @@ if __name__ == '__main__':
         except Exception:
             sys.exit(1)
         #print(frame_counter)
-        clf = joblib.load('lightweight.pkl')
+        clf = joblib.load('final.pkl')
 
         if frame_counter == args.fps:
 

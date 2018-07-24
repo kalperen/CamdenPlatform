@@ -8,12 +8,12 @@ from sklearn.externals import joblib
 
 data, labels = get_data()
 
-print("\nGradient Boosted Trees")
+print("Gradient Boosted Trees")
 avg_train = 0
 avg_test = 0
 fold_number=0
 from sklearn.model_selection import KFold
-kf = KFold(n_splits=10, shuffle=True)
+kf = KFold(n_splits=2, shuffle=True)
 for train_indices, test_indices in kf.split(data):
 
     X_train = [data[ii] for ii in train_indices]
@@ -35,11 +35,7 @@ for train_indices, test_indices in kf.split(data):
     print(str(clf.score(X_test, Y_test)*100) + "%\n")
     avg_test += clf.score(X_test, Y_test)*100
 
-
-#print(X_test)
-
-#print(clf.predict(X_test))
 print("\nAverage train: " + str(avg_train/10))
 print("\nAverage test: " + str(avg_test/10))
 
-#joblib.dump(clf, "gbt.pkl")
+#joblib.dump(clf, "hand_generated_gbt.pkl")
