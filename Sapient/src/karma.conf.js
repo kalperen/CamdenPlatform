@@ -28,6 +28,12 @@ module.exports = function (config) {
     coverageReporter: {
       type : 'lcov',
       dir : 'coverage/'
+      reporters: [
+                // generates ./coverage/lcov.info
+                {type:'lcovonly', subdir: '.'},
+                // generates ./coverage/coverage-final.json
+                {type:'json', subdir: '.'},
+            ]
     },
     port: 9876,
     colors: true,

@@ -8,9 +8,9 @@ node_js:
   - '8.11.3'
 
 before_install:
-  - pip install --user codecov
+  - npm install -g codecov
 script:
   - node -v
-  - gradle sapientAllStart -Ptest.mode=local -Ptest.output=true 
-after_success:
+  - gradle sapientAllStart -Ptest.mode=local -Ptest.output=true
+  - istanbul cover ./node_modules/mocha/bin/_mocha --reporter lcovonly -- -R spec
   - codecov
