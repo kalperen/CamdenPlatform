@@ -5,7 +5,7 @@ sudo: true
 language: node_js
 
 script:
-  - gradle sapientAllStart -Ptest.mode=local -Ptest.output=true
+  - gradle sapientAllStart -Ptest.mode=local -Ptest.output=true --info --debug
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
