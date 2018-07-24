@@ -11,8 +11,6 @@ before_install:
   - pip install --user codecov
 script:
   - node -v
-  - gradle sapientAllStart -Ptest.mode=local -Ptest.output=true --info --debug
-  - cd Sapient/
-  - npm run test
+  - gradle sapientAllStart -Ptest.mode=local -Ptest.output=true 
 after_success:
   - codecov
