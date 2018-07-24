@@ -27,10 +27,10 @@ task sapientStartDaemon(dependsOn: installForever) {
   doLast{
     exec{
       if (Os.isFamily(Os.FAMILY_WINDOWS)){
-        commandLine 'cmd', '/c', "${nodeBinDir}/npm start"
+        commandLine 'cmd', '/c', "${nodeBinDir}/npm run build"
       }
       else {
-        commandLine "${nodeBinDir}/npm", 'start'
+        commandLine "${nodeBinDir}/npm", 'run', 'build'
       }
     }
   }
