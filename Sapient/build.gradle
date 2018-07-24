@@ -1,0 +1,57 @@
+
+import org.apache.tools.ant.taskdefs.condition.Os
+
+plugins {
+  id "com.moowork.node" version "1.2.0"
+}
+
+node {
+  version = '9.4.0'
+  npmVersion = '5.6.0'
+  download = true
+}
+
+ext {
+  nodeBinDir = null
+}
+
+task installForever(type: NpmTask, dependsOn: npmInstall) {
+  args = ['install', 'forever', '-g']
+  doLast {
+    nodeBinDir = runner.variant.nodeBinDir
+  }
+}
+
+task sapientStartDaemon(dependsOn: installForever) {
+  dependsOn ':sapient-server:manualServerStart'
+  doLast{
+    exec{
+      if (Os.isFamily(Os.FAMILY_WINDOWS)){
+        commandLine 'cmd', '/c', "${nodeBinDir}/npm start"
+      }
+      else {
+        commandLine "${nodeBinDir}/npm", 'start'
+      }
+    }
+  }
+}
+
+task sapientStopDaemon(dependsOn: installForever) {
+  doLast{
+    exec{
+      if (Os.isFamily(Os.FAMILY_WINDOWS)){
+        commandLine 'cmd', '/c', "${nodeBinDir}/npm stop"
+      }
+      else {
+        commandLine "${nodeBinDir}/npm", 'stop'
+      }
+      ignoreExitValue true
+    }
+  }
+}
+
+task manualFrontEndStart(dependsOn: sapientStartDaemon){
+}
+
+task manualFrontEndStop(dependsOn: sapientStopDaemon){
+}

@@ -19,7 +19,9 @@ subprojects {
     sapientServerAddress = getProperty(testMode + '.sapientServer.address')
   }
 
-  task sapientStart() {
+  task sapientAllStart() {
+    dependsOn ':Sapient:manualFrontEndStart'
+
 
   }
 

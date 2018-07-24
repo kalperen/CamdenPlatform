@@ -9,4 +9,4 @@ branches:
     -master
 
 script:
-  - gradle clean assemble sapientStart -Ptest.mode=local -Ptest.output=true
+  - gradle clean assemble sapientAllStart -Ptest.mode=local -Ptest.output=true
