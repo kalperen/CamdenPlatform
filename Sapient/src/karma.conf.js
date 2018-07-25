@@ -1,4 +1,4 @@
-// Karma configuration file, see link for more information
+/ Karma configuration file, see link for more information
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
 module.exports = function (config) {
@@ -10,11 +10,13 @@ module.exports = function (config) {
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
-      require('karma-coverage'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
+    },
+    preprocessor: {
+      'src/**/*.js': ['coverage']
     },
     coverageIstanbulReporter: {
       dir: require('path').join(__dirname, '../coverage'),
@@ -22,18 +24,8 @@ module.exports = function (config) {
       fixWebpackSourcePaths: true
     },
     reporters: ['progress', 'kjhtml', 'coverage'],
-    preprocessors: {
-      'src/app/**/*.js': ['coverage']
-    },
     coverageReporter: {
-      type : 'lcov',
-      dir : 'coverage/'
-      reporters: [
-                // generates ./coverage/lcov.info
-                {type:'lcovonly', subdir: '.'},
-                // generates ./coverage/coverage-final.json
-                {type:'json', subdir: '.'},
-            ]
+      reporters: [{type: 'lcov'}]
     },
     port: 9876,
     colors: true,
