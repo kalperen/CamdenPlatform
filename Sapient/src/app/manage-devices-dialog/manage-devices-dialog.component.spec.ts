@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { FormsModule } from '@angular/forms';
+import { MatDialogModule, MatInputModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { ManageDevicesDialogComponent } from './manage-devices-dialog.component';
 
 describe('ManageDevicesDialogComponent', () => {
@@ -8,6 +9,15 @@ describe('ManageDevicesDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ 
+        FormsModule,
+        MatDialogModule,
+        MatInputModule
+      ],
+      providers: [
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide : MatDialogRef, useValue : {} }
+      ],
       declarations: [ ManageDevicesDialogComponent ]
     })
     .compileComponents();
