@@ -20,7 +20,13 @@ module.exports = function (config) {
       reports: ['html', 'lcovonly'], 
       fixWebpackSourcePaths: true 
     }, 
-    reporters: ['progress', 'kjhtml'], 
+    preprocessor: {
+      'src/**/*.js': ['coverage']
+    },
+    reporters: ['progress', 'kjhtml', 'coverage-istanbul'], 
+    coverageReporter: {
+      reporters: [{type: 'lcov'}]
+    }, 
     port: 9876, 
     colors: true, 
     logLevel: config.LOG_INFO, 
