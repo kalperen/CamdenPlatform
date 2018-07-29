@@ -79,10 +79,12 @@ if __name__ == '__main__':
 
             if len(array_humans) > 0:
                 print(clf.predict(array_humans))
+
+                #Code to send data immediately to the cloud platform
                 # body = {
                 #     "sitting": "1",
                 #     "laying": "1",
-                #     "stnading": "4",
+                #     "standing": "4",
                 #     "cameraId": "1",
                 #     "year": "2018",
                 #     "month": "7",

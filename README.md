@@ -4,3 +4,24 @@
 
 # CamdenPlatform
 Cloud based IOT Platform with integrated AI
+
+## Image Detection Features
+- **Functionality**:
+    - **2D real-time multi-person body posture classification through camera feed**:
+      - 18 Keypoints
+    - **2D real-time multi-person body posture classification through depth sensor feed (Microsoft Kinect)**:
+        - Example
+- **Input**: Image, video, webcam, Kinect.
+- **Output**: Currently three body postures are supported: "Standing", "Sitting", and "Laying"
+- **OS**: Ubuntu (14, 16), Windows (8, 10), Mac OSX, Nvidia TX2.
+
+## Platform Features
+- **Functionality**:
+  - **Cloud based sensor mesh managment platformx**:
+    - Easy to set up and configure web app that allows users to add, configure and analyse data from a sensor mesh.
+
+## Quick Start
+
+- To install and deploy the image recognition module see [imageRecognition/README.md](imageRecognition/README.md)
+- To install and deploy the sensor mesh managment platform see [Sapient/README.md](Sapient/README.md)
+- To configure an Arduino based sensor see [Iot/README.md](Iot/README.md)
