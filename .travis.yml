@@ -15,5 +15,5 @@ script:
   - gradle sapientAllStart -Ptest.mode=local -Ptest.output=true
   - cd Sapient/
   - ng test --watch false
-  - codecov
+  - bash <(curl -s https://codecov.io/bash)
   - mv ./coverage ..
