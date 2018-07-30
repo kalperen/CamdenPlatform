@@ -7,20 +7,20 @@ module.exports = function (config) {
     frameworks: ['jasmine', '@angular-devkit/build-angular'], 
     plugins: [ 
       require('karma-jasmine'), 
-      require( 'karma-phantomjs-launcher' ),
+      require('karma-phantomjs-launcher'),
       require('karma-jasmine-html-reporter'), 
+      require('karma-coverage'),
       require('karma-coverage-istanbul-reporter'), 
       require('@angular-devkit/build-angular/plugins/karma') 
     ], 
     client: { 
       clearContext: false // leave Jasmine Spec Runner output visible in browser 
     }, 
-    coverageIstanbulReporter: { 
-      dir: require('path').join(__dirname, '../coverage'), 
-      reports: ['html', 'lcovonly'], 
-      fixWebpackSourcePaths: true 
-    }, 
-    preprocessor: {
+    coverageIstanbulReporter: {
+      reports: [ 'html', 'lcovonly' ],
+      fixWebpackSourcePaths: true
+    },
+    preprocessors: {
       'src/**/*.js': ['coverage']
     },
     reporters: ['progress', 'kjhtml', 'coverage-istanbul'], 
