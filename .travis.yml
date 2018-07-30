@@ -14,6 +14,6 @@ script:
   - node -v
   - gradle sapientAllStart -Ptest.mode=local -Ptest.output=true
   - cd Sapient/
-  - ng test --browsers PhantomJS
+  - ng test --watch false
   - codecov
   - mv ./coverage ..
