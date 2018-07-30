@@ -14,4 +14,5 @@ script:
   - node -v
   - gradle sapientAllStart -Ptest.mode=local -Ptest.output=true
   - cd Sapient/
-  - bash <(curl -s https://codecov.io/bash)
+  - codecov
+  - mv ./coverage ..
