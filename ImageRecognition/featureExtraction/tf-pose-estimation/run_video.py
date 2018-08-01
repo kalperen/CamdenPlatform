@@ -7,6 +7,7 @@ import numpy as np
 import sys
 import urllib.request
 import json
+import datetime
 
 from tf_pose.estimator import TfPoseEstimator
 from tf_pose.networks import get_graph_path, model_wh
@@ -78,27 +79,29 @@ if __name__ == '__main__':
                     array_human = []
 
             if len(array_humans) > 0:
-                print(clf.predict(array_humans))
+                sitting, standing, laying = helpers.count_predictions(clf.predict(array_humans))
 
+                currentDT = datetime.datetime.now()
                 #Code to send data immediately to the cloud platform
-                # body = {
-                #     "sitting": "1",
-                #     "laying": "1",
-                #     "standing": "4",
-                #     "cameraId": "1",
-                #     "year": "2018",
-                #     "month": "7",
-                #     "day": "12",
-                #     "hour": "12",
-                #     "minute": "4"
-                # }
-                # req= urllib.request.Request('http://localhost:3000/classifications/addClassification')
-                # req.add_header('Content-Type', 'application/json; charset=utf-8')
-                # jsondata = json.dumps(body)
-                # jsondataasbytes = jsondata.encode('utf-8')   # needs to be bytes
-                # req.add_header('Content-Length', len(jsondataasbytes))
-                # # print (jsondataasbytes)
-                # response = urllib.request.urlopen(req, jsondataasbytes)
+                body = {
+                    "sitting": sitting,
+                    "laying": standing,
+                    "standing": laying,
+                    "cameraId": "1",
+                    "year": currentDT.year,
+                    "month": currentDT.month,
+                    "day": currentDT.day,
+                    "hour": currentDT.hour,
+                    "minute": currentDT.minute,
+                    "seconds": currentDT.second
+                }
+                req= urllib.request.Request('http://localhost:3000/classifications/addClassification')
+                req.add_header('Content-Type', 'application/json; charset=utf-8')
+                jsondata = json.dumps(body)
+                jsondataasbytes = jsondata.encode('utf-8')   # needs to be bytes
+                req.add_header('Content-Length', len(jsondataasbytes))
+                # print (jsondataasbytes)
+                response = urllib.request.urlopen(req, jsondataasbytes)
 
         if not args.showBG:
             image = np.zeros(image.shape)
