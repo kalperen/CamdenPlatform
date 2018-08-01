@@ -28,6 +28,7 @@ task installForever(type: NpmTask, dependsOn: npmInstall) {
 }
 
 task sapientStartDaemon(dependsOn: installForever) {
+  dependsOn ':sapient-server:manualServerStart'
   doLast{
     exec{
       if (Os.isFamily(Os.FAMILY_WINDOWS)){
