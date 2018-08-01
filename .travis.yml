@@ -20,10 +20,6 @@ script:
   - ng test --watch false --code-coverage
   - codecov
   - mv ./coverage ..
-
-before_deploy:
-  - cd ../sapient-server
-  - rm -rf /node_modules
   
 deploy:
   provider: azure_web_apps
