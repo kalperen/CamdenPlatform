@@ -5,6 +5,7 @@ export class Telemetry {
     measurementValue: number;
     hour: number;
     minutes: number;
+    seconds: number;
     year: number;
     month: number;
     day: number;

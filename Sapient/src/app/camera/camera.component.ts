@@ -38,7 +38,7 @@ export class CameraComponent implements OnInit {
         var count = 0;
         var total = 0;
         for (let c of classifications){
-          let sum = Number(c.sitting) + Number(c.stnading) + Number(c.laying);
+          let sum = Number(c.sitting) + Number(c.standing) + Number(c.laying);
           console.log("sum " + sum);
           count++;
           total += sum;
