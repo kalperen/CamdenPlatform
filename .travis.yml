@@ -15,6 +15,7 @@ before_install:
 
 script:
   - node -v
+  - gradle sapientAllStart -Ptest.mode=local -Ptest.output=true
   - cd Sapient/
   - ng test --watch false --code-coverage
   - codecov
