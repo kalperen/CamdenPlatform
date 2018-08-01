@@ -19,9 +19,7 @@ script:
   - mv ./coverage ..
 
 before_deploy:
-  - cd .. 
-  - cd ..
-  - cd sapient-server
+  - cd ../sapient-server
   
 deploy:
   provider: azure_web_apps
