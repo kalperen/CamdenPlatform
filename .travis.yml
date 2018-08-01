@@ -20,6 +20,7 @@ script:
   - ng test --watch false --code-coverage
   - codecov
   - mv ./coverage ..
+  - cd ..
   
 deploy:
   provider: azure_web_apps

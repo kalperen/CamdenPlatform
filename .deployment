@@ -1,2 +1,2 @@
 [config]
-project = sapient-server
+project = ./sapient-server
