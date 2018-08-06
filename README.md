@@ -23,5 +23,5 @@ Cloud based IOT Platform with integrated AI
 ## Quick Start
 
 - To install and deploy the image recognition module see [imageRecognition/README.md](imageRecognition/README.md)
-- To install and deploy the sensor mesh managment platform see [Sapient/README.md](Sapient/README.md)
+- To install and deploy the sensor mesh managment platform see [Sapient/README.md](Sapient/README.md) and [sapient-server/README.md](sapient-server/README.md)
 - To configure an Arduino based sensor see [Iot/README.md](Iot/README.md)
