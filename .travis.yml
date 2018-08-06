@@ -4,6 +4,9 @@ sudo: true
 
 language: node_js
 
+git:
+   depth: 9999999
+
 node_js:
   - '8.11.3'
 
@@ -17,3 +20,9 @@ script:
   - ng test --watch false --code-coverage
   - codecov
   - mv ./coverage ..
+  - cd ..
+  
+deploy:
+  provider: azure_web_apps
+  skip_cleanup: true
+  verbose: true
