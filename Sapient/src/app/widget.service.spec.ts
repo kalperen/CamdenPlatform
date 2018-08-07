@@ -17,4 +17,9 @@ describe('WidgetService', () => {
   it('should be created', inject([WidgetService], (service: WidgetService) => {
     expect(service).toBeTruthy();
   }));
+
+  it('should get non empty result', inject([WidgetService], (service: WidgetService) => { 
+    service.getWidgets() 
+      .subscribe(widgets => expect(widgets.length).toBeGreaterThan(0)); 
+  })); 
 });

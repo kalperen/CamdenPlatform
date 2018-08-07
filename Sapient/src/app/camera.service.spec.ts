@@ -17,4 +17,9 @@ describe('CameraService', () => {
   it('should be created', inject([CameraService], (service: CameraService) => {
     expect(service).toBeTruthy();
   }));
+
+  it('should get non empty result', inject([CameraService], (service: CameraService) => {
+    service.getCameras()
+      .subscribe(cameras => expect(cameras.length).toBeGreaterThan(0));
+  }));
 });

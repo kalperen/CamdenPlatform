@@ -17,4 +17,9 @@ describe('TelemetryService', () => {
   it('should be created', inject([TelemetryService], (service: TelemetryService) => {
     expect(service).toBeTruthy();
   }));
+
+  it('should get non empty result', inject([TelemetryService], (service: TelemetryService) => { 
+    service.getTelemetries({}) 
+      .subscribe(telemetries => expect(telemetries.length).toBeGreaterThan(0)); 
+  })); 
 });
