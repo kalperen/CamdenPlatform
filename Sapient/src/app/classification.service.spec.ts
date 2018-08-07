@@ -17,4 +17,9 @@ describe('ClassificationService', () => {
   it('should be created', inject([ClassificationService], (service: ClassificationService) => {
     expect(service).toBeTruthy();
   }));
+
+  it('should get non empty result', inject([ClassificationService], (service: ClassificationService) => { 
+    service.getClassifications({}) 
+      .subscribe(classifications => expect(classifications.length).toBeGreaterThan(0)); 
+  })); 
 });
