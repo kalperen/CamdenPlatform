@@ -5,10 +5,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing'; 
 import { TemperatureWidgetDetailComponent } from './temperature-widget-detail.component';
+import { WidgetService }  from '../widget.service';
+import { TelemetryService }  from '../telemetry.service';
 
 describe('TemperatureWidgetDetailComponent', () => {
   let component: TemperatureWidgetDetailComponent;
   let fixture: ComponentFixture<TemperatureWidgetDetailComponent>;
+  let widgetService = WidgetService;
+  let telemetryService = TelemetryService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -21,7 +25,11 @@ describe('TemperatureWidgetDetailComponent', () => {
           [{path: 'temperature', component: TemperatureWidgetDetailComponent}]
         )
       ],
-      declarations: [ TemperatureWidgetDetailComponent ]
+      declarations: [ TemperatureWidgetDetailComponent ],
+      providers: [
+        { provide: WidgetService, useClass: WidgetService },
+        { provide: TelemetryService, useClass: TelemetryService }
+      ]
     })
     .compileComponents();
   }));
@@ -29,10 +37,25 @@ describe('TemperatureWidgetDetailComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TemperatureWidgetDetailComponent);
     component = fixture.componentInstance;
+    widgetService = TestBed.get(WidgetService);
+    telemetryService = TestBed.get(TelemetryService);
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('widget should be unefined before creation', () =>{
+    expect(component.widget).toBeUndefined();
+  });
+
+  it('widget should be unefined before creation', () =>{
+    component.ngOnInit();
+    setTimeout(() => {
+      expect(component.widget).not.toBeUndefined();
+    }, 1000);
+  });
+
+  
 });

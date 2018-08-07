@@ -5,9 +5,9 @@
 <div id="graph"><!-- Plotly chart will be drawn inside this DIV --></div>
 
 <div *ngIf="telemetries">
-        <div *ngFor='let telemetry of telemetries'> 
-            <p>{{ telemetry.measurementValue }} {{telemetry.measurementUnit}}</p>
-        </div>
+    <div *ngFor='let telemetry of telemetries'> 
+        <p>{{ telemetry.measurementValue }} {{telemetry.measurementUnit}}</p>
     </div>
+</div>
 
 <button (click)="goBack()">go back</button>
