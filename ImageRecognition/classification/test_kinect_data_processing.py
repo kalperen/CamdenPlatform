@@ -64,7 +64,6 @@ class TestDataProcessing(unittest.TestCase):
         for i in range(0, len(head_x)):
             self.assertEqual(test_dataset.HeadX[i], X_train[:,9][i])
 
-
     def test_get_data_valid(self):
 
         X_valid, y_valid = get_data(columns=cols, data_dir='test_data/test_kinect_validation.csv')
@@ -93,3 +92,6 @@ class TestDataProcessing(unittest.TestCase):
         for i in range(0, len(wrist_left_z)):
             self.assertEqual(valid_dataset.WristLeftZ[i], X_valid[:,20][i])
 
+
+if __name__ == '__main__':
+    unittest.main()
