@@ -25,6 +25,8 @@ cols = ['Position', 'SpineBaseX', 'SpineBaseY', 'SpineBaseZ', 'SpineMidX', 'Spin
         'SpineShoulderY', 'SpineShoulderZ', 'HandTipLeftX', 'HandTipLeftY', 'HandTipLeftZ', 'ThumbLeftX', 'ThumbLeftY',
         'ThumbLeftZ', 'HandTipRightX', 'HandTipRightY', 'HandTipRightZ', 'ThumbRightX', 'ThumbRightY', 'ThumbRightZ']
 
+test_dataset = pd.read_csv('test_data/test_kinect_training.csv', usecols=cols)
+valid_dataset = pd.read_csv('test_data/test_kinect_validation.csv', usecols=cols)
 
 class TestDataProcessing(unittest.TestCase):
 
@@ -43,7 +45,7 @@ class TestDataProcessing(unittest.TestCase):
         self.assertFalse(after_contains_nan)
 
     def test_get_data_train(self):
-        test_dataset = pd.read_csv('test_data/test_kinect_training.csv', usecols=cols)
+
         X_train, y_train = get_data(columns=cols, data_dir='test_data/test_kinect_training.csv')
 
         # check that the columns (cols) and train_data columns are of same length
@@ -61,4 +63,33 @@ class TestDataProcessing(unittest.TestCase):
         head_x = np.array(test_dataset.HeadX)
         for i in range(0, len(head_x)):
             self.assertEqual(test_dataset.HeadX[i], X_train[:,9][i])
+
+
+    def test_get_data_valid(self):
+
+        X_valid, y_valid = get_data(columns=cols, data_dir='test_data/test_kinect_validation.csv')
+
+        # check that the train_data columns and validation_data columns are of same length
+        self.assertEqual(len(test_dataset.columns), len(valid_dataset.columns))
+
+        # extract y from validation_data and match the values of within y_valid
+        y = valid_dataset.Position
+        y_output = y == y_valid
+        for item in y_output:
+            self.assertTrue(item)
+
+        # test SpineBaseX against validation file SpineBaseX values
+        spine_base_x = np.array(valid_dataset.SpineBaseX)
+        for i in range(0, len(spine_base_x)):
+            self.assertEqual(valid_dataset.SpineBaseX[i], X_valid[:, 0][i])
+
+        # test NeckY against validation file NeckY values
+        neck_y = np.array(valid_dataset.NeckY)
+        for i in range(0, len(neck_y)):
+            self.assertEqual(valid_dataset.NeckY[i], X_valid[:, 7][i])
+
+        # test WristLeftZ against train_x WristLeftZ values
+        wrist_left_z = np.array(valid_dataset.WristLeftZ)
+        for i in range(0, len(wrist_left_z)):
+            self.assertEqual(valid_dataset.WristLeftZ[i], X_valid[:,20][i])
 
