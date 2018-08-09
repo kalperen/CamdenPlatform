@@ -2,6 +2,8 @@ import os
 
 import pandas as pd
 
+import math
+
 cols = ['Position', 'SpineBaseX', 'SpineBaseY', 'SpineBaseZ', 'SpineMidX', 'SpineMidY', 'SpineMidZ', 'NeckX', 'NeckY',
         'NeckZ',
         'HeadX', 'HeadY', 'HeadZ',
@@ -35,18 +37,6 @@ def clean_up_data(dataset):
     dataset = (dataset.fillna('0.0'))
     dataset = dataset.astype(float).astype('float64')
     dataset = dataset.astype(float).fillna(0.0)
-    return dataset
-
-
-def array_cleaning(dataset):
-    dataset = (dataset.fillna('0.0,0.0'))
-    sp = []
-    for item in dataset:
-        xy = item.split(',')
-        joint_list.append(xy)
-    nparray = np.array(joint_list)
-    np_float = nparray.astype(np.float)
-    dataset = np_float.tolist()
     return dataset
 
 

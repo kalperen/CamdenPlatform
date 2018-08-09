@@ -53,17 +53,6 @@ class TestDataProcessing(unittest.TestCase):
         for item in y_output:
             self.assertTrue(item)
 
-        cols = ['position', 'noseX', 'noseY', 'neckX', 'neckY', 'rshoulderX', 'rshoulderY', 'relbowX', 'relbowY',
-                'rwristX', 'rwristY', 'lshoulderX', 'lshoulderY', 'lelbowX', 'lelbowY', 'lwristX', 'lwristY',
-                'midhipX', 'midhipY', 'rhipX', 'rhipY', 'rkneeX', 'rkneeY', 'rankleX', 'rankleY', 'lhipX', 'lhipY',
-                'lkneeX', 'lkneeY', 'lankleX', 'lankleY', 'reyeX', 'reyeY']
-
-        train_data = pd.read_csv('test_data/test_data_training.csv', usecols=cols)
-        validation_data = pd.read_csv('test_data/test_data_validation.csv', usecols=cols)
-
-        X_train, y_train = get_data(columns=cols, data_dir='test_data/test_data_training.csv')
-        X_valid, y_valid = get_data(columns=cols, data_dir='test_data/test_data_validation.csv')
-
         # check that the columns (cols) and train_data columns are of same length
         self.assertEqual(len(train_data.columns), len(cols))
 
