@@ -16,7 +16,7 @@ import { Telemetry } from '../telemetry';
 export class TemperatureWidgetDetailComponent implements OnInit {
   @Input() widget: Widget;
   telemetries: Telemetry[];
-
+  displayedColumns: string[] = ['sensorType', 'deviceId', 'measurementValue', 'measurementUnit'];
 
   constructor(
     private route: ActivatedRoute,

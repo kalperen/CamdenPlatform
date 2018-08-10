@@ -52,9 +52,7 @@ describe('TemperatureWidgetDetailComponent', () => {
 
   it('widget should be unefined before creation', () =>{
     component.ngOnInit();
-    setTimeout(() => {
-      expect(component.widget).not.toBeUndefined();
-    }, 1000);
+    expect(component.widget).not.toBeUndefined();
   });
 
   

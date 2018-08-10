@@ -5,9 +5,36 @@
 <!-- Here the widget will print itself, using the print method 
 which will be different foe every imlementation of the widget -->
 <div *ngIf="telemetries">
-    <div *ngFor='let telemetry of telemetries'> 
-        <p>{{ telemetry.measurementValue }} {{telemetry.measurementUnit}}</p>
-    </div>
+    <table mat-table [dataSource]=telemetries class="mat-elevation-z8">
+        <ng-container matColumnDef="sensorType">
+            <th mat-header-cell *matHeaderCellDef> Sensor Type </th>
+            <td mat-cell *matCellDef="let element"> {{element.sensorType}} </td>
+        </ng-container>
+    
+
+    
+        <ng-container matColumnDef="deviceId">
+            <th mat-header-cell *matHeaderCellDef> Sensor Id </th>
+            <td mat-cell *matCellDef="let element"> {{element.deviceId}} </td>
+        </ng-container>
+    
+
+    
+        <ng-container matColumnDef="measurementValue">
+            <th mat-header-cell *matHeaderCellDef> Measurement Value </th>
+            <td mat-cell *matCellDef="let element"> {{element.measurementValue}} </td>
+        </ng-container>
+    
+
+    
+        <ng-container matColumnDef="measurementUnit">
+            <th mat-header-cell *matHeaderCellDef> Measurement Unit </th>
+            <td mat-cell *matCellDef="let element"> {{element.measurementUnit}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
 </div>
 
 <button (click)="goBack()">go back</button>
