@@ -21,8 +21,3 @@ script:
   - codecov
   - mv ./coverage ..
   - cd ..
-  
-deploy:
-  provider: azure_web_apps
-  skip_cleanup: true
-  verbose: true

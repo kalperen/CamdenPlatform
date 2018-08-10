@@ -2,8 +2,8 @@
     <h1> {{ widget.sensorType | uppercase }} </h1>
 </div>
 
-<!-- Here the widget will print itself, using the print method 
-which will be different foe every imlementation of the widget -->
+<div id="graph"><!-- Plotly chart will be drawn inside this DIV --></div>
+
 <div *ngIf="telemetries">
     <table mat-table [dataSource]=telemetries class="mat-elevation-z8">
         <ng-container matColumnDef="sensorType">
