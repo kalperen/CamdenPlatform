@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AirQualityWidgetDetailComponent } from './air-quality-widget-detail.component';
@@ -15,6 +16,7 @@ describe('AirQualityWidgetDetailComponent', () => {
       imports: [ 
         FormsModule,
         MatToolbarModule,
+        MatTableModule,
         HttpClientModule,
         HttpClientTestingModule,
         RouterTestingModule.withRoutes(
