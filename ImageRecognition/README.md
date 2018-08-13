@@ -34,21 +34,13 @@ $ swig -python -c++ pafprocess.i && python setup.py build_ext --inplace
 ## Usage
 
 For feature extraction:
-### Single Image
-```
-$ python run.py --model=mobilenet_thin --resize=432x368 --image=./images/p1.jpg
-```
-
-### Realtime Webcam
-
-```
-$ python run_webcam.py --model=mobilenet_thin --resize=432x368 --camera=0
-```
 
 ### Feature extraction
 
 Create a folder named images in featureExtraction/tf-pose-estimation/. Place all the images that you
 will be using for training in your model and that you want features to be extracted from.
+Make sure to name each image according to its label. For example images containing humans that
+are laying down should be named "laying1.jpg", "laying2.jpg" etc...
 
 ```
 $ cd featureExtraction/tf-pose-estimation/
@@ -59,17 +51,42 @@ This command will loop over all the images in images/ folder and write the extra
 into data.csv
 
 ```
-$ python run.py --resize=432x368 --output=data.csv
+$ python run.py --output=data.csv
 ```
 
 ### Classification
 
-Change the directories in classification/data_processing.py to match your own training.csv and validation.csv
-files. Then run:
+Change the csv_dir variable in classification/data_processing.py to match your desired training data set.
+files. Then run one of the following:
 
 ```
 $ python classification/MLPClassifier.py
+$ python classification/GradientBoostedTrees.py
+$ python classification/AdaBoost.py
+```
+These will generate .pkl files in the directory that can then be used in the application.
+
+### Application
+
+Navigate back to featureExtraction/tf-pose-estimation.
+Copy your generated .pkl file into this subdirectory. Depending on which file you want to run
+make sure you change the 'desired.pkl' in the "clf = joblib.load('desired.pkl')" line to your
+previously generated pkl file.
+
+Single image
+```
+$ python run.py --image=./images/p1.jpg
 ```
 
+Realtime Webcam
+```
+$ python run_webcam.py --camera=0
+```
 
-# Warning: This repository is not completed yet
+Pre-saved Video
+```
+$ python run_video.py --video=video.mp4
+```
+
+You can also add the --model and --resolution arguments to the above commands.
+This might affect both precision and runtime depending on the power of your GPU.
