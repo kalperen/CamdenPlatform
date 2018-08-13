@@ -1,10 +1,14 @@
-<p>
+<p class="mat-typography">
   {{data.operation}} {{data.device}}:
 </p>
 
-<form>
+<form *ngIf="result == null" class="mat-typography">
   <mat-form-field>
     <input matInput [(ngModel)]="deviceId" placeholder="DeviceId" name="deviceId">
   </mat-form-field>
   <button mat-button (click)="makeOperation()">Ok</button>
 </form>
+
+<div *ngIf="result != null" class="mat-typography">
+  Add the following shared key to the device code: {{result.authentication.SymmetricKey.primaryKey}}
+</div>
