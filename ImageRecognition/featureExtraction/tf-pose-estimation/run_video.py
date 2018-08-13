@@ -1,3 +1,5 @@
+#This file is used to classify the positions of humans in a given video file.
+
 import argparse
 import logging
 import time
@@ -48,6 +50,7 @@ if __name__ == '__main__':
         ret_val, image = cap.read()
 
         try:
+            #Invokes the tf openpose feature extractor on the current image
             humans = e.inference(image, resize_to_default=(w > 0 and h > 0), upsample_size=args.resize_out_ratio)
         #Exit when the video ends
         except Exception:
@@ -71,18 +74,23 @@ if __name__ == '__main__':
                     except KeyError:
                         array_human.append(0.0)
                         array_human.append(0.0)
-                #print(helpers.clean_data(array_human))
+                #Improve the generated feature extraction by removing unclear data points
                 if helpers.clean_data(array_human) is None:
                     array_human = []
                 else:
                     array_humans.append(array_human)
                     array_human = []
 
+            #Count the number of humans who are in each category in the video
             if len(array_humans) > 0:
                 sitting, standing, laying = helpers.count_predictions(clf.predict(array_humans))
 
                 currentDT = datetime.datetime.now()
-                #Code to send data immediately to the cloud platform
+                #Send the gathered data to the cloud platform.
+                #The following code will cause the program to crash if you do not have
+                #Sapient and sapient-server running when you execute it.
+                #Uncomment it if you wish to run locally.
+                #--------------------------------------------------------------------------------------------------------#
                 body = {
                     "sitting": sitting,
                     "laying": standing,
@@ -100,9 +108,8 @@ if __name__ == '__main__':
                 jsondata = json.dumps(body)
                 jsondataasbytes = jsondata.encode('utf-8')   # needs to be bytes
                 req.add_header('Content-Length', len(jsondataasbytes))
-                # print (jsondataasbytes)
                 response = urllib.request.urlopen(req, jsondataasbytes)
-
+                #--------------------------------------------------------------------------------------------------------#
         if not args.showBG:
             image = np.zeros(image.shape)
         image = TfPoseEstimator.draw_humans(image, humans, imgcopy=False)

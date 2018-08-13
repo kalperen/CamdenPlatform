@@ -1,3 +1,10 @@
+#This file is used for feature extraction purposes.
+#Place all image files that you wish to extract features from into a subdirectory
+#Make sure to name every image file according to its category. For example an image
+#Where the humans are sitting could be named "sitting123543.jpg".
+#And run this script on it. This will generate a csv file that can then be used
+#To train a classifier.
+
 import argparse
 import logging
 import sys
@@ -45,6 +52,7 @@ if __name__ == '__main__':
     directory = os.fsencode(args.directory)
     print(directory)
     string_humans =""
+
     #Goes over a whole directory to generate training data
     for file in os.listdir(directory):
         filename = os.fsdecode(file)
@@ -56,10 +64,15 @@ if __name__ == '__main__':
                 logger.error('Image can not be read, path=%s' % args.image)
                 continue
             t = time.time()
+
+            #Invokes the tf openpose feature extractor on the current image
             humans = e.inference(image, resize_to_default=(w > 0 and h > 0), upsample_size=args.resize_out_ratio)
             elapsed = time.time() - t
 
+            #The file name is used as the label the following code will take an image filename such
+            #as "laying123.jpg" and interpret it as the "laying" category in the produced feature extraction.
             label = filename + ","
+
             #Strip the all digits from the filename so that we categorize correctly
             remove_digits = str.maketrans('', '', digits)
 
@@ -78,18 +91,20 @@ if __name__ == '__main__':
                     #If there are no coordinates for a certain limb record null
                     except KeyError:
                         current_human += "0.0,0.0,"
-                #remove the trailing comma from the string
+                #remove the trailing comma from the string.
                 current_human = current_human[:-1]
+                #Improve the generated feature extraction by removing unclear data points
                 if helpers.clean_string_data(current_human) is None:
                     current_human = ''
                 else:
                     current_human += "\n"
-
+                #Add the current human in the picture to the string of humans in this picture
                 string_human += current_human
                 current_human = ''
-
+            #Add all humans  in this picture to the string of all humans in all pictures in this subdirectory
             string_humans += string_human
-    #If the user wants to write to an output file
+
+    #Write to an output file designated by the user.
     if args.output is not None:
         if os.path.isfile(args.output):
             f = open(args.output,'a+')

@@ -1,3 +1,4 @@
+#This file is used to classify the positions of humans given a single photo.
 import argparse
 import logging
 import sys
@@ -62,11 +63,6 @@ if __name__ == '__main__':
                 array_human.append(0.0)
         array_humans.append(array_human)
         array_human = []
-    print("single")
-    #print(len(array_humans[0]))
-    #array_humans.append(array_human)
-    print("multiple")
-    print(array_humans)
 
     if len(array_humans) > 0:
         print(clf.predict(array_humans))

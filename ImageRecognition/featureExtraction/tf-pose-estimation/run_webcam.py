@@ -1,3 +1,5 @@
+#This file is used to classify the positions of humans in a given live video feed.
+
 import argparse
 import logging
 import time
@@ -68,23 +70,46 @@ if __name__ == '__main__':
                 except KeyError:
                     array_human.append(0.0)
                     array_human.append(0.0)
-            array_humans.append(array_human)
-            array_human = []
-        print("single")
-        #print(len(array_humans[0]))
-        #array_humans.append(array_human)
-        print("multiple")
-        print(len(array_humans))
+            #Improve the generated feature extraction by removing unclear data points
+            if helpers.clean_data(array_human) is None:
+                array_human = []
+            else:
+                array_humans.append(array_human)
+                array_human = []
 
+        #Print the current classification
         if len(array_humans) > 0:
             print(clf.predict(array_humans))
+            #
+            # sitting, standing, laying = helpers.count_predictions(clf.predict(array_humans))
+            #
+            # currentDT = datetime.datetime.now()
+            # #Send the gathered data to the cloud platform.
+            # #The following code will cause the program to crash if you do not have
+            # #Sapient and sapient-server running when you execute it.
+            # #Uncomment it if you wish to run locally.
+            # #--------------------------------------------------------------------------------------------------------#
+            # body = {
+            #     "sitting": sitting,
+            #     "laying": standing,
+            #     "standing": laying,
+            #     "cameraId": "1",
+            #     "year": currentDT.year,
+            #     "month": currentDT.month,
+            #     "day": currentDT.day,
+            #     "hour": currentDT.hour,
+            #     "minute": currentDT.minute,
+            #     "seconds": currentDT.second
+            # }
+            # req= urllib.request.Request('http://localhost:3000/classifications/addClassification')
+            # req.add_header('Content-Type', 'application/json; charset=utf-8')
+            # jsondata = json.dumps(body)
+            # jsondataasbytes = jsondata.encode('utf-8')   # needs to be bytes
+            # req.add_header('Content-Length', len(jsondataasbytes))
+            # response = urllib.request.urlopen(req, jsondataasbytes)
+            # #--------------------------------------------------------------------------------------------------------#
 
-
-        #time.sleep(2)
-        #del array_human[:]
         del array_humans[:]
-        #time.sleep(5)
-        #time.sleep(2)
         logger.debug('postprocess+')
         image = TfPoseEstimator.draw_humans(image, humans, imgcopy=False)
 
