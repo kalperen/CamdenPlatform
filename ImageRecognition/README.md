@@ -33,8 +33,6 @@ $ swig -python -c++ pafprocess.i && python setup.py build_ext --inplace
 
 ## Usage
 
-For feature extraction:
-
 ### Feature extraction
 
 Create a folder named images in featureExtraction/tf-pose-estimation/. Place all the images that you
