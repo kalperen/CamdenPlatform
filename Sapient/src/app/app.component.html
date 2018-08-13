@@ -1,7 +1,8 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
 
 <mat-toolbar class="mat-typography">
-    <span>{{ title }}</span>
+    <button mat-button color="primary" (click)="goBack()"></button>
+    <span class="title">{{ title }}</span>
   </mat-toolbar>
 
 <router-outlet></router-outlet>

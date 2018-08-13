@@ -79,8 +79,4 @@ export class TemperatureWidgetDetailComponent implements OnInit {
     Plotly.newPlot('graph', data);
 
   }
-
-  goBack(): void {
-    this.location.back();
-  }
 }
