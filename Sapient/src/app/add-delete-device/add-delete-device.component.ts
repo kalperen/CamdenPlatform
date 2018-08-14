@@ -13,7 +13,7 @@ import { ManageDevicesDialogComponent } from '../manage-devices-dialog/manage-de
   styleUrls: ['./add-delete-device.component.css']
 })
 export class AddDeleteDeviceComponent implements OnInit {
-
+  private result = null;
   private serverUrl = "http://localhost:3000/";
   private deviceId: string;
   private httpOptions = {
@@ -36,7 +36,6 @@ export class AddDeleteDeviceComponent implements OnInit {
       this.addDevice();
     else
       this.deleteDevice();
-    this.dialogRef.close();
   }
 
   addDevice(): void{
@@ -50,6 +49,7 @@ export class AddDeleteDeviceComponent implements OnInit {
     this.http.post(this.serverUrl + endpoint, data, this.httpOptions)
     .subscribe(
       res => {
+        this.result = res;
         console.log(res);
       },
       err => {

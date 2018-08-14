@@ -19,7 +19,6 @@ export class ManageDevicesDialogComponent implements OnInit {
 
   openDialog(operation, device): void {
     const dialogRef = this.dialog.open(AddDeleteDeviceComponent, {
-      width: '200px',
       data: { 
         operation: operation,
         device: device
