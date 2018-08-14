@@ -1,0 +1,25 @@
+import unittest
+
+import MLPClassifierKinect as MLP
+
+
+class TestDataProcessing(unittest.TestCase):
+
+    def test_kinect_classification(self):
+
+        X_train, y_train = MLP.get_data(data_dir='test_data/test_kinect_training.csv')
+        self.assertEqual(X_train.size, 4125)
+        self.assertEqual(y_train.size, 55)
+
+        output = MLP.run(X_train, y_train, csv_dir='test_data/test_kinect_validation.csv')
+        # check that correct number of output values are being produced
+        self.assertEqual(output.size, 17)
+
+        for i in output:
+            # check that only valid output is being passed
+            position = (i == "Standing" or i == "Sitting" or i == "Laying")
+            self.assertTrue(position)
+
+
+if __name__ == '__main__':
+    unittest.main()
