@@ -37,6 +37,7 @@ def clean_up_data(dataset):
 
 def get_data(columns=cols,
              data_dir=csv_dir):
+
     train_data = pd.read_csv(data_dir, usecols=columns)
 
     if "Position" in columns:

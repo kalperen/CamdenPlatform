@@ -14,10 +14,10 @@ def run(x, y, csv_dir=dir):
                         activation='logistic')
     clf.fit(x, y)
     print("The output results: ")
-    x = clf.predict(X_test)
-    print(x)
+    output = clf.predict(X_test)
+    return output
 
 
 if __name__ == '__main__':
     X_train, y_train = get_data()
-    run(X_train, y_train)
+    print(run(X_train, y_train))
