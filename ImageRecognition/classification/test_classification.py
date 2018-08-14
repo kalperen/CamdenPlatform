@@ -30,10 +30,17 @@ class TestDataProcessing(unittest.TestCase):
         self.assertTrue('Standing' in y_train)
         self.assertTrue('Laying' in y_train)
 
+        output = MLP.run(X_train, y_train, csv_dir='test_data/test_kinect_validation.csv')
 
+        # check that correct number of output values are being produced
+        self.assertEqual(output.size, 17)
 
-
-
+        # load the y_test data so values can be compared
+        X_test, y_test = MLP.get_data(data_dir='test_data/test_kinect_validation.csv')
+        # check each output value against original value to see if correctly being predicted
+        for i in range(0, len(y_test)):
+            # check positions matching
+            self.assertEqual(y_test[i], output[i])
 
 
 if __name__ == '__main__':
