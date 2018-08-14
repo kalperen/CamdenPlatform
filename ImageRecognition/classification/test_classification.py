@@ -5,7 +5,7 @@ import MLPClassifierKinect as MLP
 
 class TestDataProcessing(unittest.TestCase):
 
-    def test_kinect_classification(self):
+    def test_kinect_classification_random_data(self):
 
         X_train, y_train = MLP.get_data(data_dir='test_data/test_kinect_training.csv')
         self.assertEqual(X_train.size, 4125)
@@ -19,6 +19,21 @@ class TestDataProcessing(unittest.TestCase):
             # check that only valid output is being passed
             position = (i == "Standing" or i == "Sitting" or i == "Laying")
             self.assertTrue(position)
+
+    def test_kinect_classification_trained_data(self):
+
+        # retrieve original trained data
+        X_train, y_train = MLP.get_data(data_dir='../Datasets/kinect_training.csv')
+        # check correct data has been loaded and correct format of values
+        self.assertEqual(X_train.dtype, 'float64')
+        self.assertTrue('Sitting' in y_train)
+        self.assertTrue('Standing' in y_train)
+        self.assertTrue('Laying' in y_train)
+
+
+
+
+
 
 
 if __name__ == '__main__':
