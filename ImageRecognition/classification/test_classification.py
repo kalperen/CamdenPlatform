@@ -37,10 +37,19 @@ class TestDataProcessing(unittest.TestCase):
 
         # load the y_test data so values can be compared
         X_test, y_test = MLP.get_data(data_dir='test_data/test_kinect_validation.csv')
+
         # check each output value against original value to see if correctly being predicted
         for i in range(0, len(y_test)):
             # check positions matching
             self.assertEqual(y_test[i], output[i])
+
+        # check that only valid output is being passed
+        for i in output:
+            # check that only valid output is being passed
+            position = (i == "Standing" or i == "Sitting" or i == "Laying")
+            self.assertTrue(position)
+
+
 
 
 if __name__ == '__main__':
