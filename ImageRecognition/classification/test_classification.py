@@ -48,8 +48,6 @@ class TestDataProcessing(unittest.TestCase):
             position = (i == "Standing" or i == "Sitting" or i == "Laying")
             self.assertTrue(position)
 
-
-
     def test_kinect_classification_random_data(self):
 
         from sklearn.neural_network import MLPClassifier

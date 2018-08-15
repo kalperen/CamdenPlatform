@@ -1,6 +1,8 @@
+import datetime
 import os
-from kinect_data_processing import get_data
 from sklearn.neural_network import MLPClassifier
+
+from kinect_data_processing import get_data
 
 # path of kinect output file
 folder = os.path.normpath(os.getcwd() + os.sep + os.pardir + os.sep + os.pardir + os.sep
@@ -17,7 +19,34 @@ def run(x, y, csv_dir=dir):
     return output
 
 
+def generate_api_call(output):
+    # Send the gathered data to the cloud platform.
+    # The following code will cause the program to crash if you do not have
+    # Sapient and sapient-server running when you execute it.
+    # Uncomment it if you wish to run locally.
+
+    sitting = output.count('Sitting')
+    standing = output.count('Standing')
+    laying = output.count('Laying')
+    current_dt = datetime.datetime.now()
+
+    body = {
+        "sitting": sitting,
+        "laying": standing,
+        "standing": laying,
+        "cameraId": "Kinect",
+        "year": current_dt.year,
+        "month": current_dt.month,
+        "day": current_dt.day,
+        "hour": current_dt.hour,
+        "minute": current_dt.minute,
+        "seconds": current_dt.second
+    }
+
+
 if __name__ == '__main__':
     X_train, y_train = get_data()
+    output = run(X_train, y_train)
+    # generate_API_call(output)
     print("The output results: ")
-    print(run(X_train, y_train))
+    print(output)
