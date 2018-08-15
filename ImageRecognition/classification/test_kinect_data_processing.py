@@ -28,6 +28,7 @@ cols = ['Position', 'SpineBaseX', 'SpineBaseY', 'SpineBaseZ', 'SpineMidX', 'Spin
 test_dataset = pd.read_csv('test_data/test_kinect_training.csv', usecols=cols)
 valid_dataset = pd.read_csv('test_data/test_kinect_validation.csv', usecols=cols)
 
+
 class TestDataProcessing(unittest.TestCase):
 
     def test_clean_up_data(self):
