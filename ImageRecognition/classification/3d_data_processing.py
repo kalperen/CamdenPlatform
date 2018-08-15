@@ -2,13 +2,16 @@ import os
 
 import pandas as pd
 
-cols = ['position', 'noseX', 'noseY', 'noseZ', 'neckX', 'neckY', 'neckZ', 'rshoulderX', 'rshoulderY', 'rshoulderZ',
-        'relbowX', 'relbowY', 'relbowZ', 'rwristX', 'rwristY', 'rwristZ', 'lshoulderX', 'lshoulderY', 'lshoulderZ',
-        'lelbowX', 'lelbowY', 'lelbowZ', 'lwristX', 'lwristY', 'lwristZ', 'midhipX', 'midhipY', 'midhipZ',
-        'rhipX', 'rhipY', 'rhipZ', 'rkneeX', 'rkneeY', 'rkneeZ', 'rankleX', 'rankleY', 'rankleZ', 'lhipX', 'lhipY',
-        'lhipZ', 'lkneeX', 'lkneeY', 'lkneeZ', 'lankleX', 'lankleY', 'lankleZ', 'reyeX', 'reyeY', 'reyeZ']
+cols = ['position', 'noseX', 'noseY', 'neckX', 'neckY', 'neckZ', 'noseZ', 'neckX', 'neckY', 'neckZ', 'rshoulderX',
+        'rshoulderY', 'rshoulderZ', 'relbowX', 'relbowY', 'relbowZ', 'rwristX', 'rwristY', 'rwristZ', 'lshoulderX',
+        'lshoulderY', 'lshoulderZ', 'lelbowX', 'lelbowY', 'lelbowZ', 'lwristX', 'lwristY', 'lwristZ', 'midhipX',
+        'midhipY', 'midhipZ', 'rhipX', 'rhipY', 'rhipZ', 'rkneeX', 'rkneeY', 'rkneeZ', 'rankleX', 'rankleY', 'rankleZ',
+        'lhipX', 'lhipY', 'lhipZ', 'lkneeX', 'lkneeY', 'lkneeZ', 'lankleX', 'lankleY', 'lankleZ', 'leyeX', 'leyeY',
+        'leyeZ']
 
-csv_dir = os.path.normpath(os.getcwd() + os.sep + os.pardir) + "/tf-pose-estimation/data.csv"
+#csv_dir = os.path.normpath(os.getcwd() + os.sep + os.pardir) + "/featureExtraction/tf-pose-estimation/validation.csv"
+csv_dir = '/Users/shahrozahmed/Desktop/openpose_trainingv1.csv'
+
 
 def encode_var(dataset, variable):
     series = pd.Series(dataset[variable])
@@ -39,7 +42,7 @@ def array_cleaning(dataset):
 
 def get_data(columns=cols,
              data_dir=csv_dir):
-    train_data = pd.read_csv(data_dir, usecols=columns)
+    train_data = pd.read_csv(data_dir, usecols=columns, engine="python")
 
     if ("position" in columns):
         # # encode position - train data

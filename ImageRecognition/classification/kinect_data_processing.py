@@ -5,20 +5,15 @@ import pandas as pd
 import math
 
 cols = ['Position', 'SpineBaseX', 'SpineBaseY', 'SpineBaseZ', 'SpineMidX', 'SpineMidY', 'SpineMidZ', 'NeckX', 'NeckY',
-        'NeckZ',
-        'HeadX', 'HeadY', 'HeadZ',
-        'ShoulderLeftX', 'ShoulderLeftY', 'ShoulderLeftZ', 'ElbowLeftX', 'ElbowLeftY', 'ElbowLeftZ', 'WristLeftX',
-        'WristLeftY', 'WristLeftZ', 'HandLeftX',
-        'HandLeftY', 'HandLeftZ', 'ShoulderRightX', 'ShoulderRightY', 'ShoulderRightZ', 'ElbowRightX', 'ElbowRightY',
-        'ElbowRightZ', 'WristRightX', 'WristRightY',
-        'WristRightZ', 'HandRightX', 'HandRightY', 'HandRightZ', 'HipLeftX', 'HipLeftY', 'HipLeftZ', 'KneeLeftX',
-        'KneeLeftY', 'KneeLeftZ', 'AnkleLeftX',
-        'AnkleLeftY', 'AnkleLeftZ', 'FootLeftX', 'FootLeftY', 'FootLeftZ', 'HipRightX', 'HipRightY', 'HipRightZ',
-        'KneeRightX', 'KneeRightY', 'KneeRightZ',
+        'NeckZ', 'HeadX', 'HeadY', 'HeadZ', 'ShoulderLeftX', 'ShoulderLeftY', 'ShoulderLeftZ', 'ElbowLeftX',
+        'ElbowLeftY', 'ElbowLeftZ', 'WristLeftX', 'WristLeftY', 'WristLeftZ', 'HandLeftX', 'HandLeftY', 'HandLeftZ',
+        'ShoulderRightX', 'ShoulderRightY', 'ShoulderRightZ', 'ElbowRightX', 'ElbowRightY', 'ElbowRightZ',
+        'WristRightX', 'WristRightY', 'WristRightZ', 'HandRightX', 'HandRightY', 'HandRightZ', 'HipLeftX', 'HipLeftY',
+        'HipLeftZ', 'KneeLeftX', 'KneeLeftY', 'KneeLeftZ', 'AnkleLeftX', 'AnkleLeftY', 'AnkleLeftZ', 'FootLeftX',
+        'FootLeftY', 'FootLeftZ', 'HipRightX', 'HipRightY', 'HipRightZ', 'KneeRightX', 'KneeRightY', 'KneeRightZ',
         'AnkleRightX', 'AnkleRightY', 'AnkleRightZ', 'FootRightX', 'FootRightY', 'FootRightZ', 'SpineShoulderX',
-        'SpineShoulderY', 'SpineShoulderZ',
-        'HandTipLeftX', 'HandTipLeftY', 'HandTipLeftZ', 'ThumbLeftX', 'ThumbLeftY', 'ThumbLeftZ', 'HandTipRightX',
-        'HandTipRightY', 'HandTipRightZ', 'ThumbRightX', 'ThumbRightY', 'ThumbRightZ']
+        'SpineShoulderY', 'SpineShoulderZ', 'HandTipLeftX', 'HandTipLeftY', 'HandTipLeftZ', 'ThumbLeftX', 'ThumbLeftY',
+        'ThumbLeftZ', 'HandTipRightX', 'HandTipRightY', 'HandTipRightZ', 'ThumbRightX', 'ThumbRightY', 'ThumbRightZ']
 
 folder = os.path.normpath(os.getcwd() + os.sep + os.pardir + os.sep + os.pardir + os.sep
                           + os.pardir + os.sep + os.pardir + os.sep + os.pardir + os.sep + os.pardir)
@@ -42,6 +37,7 @@ def clean_up_data(dataset):
 
 def get_data(columns=cols,
              data_dir=csv_dir):
+
     train_data = pd.read_csv(data_dir, usecols=columns)
 
     if "Position" in columns:
