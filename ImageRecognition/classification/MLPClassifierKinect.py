@@ -1,5 +1,7 @@
 import datetime
+import json
 import os
+import urllib.request
 from sklearn.neural_network import MLPClassifier
 
 from kinect_data_processing import get_data
@@ -25,9 +27,14 @@ def generate_api_call(output):
     # Sapient and sapient-server running when you execute it.
     # Uncomment it if you wish to run locally.
 
+    # convert from np.array to list
+    output = output.tolist()
+
+    # count number of appearances of a particular position in a list
     sitting = output.count('Sitting')
     standing = output.count('Standing')
     laying = output.count('Laying')
+
     current_dt = datetime.datetime.now()
 
     body = {
@@ -54,6 +61,6 @@ def generate_api_call(output):
 if __name__ == '__main__':
     X_train, y_train = get_data()
     output = run(X_train, y_train)
-    # generate_API_call(output)
+    generate_api_call(output)
     print("The output results: ")
     print(output)
