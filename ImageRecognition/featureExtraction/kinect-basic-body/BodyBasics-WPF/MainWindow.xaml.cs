@@ -346,13 +346,12 @@ namespace Microsoft.Samples.Kinect.BodyBasics
                             // create string and file path to write out csv file 
                             var csvcontent = new System.Text.StringBuilder();
                             string currentPath = Directory.GetCurrentDirectory();
+
+                            // Generate path to ImageRecognition folder 
                             string imgRec = Path.GetFullPath(Path.Combine(currentPath, @"..\..\..\..\..\..\"));
 
-
-                            // string csvpath = Path.GetFullPath(imgRec + @"\Datasets\kinect_output.csv");
-                            string csvpath = @"C:\Users\shahroz\Documents\CamdenPlatform\ImageRecognition\Datasets\kinect_output.csv";
-
-
+                            // Generate file path to the kinect output within the datasets folder
+                            string csvpath = Path.GetFullPath(Path.Combine(imgRec, @"Datasets\kinect_output.csv"));
 
                             if (!File.Exists(csvpath))
                             {
@@ -382,22 +381,17 @@ namespace Microsoft.Samples.Kinect.BodyBasics
                                 // write to string their 3d positions
                                 human += position.X + "," + position.Y + "," + position.Z + ",";
                             }
-                            
+
                             Console.WriteLine("NA," + human);
                             csvcontent.Append("NA," + human + Environment.NewLine);
                             File.AppendAllText(csvpath, csvcontent.ToString());
 
                             // Run the classifier with training data
-                            RunMLP(imgRec);
+                            RunMLP(imgRec, imgRec);
 
                             this.DrawBody(joints, jointPoints, dc, drawPen);
                             this.DrawHand(body.HandLeftState, jointPoints[JointType.HandLeft], dc);
                             this.DrawHand(body.HandRightState, jointPoints[JointType.HandRight], dc);
-                            
-
-                            // var input = Console.ReadLine();
-                            // var py = Python.CreateEngine();
-                            //py.ExecuteFile(@"C:\Users\shahroz\Desktop\\MLPClassifierKinect.py");
 
 
                             Console.ReadLine();
@@ -416,14 +410,15 @@ namespace Microsoft.Samples.Kinect.BodyBasics
             }
         }
 
-        private void RunMLP(String file)
+        private void RunMLP(String file, String fileDir)
         {
             try
             {
-                // string fileName = Path.GetFullPath(file + @"\classification\MLPClassifierKinect.py");
-                string fileName = @"C:\Users\shahroz\Documents\CamdenPlatform\ImageRecognition\classification\MLPClassifierKinect.py";
+                // Generate path for MLPClassifier file 
+                string fileName = Path.GetFullPath(Path.Combine(fileDir, @"classification\MLPClassifierKinect.py"));
                 Process p = new Process
                 {
+                    // @NOTE: IF PYTHON EXE NOT FOUND THEN THE FILE WILL NOT WORK 
                     StartInfo = new ProcessStartInfo(@"C:\Program Files (x86)\Python37-32\python.exe", fileName)
                     {
                         RedirectStandardOutput = true,
@@ -444,7 +439,7 @@ namespace Microsoft.Samples.Kinect.BodyBasics
                 Console.WriteLine(ex.Message.ToString());
             }
         }
-     
+
 
         /// <summary>
         /// Draws a body
