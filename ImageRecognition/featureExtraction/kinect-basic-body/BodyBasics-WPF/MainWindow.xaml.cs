@@ -393,12 +393,10 @@ namespace Microsoft.Samples.Kinect.BodyBasics
                             this.DrawBody(joints, jointPoints, dc, drawPen);
                             this.DrawHand(body.HandLeftState, jointPoints[JointType.HandLeft], dc);
                             this.DrawHand(body.HandRightState, jointPoints[JointType.HandRight], dc);
-                            
 
                             // var input = Console.ReadLine();
                             // var py = Python.CreateEngine();
                             //py.ExecuteFile(@"C:\Users\shahroz\Desktop\\MLPClassifierKinect.py");
-
 
                             Console.ReadLine();
                             if (File.Exists(csvpath))
