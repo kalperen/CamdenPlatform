@@ -2,6 +2,7 @@ import datetime
 import json
 import os
 import urllib.request
+import sys
 from sklearn.neural_network import MLPClassifier
 
 from kinect_data_processing import get_data
@@ -35,6 +36,7 @@ def generate_api_call(output):
     standing = output.count('Standing')
     laying = output.count('Laying')
 
+
     current_dt = datetime.datetime.now()
 
     body = {
@@ -55,12 +57,12 @@ def generate_api_call(output):
     jsondata = json.dumps(body)
     jsondataasbytes = jsondata.encode('utf-8')  # needs to be bytes
     req.add_header('Content-Length', len(jsondataasbytes))
-    urllib.request.urlopen(req, jsondataasbytes)
+    response = urllib.request.urlopen(req, jsondataasbytes)
 
 
 if __name__ == '__main__':
     X_train, y_train = get_data()
     output = run(X_train, y_train)
     generate_api_call(output)
-    print("The output results: ")
-    print(output)
+    #print("The output results: ")
+    #print(output)
