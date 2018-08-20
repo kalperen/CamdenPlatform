@@ -49,7 +49,8 @@ export class AddDeleteDeviceComponent implements OnInit {
     this.http.post(this.serverUrl + endpoint, data, this.httpOptions)
     .subscribe(
       res => {
-        this.result = res;
+        if (this.data.device == 'Device')
+          this.result = res;
         console.log(res);
       },
       err => {

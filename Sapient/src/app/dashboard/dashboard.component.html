@@ -14,7 +14,7 @@
     <mat-tab label="Cameras"> 
         <mat-grid-list cols="2" rowHeight="2:1" gutterSize= "5px" class="mat-typography">
           <mat-grid-tile *ngFor='let camera of cameras'> 
-              <a>
+              <a routerLink="/detail/camera/{{camera.cameraId}}">
                 {{camera.cameraId}}
               </a>
               <app-camera cameraId='{{camera.cameraId}}'></app-camera>
