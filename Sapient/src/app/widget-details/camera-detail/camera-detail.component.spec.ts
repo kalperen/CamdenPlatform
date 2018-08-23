@@ -5,7 +5,7 @@ import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing'; 
-import { ClassificationService }  from '../classification.service';
+import { ClassificationService }  from '../../classification.service';
 import { CameraDetailComponent } from './camera-detail.component';
 
 describe('CameraDetailComponent', () => {

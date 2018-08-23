@@ -3,10 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import Plotly from 'plotly.js-dist';
 
-import { WidgetService }  from '../widget.service';
-import { Widget } from '../widget'
-import { TelemetryService }  from '../telemetry.service';
-import { Telemetry } from '../telemetry';
+import { WidgetService }  from '../../widget.service';
+import { Widget } from '../../widget'
+import { TelemetryService }  from '../../telemetry.service';
+import { Telemetry } from '../../telemetry';
 
 @Component({
   selector: 'app-temperature-widget-detail',

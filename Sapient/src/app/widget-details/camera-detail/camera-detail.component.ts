@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ClassificationService }  from '../classification.service';
-import { Classification } from '../classification';
+import { ClassificationService }  from '../../classification.service';
+import { Classification } from '../../classification';
 
 @Component({
   selector: 'app-camera-detail',

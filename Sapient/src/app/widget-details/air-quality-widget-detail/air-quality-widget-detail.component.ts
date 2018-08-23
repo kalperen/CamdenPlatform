@@ -3,17 +3,17 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import Plotly from 'plotly.js-dist';
 
-import { WidgetService }  from '../widget.service';
-import { Widget } from '../widget'
-import { TelemetryService }  from '../telemetry.service';
-import { Telemetry } from '../telemetry';
+import { WidgetService }  from '../../widget.service';
+import { Widget } from '../../widget'
+import { TelemetryService }  from '../../telemetry.service';
+import { Telemetry } from '../../telemetry';
 
 @Component({
-  selector: 'app-general-widget-detail',
-  templateUrl: './general-widget-detail.component.html',
-  styleUrls: ['./general-widget-detail.component.css']
+  selector: 'app-air-quality-widget-detail',
+  templateUrl: './air-quality-widget-detail.component.html',
+  styleUrls: ['./air-quality-widget-detail.component.css']
 })
-export class GeneralWidgetDetailComponent implements OnInit {
+export class AirQualityWidgetDetailComponent implements OnInit {
   @Input() widget: Widget;
   telemetries: Telemetry[];
   displayedColumns: string[] = ['sensorType', 'deviceId', 'measurementValue', 'measurementUnit'];
@@ -22,8 +22,7 @@ export class GeneralWidgetDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private widgetService: WidgetService,
     private telemetryService: TelemetryService,
-    private location: Location
-  ) { }
+    private location: Location) { }
 
   ngOnInit() {
     this.getWidget();

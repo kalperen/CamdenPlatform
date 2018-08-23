@@ -8,8 +8,8 @@ import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing'; 
-import { WidgetService }  from '../widget.service';
-import { TelemetryService }  from '../telemetry.service';
+import { WidgetService }  from '../../widget.service';
+import { TelemetryService }  from '../../telemetry.service';
 
 describe('GeneralWidgetDetailComponent', () => {
   let component: GeneralWidgetDetailComponent;

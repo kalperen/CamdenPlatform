@@ -6,8 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing'; 
 import { TemperatureWidgetDetailComponent } from './temperature-widget-detail.component';
-import { WidgetService }  from '../widget.service';
-import { TelemetryService }  from '../telemetry.service';
+import { WidgetService }  from '../../widget.service';
+import { TelemetryService }  from '../../telemetry.service';
 
 describe('TemperatureWidgetDetailComponent', () => {
   let component: TemperatureWidgetDetailComponent;
