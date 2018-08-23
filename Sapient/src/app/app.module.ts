@@ -11,6 +11,7 @@ import { CameraComponent } from './camera/camera.component';
 import { WidgetComponent } from './widget/widget.component';
 import { TemperatureWidgetDetailComponent } from './temperature-widget-detail/temperature-widget-detail.component';
 import { AirQualityWidgetDetailComponent } from './air-quality-widget-detail/air-quality-widget-detail.component';
+import { GeneralWidgetDetailComponent } from './general-widget-detail/general-widget-detail.component';
 import { CameraDetailComponent } from './camera-detail/camera-detail.component';
 import { ManageDevicesDialogComponent } from './manage-devices-dialog/manage-devices-dialog.component';
 import { AddDeleteDeviceComponent } from './add-delete-device/add-delete-device.component';
@@ -24,6 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CameraComponent,
     TemperatureWidgetDetailComponent,
     AirQualityWidgetDetailComponent,
+    GeneralWidgetDetailComponent,
     CameraDetailComponent,
     ManageDevicesDialogComponent,
     AddDeleteDeviceComponent
