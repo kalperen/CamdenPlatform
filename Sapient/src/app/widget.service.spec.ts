@@ -28,4 +28,12 @@ describe('WidgetService', () => {
     service.getWidgets() 
       .subscribe(widgets => expect(widgets.length).toBe(0)); 
   })); 
+
+  it('should execute handleError function on status different of 200', inject([WidgetService], (service: WidgetService) => {
+    spyOn(service as any, 'handleError');
+
+    service.getWidgets().subscribe(() => { }, error => {
+        expect(service['handleError']).toHaveBeenCalled();
+    });
+  }));
 });

@@ -19,7 +19,7 @@ describe('TelemetryService', () => {
   }));
 
   it('should get non empty result', inject([TelemetryService], (service: TelemetryService) => { 
-    service.getTelemetries({}) 
+    service.getTelemetries({test : null}) 
       .subscribe(telemetries => expect(telemetries.length).toBeGreaterThan(0)); 
   })); 
 
