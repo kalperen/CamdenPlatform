@@ -14,7 +14,7 @@ import { ManageDevicesDialogComponent } from '../manage-devices-dialog/manage-de
 })
 export class AddDeleteDeviceComponent implements OnInit {
   private result = null;
-  private serverUrl = "http://localhost:3000/";
+  public serverUrl = "http://localhost:3000/";
   private deviceId: string;
   private httpOptions = {
     headers: new HttpHeaders({

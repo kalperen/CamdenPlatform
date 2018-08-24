@@ -21,7 +21,11 @@ describe('AddDeleteDeviceComponent', () => {
         BrowserAnimationsModule
       ],
       providers: [
-        { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: MAT_DIALOG_DATA, useValue: {
+          operation : "Add",
+          device : "Device"
+          } 
+        },
         { provide : MatDialogRef, useValue : {} }
       ],
       declarations: [ AddDeleteDeviceComponent ]
@@ -36,6 +40,26 @@ describe('AddDeleteDeviceComponent', () => {
   });
 
   it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should add device', () => {
+    component.serverUrl = "test url";
+    component.makeOperation();
+    expect(component).toBeTruthy();
+  });
+
+  it('should add camera', () => {
+    component.serverUrl = "test url";
+    component.data.device = "Camera";
+    component.makeOperation();
+    expect(component).toBeTruthy();
+  });
+
+  it('should delete', () => {
+    component.serverUrl = "test url";
+    component.data.operation = "Delete";
+    component.makeOperation();
     expect(component).toBeTruthy();
   });
 });
