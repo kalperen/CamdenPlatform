@@ -9,7 +9,7 @@ import { Camera } from './camera';
   providedIn: 'root'
 })
 export class CameraService {
-  private serverUrl = 'http://localhost:3000/cameras/getCameras';
+  public serverUrl = 'http://localhost:3000/cameras/getCameras';
   
   constructor(private http: HttpClient) { }
 

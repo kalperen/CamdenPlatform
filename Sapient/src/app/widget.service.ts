@@ -10,7 +10,7 @@ import { Widget } from './widget';
   providedIn: 'root'
 })
 export class WidgetService {
-  private serverUrl = "http://localhost:3000/sensorTypes/sensorTypes";
+  public serverUrl = "http://localhost:3000/sensorTypes/sensorTypes";
   
   constructor(private http: HttpClient) { }
 

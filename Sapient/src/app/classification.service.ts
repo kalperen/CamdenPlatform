@@ -15,7 +15,7 @@ const httpOptions = {
 })
 
 export class ClassificationService {
-  private serverUrl = "http://localhost:3000/classifications/getClassifications";
+  public serverUrl = "http://localhost:3000/classifications/getClassifications";
 
   constructor(private http: HttpClient) { }
 

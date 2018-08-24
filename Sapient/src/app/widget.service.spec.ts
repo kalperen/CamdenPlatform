@@ -22,4 +22,10 @@ describe('WidgetService', () => {
     service.getWidgets() 
       .subscribe(widgets => expect(widgets.length).toBeGreaterThan(0)); 
   })); 
+
+  it('should return empty if error', inject([WidgetService], (service: WidgetService) => { 
+    service.serverUrl = "invalid url";
+    service.getWidgets() 
+      .subscribe(widgets => expect(widgets.length).toBe(0)); 
+  })); 
 });

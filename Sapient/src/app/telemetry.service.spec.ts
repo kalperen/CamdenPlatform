@@ -22,4 +22,10 @@ describe('TelemetryService', () => {
     service.getTelemetries({}) 
       .subscribe(telemetries => expect(telemetries.length).toBeGreaterThan(0)); 
   })); 
+
+  it('should return empty if error', inject([TelemetryService], (service: TelemetryService) => { 
+    service.serverUrl = "invalid url";
+    service.getTelemetries({}) 
+      .subscribe(widgets => expect(widgets.length).toBe(0)); 
+  })); 
 });
