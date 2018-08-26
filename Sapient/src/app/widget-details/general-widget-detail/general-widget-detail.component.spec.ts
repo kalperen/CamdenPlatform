@@ -43,6 +43,23 @@ describe('GeneralWidgetDetailComponent', () => {
     component = fixture.componentInstance;
     widgetService = TestBed.get(WidgetService);
     telemetryService = TestBed.get(TelemetryService);
+    component.widget = {
+      sensorType: 'light',
+      sensorId: '1',
+      telemetries: []
+    };
+    component.telemetries = [{
+      sensorType: 'light',
+      deviceId: '1',
+      measurementUnit: 'Lux',
+      measurementValue: 23,
+      hour: 12,
+      minutes: 12,
+      seconds: 12,
+      year: 2018,
+      month: 3,
+      day: 26
+    }];
     fixture.detectChanges();
   });
 
@@ -50,7 +67,11 @@ describe('GeneralWidgetDetailComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('widget should be unefined before creation', () =>{
-    expect(component.widget).toBeUndefined();
+  it('get telemetries', () =>{
+    component.getTelemetries();
   });
+
+  // it('get plot', () =>{
+  //   component.printGraph();
+  // });
 });

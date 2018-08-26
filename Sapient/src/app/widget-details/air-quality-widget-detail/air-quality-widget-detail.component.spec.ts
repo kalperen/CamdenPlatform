@@ -31,10 +31,35 @@ describe('AirQualityWidgetDetailComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AirQualityWidgetDetailComponent);
     component = fixture.componentInstance;
+    component.widget = {
+      sensorType: 'air-quality',
+      sensorId: '1',
+      telemetries: []
+    };
+    component.telemetries = [{
+      sensorType: 'air-quality',
+      deviceId: '1',
+      measurementUnit: 'C',
+      measurementValue: 23,
+      hour: 12,
+      minutes: 12,
+      seconds: 12,
+      year: 2018,
+      month: 3,
+      day: 26
+    }];
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('get telemetries', () =>{
+    component.getTelemetries();
+  });
+
+  // it('get plot', () =>{
+  //   component.printGraph();
+  // });
 });
