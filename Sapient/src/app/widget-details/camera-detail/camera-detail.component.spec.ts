@@ -4,12 +4,14 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { AirQualityWidgetDetailComponent } from './air-quality-widget-detail.component';
 import { RouterTestingModule } from '@angular/router/testing'; 
+import { ClassificationService }  from '../../classification.service';
+import { CameraDetailComponent } from './camera-detail.component';
 
-describe('AirQualityWidgetDetailComponent', () => {
-  let component: AirQualityWidgetDetailComponent;
-  let fixture: ComponentFixture<AirQualityWidgetDetailComponent>;
+describe('CameraDetailComponent', () => {
+  let component: CameraDetailComponent;
+  let fixture: ComponentFixture<CameraDetailComponent>;
+  let classificationService = ClassificationService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -20,16 +22,16 @@ describe('AirQualityWidgetDetailComponent', () => {
         HttpClientModule,
         HttpClientTestingModule,
         RouterTestingModule.withRoutes(
-          [{path: 'air', component: AirQualityWidgetDetailComponent}]
+          [{path: 'Kinect', component: CameraDetailComponent}]
         )
       ],
-      declarations: [ AirQualityWidgetDetailComponent ]
+      declarations: [ CameraDetailComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AirQualityWidgetDetailComponent);
+    fixture = TestBed.createComponent(CameraDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

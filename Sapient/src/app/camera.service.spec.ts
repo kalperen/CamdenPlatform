@@ -22,4 +22,10 @@ describe('CameraService', () => {
     service.getCameras()
       .subscribe(cameras => expect(cameras.length).toBeGreaterThan(0));
   }));
+
+  it('should return empty if error', inject([CameraService], (service: CameraService) => { 
+    service.serverUrl = "invalid url";
+    service.getCameras() 
+      .subscribe(widgets => expect(widgets.length).toBe(0)); 
+  })); 
 });

@@ -19,7 +19,13 @@ describe('TelemetryService', () => {
   }));
 
   it('should get non empty result', inject([TelemetryService], (service: TelemetryService) => { 
-    service.getTelemetries({}) 
+    service.getTelemetries({test : null}) 
       .subscribe(telemetries => expect(telemetries.length).toBeGreaterThan(0)); 
+  })); 
+
+  it('should return empty if error', inject([TelemetryService], (service: TelemetryService) => { 
+    service.serverUrl = "invalid url";
+    service.getTelemetries({}) 
+      .subscribe(widgets => expect(widgets.length).toBe(0)); 
   })); 
 });

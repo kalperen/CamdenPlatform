@@ -15,7 +15,7 @@ const httpOptions = {
 })
 
 export class ClassificationService {
-  private serverUrl = "http://localhost:3000/classifications/getClassifications";
+  public serverUrl = "http://localhost:3000/classifications/getClassifications";
 
   constructor(private http: HttpClient) { }
 
@@ -32,8 +32,6 @@ export class ClassificationService {
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
- 
-      console.error(error); // log to console instead
  
       console.log(`${operation} failed: ${error.message}`);
  

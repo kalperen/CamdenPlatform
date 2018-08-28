@@ -1,0 +1,36 @@
+<div *ngIf="cameraId">
+    <h3 class="mat-typography"> {{ cameraId }} </h3>
+</div>
+
+<div *ngIf="classifications">
+    <table mat-table [dataSource]=classifications class="mat-elevation-z8">
+        <ng-container matColumnDef="time">
+            <th mat-header-cell *matHeaderCellDef> Time </th>
+            <td mat-cell *matCellDef="let element"> {{element.year}}-{{element.month}}-{{element.day}} {{element.hour}}:{{element.minute}} </td>
+        </ng-container>
+    
+
+    
+        <ng-container matColumnDef="sitting">
+            <th mat-header-cell *matHeaderCellDef> # of sitting people </th>
+            <td mat-cell *matCellDef="let element"> {{element.sitting}} </td>
+        </ng-container>
+    
+
+    
+        <ng-container matColumnDef="standing">
+            <th mat-header-cell *matHeaderCellDef> # of standing people </th>
+            <td mat-cell *matCellDef="let element"> {{element.standing}} </td>
+        </ng-container>
+    
+
+    
+        <ng-container matColumnDef="laying">
+            <th mat-header-cell *matHeaderCellDef> # of laying people </th>
+            <td mat-cell *matCellDef="let element"> {{element.laying}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

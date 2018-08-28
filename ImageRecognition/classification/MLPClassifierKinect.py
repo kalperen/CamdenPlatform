@@ -2,6 +2,7 @@ import datetime
 import json
 import os
 import urllib.request
+import sys
 from sklearn.neural_network import MLPClassifier
 
 from kinect_data_processing import get_data
@@ -35,12 +36,13 @@ def generate_api_call(output, cloud=True):
     standing = output.count('Standing')
     laying = output.count('Laying')
 
+
     current_dt = datetime.datetime.now()
 
     body = {
         "sitting": sitting,
-        "laying": standing,
-        "standing": laying,
+        "laying": laying,
+        "standing": standing,
         "cameraId": "Kinect",
         "year": current_dt.year,
         "month": current_dt.month,
@@ -49,7 +51,7 @@ def generate_api_call(output, cloud=True):
         "minute": current_dt.minute,
         "seconds": current_dt.second
     }
-
+    print(body)
     if (cloud):
         req = urllib.request.Request('http://localhost:3000/classifications/addClassification')
         req.add_header('Content-Type', 'application/json; charset=utf-8')
@@ -63,5 +65,5 @@ if __name__ == '__main__':
     X_train, y_train = get_data()
     output = run(X_train, y_train)
     generate_api_call(output)
-    print("The output results: ")
-    print(output)
+    #print("The output results: ")
+    #print(output)

@@ -10,7 +10,7 @@ import { Widget } from './widget';
   providedIn: 'root'
 })
 export class WidgetService {
-  private serverUrl = "http://localhost:3000/sensorTypes/sensorTypes";
+  public serverUrl = "http://localhost:3000/sensorTypes/sensorTypes";
   
   constructor(private http: HttpClient) { }
 
@@ -31,10 +31,8 @@ export class WidgetService {
     );
   }
 
-  private handleError<T> (operation = 'operation', result?: T) {
+  handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
- 
-      console.error(error); // log to console instead
  
       console.log(`${operation} failed: ${error.message}`);
  

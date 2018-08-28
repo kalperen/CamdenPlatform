@@ -22,4 +22,10 @@ describe('ClassificationService', () => {
     service.getClassifications({}) 
       .subscribe(classifications => expect(classifications.length).toBeGreaterThan(0)); 
   })); 
+
+  it('should return empty if error', inject([ClassificationService], (service: ClassificationService) => { 
+    service.serverUrl = "invalid url";
+    service.getClassifications({}) 
+      .subscribe(widgets => expect(widgets.length).toBe(0)); 
+  })); 
 });
