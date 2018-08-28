@@ -41,8 +41,8 @@ def generate_api_call(output):
 
     body = {
         "sitting": sitting,
-        "laying": standing,
-        "standing": laying,
+        "laying": laying,
+        "standing": standing,
         "cameraId": "Kinect",
         "year": current_dt.year,
         "month": current_dt.month,
@@ -52,6 +52,7 @@ def generate_api_call(output):
         "seconds": current_dt.second
     }
 
+    print(body)
     req = urllib.request.Request('http://localhost:3000/classifications/addClassification')
     req.add_header('Content-Type', 'application/json; charset=utf-8')
     jsondata = json.dumps(body)
