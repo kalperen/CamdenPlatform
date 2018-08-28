@@ -21,7 +21,7 @@ def run(x, y, csv_dir=dir):
     return output
 
 
-def generate_api_call(output):
+def generate_api_call(output, cloud=True):
     # Send the gathered data to the cloud platform.
     # The following code will cause the program to crash if you do not have
     # Sapient and sapient-server running when you execute it.
@@ -50,12 +50,13 @@ def generate_api_call(output):
         "seconds": current_dt.second
     }
 
-    req = urllib.request.Request('http://localhost:3000/classifications/addClassification')
-    req.add_header('Content-Type', 'application/json; charset=utf-8')
-    jsondata = json.dumps(body)
-    jsondataasbytes = jsondata.encode('utf-8')  # needs to be bytes
-    req.add_header('Content-Length', len(jsondataasbytes))
-    urllib.request.urlopen(req, jsondataasbytes)
+    if (cloud):
+        req = urllib.request.Request('http://localhost:3000/classifications/addClassification')
+        req.add_header('Content-Type', 'application/json; charset=utf-8')
+        jsondata = json.dumps(body)
+        jsondataasbytes = jsondata.encode('utf-8')  # needs to be bytes
+        req.add_header('Content-Length', len(jsondataasbytes))
+        urllib.request.urlopen(req, jsondataasbytes)
 
 
 if __name__ == '__main__':
