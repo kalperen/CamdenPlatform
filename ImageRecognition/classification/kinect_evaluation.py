@@ -35,6 +35,15 @@ def kfold(name, clf):
         #Fit the classifier
         clf.fit(X_train, Y_train)
 
+        #Print out the results for each iteration
+        print("Fold #"+str(fold_number))
+        fold_number+=1
+        print("TRAIN:")
+        print(str(clf.score(X_train, Y_train)*100) + "%")
+        avg_train += clf.score(X_train, Y_train)*100
+        print("TEST:")
+        print(str(clf.score(X_test, Y_test)*100) + "%\n")
+        avg_test += clf.score(X_test, Y_test)*100
 
     #Print out average results
     print(name)
@@ -50,4 +59,9 @@ if __name__ == '__main__':
     mlp_clf = MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(4, 16), random_state=1, activation='logistic')
     kfold("Multi layer perceptron", mlp_clf)
 
+    gbc_clf = GradientBoostingClassifier(n_estimators=500, learning_rate=1.0, max_depth=4, random_state=0, loss='deviance')
+    kfold("Gradient Boosted Trees", gbc_clf)
+
+    adb_clf = AdaBoostClassifier(DecisionTreeClassifier(max_depth=1), algorithm="SAMME", n_estimators=200)
+    kfold("Ada Boost", adb_clf)
 
