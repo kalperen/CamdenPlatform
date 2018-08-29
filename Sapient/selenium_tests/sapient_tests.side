@@ -4,7 +4,7 @@
   "url": "http://localhost:4200",
   "tests": [{
     "id": "085c6948-b417-4475-bfa0-dd890d325742",
-    "name": "Dashboard_Test",
+    "name": "dashboard_test",
     "commands": [{
       "id": "a017b9a4-56c0-485a-a29b-f10a32f8d93d",
       "comment": "",
@@ -360,6 +360,127 @@
       ],
       "value": ""
     }]
+  }, {
+    "id": "46189321-fe62-41c7-9986-b2d7fee3dcdc",
+    "name": "add_remove_cameras",
+    "commands": [{
+      "id": "5cfc73e4-2535-439e-b48e-865523ac8729",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "xpath=//app-dashboard/button",
+      "targets": [
+        ["xpath=//app-dashboard/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "eb79657f-7b25-4be9-98b8-5ba7d9d4a9a5",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//app-dashboard/button",
+      "targets": [
+        ["xpath=//app-dashboard/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "31613080-3f2a-4f08-9a93-a2b9262aef24",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=button.mat-fab.mat-primary",
+      "targets": [
+        ["css=button.mat-fab.mat-primary", "css"],
+        ["xpath=//app-dashboard/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5a8e729e-645b-4579-9369-6f1191e6846d",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "xpath=//mat-dialog-container[@id='mat-dialog-5']/app-manage-devices-dialog/div/button[3]/span",
+      "targets": [
+        ["xpath=//mat-dialog-container[@id='mat-dialog-5']/app-manage-devices-dialog/div/button[3]/span", "xpath:idRelative"],
+        ["xpath=//button[3]/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5fd5d3b2-7637-4b70-9876-eea5cb73d547",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//mat-dialog-container[@id='mat-dialog-5']/app-manage-devices-dialog/div/button[3]/span",
+      "targets": [
+        ["xpath=//mat-dialog-container[@id='mat-dialog-5']/app-manage-devices-dialog/div/button[3]/span", "xpath:idRelative"],
+        ["xpath=//button[3]/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1256c9c1-63b5-4367-afb6-7122a958cf77",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "xpath=//mat-dialog-container[@id='mat-dialog-5']/app-manage-devices-dialog/div/button[3]/span",
+      "targets": [
+        ["xpath=//mat-dialog-container[@id='mat-dialog-5']/app-manage-devices-dialog/div/button[3]/span", "xpath:idRelative"],
+        ["xpath=//button[3]/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c40fef1a-c640-4c89-9a72-df91e1b380f1",
+      "comment": "",
+      "command": "type",
+      "target": "id=mat-input-3",
+      "targets": [
+        ["id=mat-input-3", "id"],
+        ["name=deviceId", "name"],
+        ["css=#mat-input-3", "css"],
+        ["xpath=//input[@id='mat-input-3']", "xpath:attributes"],
+        ["xpath=//mat-dialog-container[@id='mat-dialog-6']/app-add-delete-device/form/mat-form-field/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "selenium_generated_camera"
+    }, {
+      "id": "25416d2a-9fe2-4ebd-b29d-cfc1b0750283",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//mat-dialog-container[@id='mat-dialog-6']/app-add-delete-device/form/button",
+      "targets": [
+        ["xpath=//mat-dialog-container[@id='mat-dialog-6']/app-add-delete-device/form/button", "xpath:idRelative"],
+        ["xpath=//form/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9474cd59-d0c2-4e7f-bf9b-b07b7cf36513",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//div/div[3]",
+      "targets": [
+        ["xpath=//div/div[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d9eb7345-8ef7-4757-863b-085d61d9294c",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//body/div/div",
+      "targets": [
+        ["xpath=//body/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c07d628b-bdcb-4643-875f-d2d68d22d7b3",
+      "comment": "",
+      "command": "doubleClick",
+      "target": "css=div.cdk-overlay-backdrop",
+      "targets": [
+        ["css=div.cdk-overlay-backdrop", "css"],
+        ["xpath=//body/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "11708fbd-c69b-4220-8cce-ffe1ef210fb5",
+      "comment": "",
+      "command": "open",
+      "target": "/dashboard",
+      "targets": [],
+      "value": ""
+    }]
   }],
   "suites": [{
     "id": "306ccc5e-228d-48cf-86f3-32948d04a04a",
@@ -367,7 +488,7 @@
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": ["085c6948-b417-4475-bfa0-dd890d325742", "63665acd-38c2-43b7-a9db-86d742f52b07"]
+    "tests": ["085c6948-b417-4475-bfa0-dd890d325742", "63665acd-38c2-43b7-a9db-86d742f52b07", "46189321-fe62-41c7-9986-b2d7fee3dcdc"]
   }],
   "urls": ["http://localhost:4200/"],
   "plugins": [],
