@@ -1,0 +1,388 @@
+{
+  "id": "338e0ad7-9e7f-45dc-b81b-5cf099ed9e9c",
+  "name": "Sapient_Tests",
+  "url": "http://localhost:4200",
+  "tests": [{
+    "id": "178f4eb3-c1f4-4abf-ac89-286bb1ff01e0",
+    "name": "Sapinet_Dashboard_Test",
+    "commands": [{
+      "id": "27ce76cc-25c0-4f52-a7eb-e10fb8e56a6f",
+      "comment": "",
+      "command": "open",
+      "target": "/dashboard",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0595270a-679e-4b77-8a7c-830dc37830e3",
+      "comment": "",
+      "command": "click",
+      "target": "css=div.mat-tab-label-content",
+      "targets": [
+        ["css=div.mat-tab-label-content", "css"],
+        ["xpath=//div[@id='mat-tab-label-1-0']/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "29672d68-b733-4c82-93a6-48a8d1076a98",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Temperature",
+      "targets": [
+        ["linkText=Temperature", "linkText"],
+        ["css=a", "css"],
+        ["xpath=//a[contains(text(),'Temperature')]", "xpath:link"],
+        ["xpath=//mat-tab-body[@id='mat-tab-content-1-0']/div/mat-grid-list/div/mat-grid-tile/figure/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/detail/temperature/temperature')]", "xpath:href"],
+        ["xpath=//a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7f54b7f9-3454-4698-aa29-308f46726713",
+      "comment": "",
+      "command": "click",
+      "target": "css=a.modebar-btn.active > svg > path",
+      "targets": [
+        ["css=a.modebar-btn.active > svg > path", "css"]
+      ],
+      "value": ""
+    }, {
+      "id": "9ce59672-bf86-4290-9113-6be6874bbfbf",
+      "comment": "",
+      "command": "mouseDown",
+      "target": "css=rect.nsewdrag.drag",
+      "targets": [
+        ["css=rect.nsewdrag.drag", "css"]
+      ],
+      "value": ""
+    }, {
+      "id": "c6328012-4b3c-4062-9cfd-5d7ede513125",
+      "comment": "",
+      "command": "mouseUp",
+      "target": "css=div.dragcover",
+      "targets": [
+        ["css=div.dragcover", "css"],
+        ["xpath=//body/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0ba12e98-a9be-42d7-a045-2b4cd4c53b87",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//button",
+      "targets": [
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "54747d4b-9514-4407-9286-9ac73d240e33",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "linkText=Air Quality",
+      "targets": [
+        ["linkText=Air Quality", "linkText"],
+        ["xpath=//a[contains(text(),'Air Quality')]", "xpath:link"],
+        ["xpath=//mat-tab-body[@id='mat-tab-content-2-0']/div/mat-grid-list/div/mat-grid-tile[2]/figure/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/detail/air/air')]", "xpath:href"],
+        ["xpath=//mat-grid-tile[2]/figure/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c9ac8316-bee6-49d4-af24-8947f7ba8ff3",
+      "comment": "",
+      "command": "click",
+      "target": "id=mat-tab-label-2-1",
+      "targets": [
+        ["id=mat-tab-label-2-1", "id"],
+        ["css=#mat-tab-label-2-1", "css"],
+        ["xpath=//div[@id='mat-tab-label-2-1']", "xpath:attributes"],
+        ["xpath=//div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b79530dd-79e4-4002-bc24-b6bf91a62878",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Kinect",
+      "targets": [
+        ["linkText=Kinect", "linkText"],
+        ["xpath=//a[contains(text(),'Kinect')]", "xpath:link"],
+        ["xpath=//mat-tab-body[@id='mat-tab-content-2-1']/div/mat-grid-list/div/mat-grid-tile[2]/figure/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/detail/camera/Kinect')]", "xpath:href"],
+        ["xpath=//mat-grid-tile[2]/figure/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f1898c7f-0825-4010-8523-9c03c3a44ac6",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//button",
+      "targets": [
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e8387baf-3c79-41a6-b7b4-d40781737a5e",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Light",
+      "targets": [
+        ["linkText=Light", "linkText"],
+        ["xpath=//a[contains(text(),'Light')]", "xpath:link"],
+        ["xpath=//mat-tab-body[@id='mat-tab-content-3-0']/div/mat-grid-list/div/mat-grid-tile[3]/figure/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/detail/light/light')]", "xpath:href"],
+        ["xpath=//mat-grid-tile[3]/figure/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7507c73d-7e4f-453a-940e-0b3b5ad68870",
+      "comment": "",
+      "command": "click",
+      "target": "css=span.title",
+      "targets": [
+        ["css=span.title", "css"],
+        ["xpath=//mat-toolbar/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4ea52f79-099b-4406-adbe-a8694b6c7b8d",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=button.mat-button.mat-primary",
+      "targets": [
+        ["css=button.mat-button.mat-primary", "css"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "54e706c8-bf57-4755-890a-be83d52f542f",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//button",
+      "targets": [
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d890df50-1d10-4391-9a2f-7c90b69fd819",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "xpath=//button",
+      "targets": [
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bc9cd87b-d5c0-4c48-979d-5551742db4b8",
+      "comment": "",
+      "command": "click",
+      "target": "css=#mat-tab-label-4-1 > div.mat-tab-label-content",
+      "targets": [
+        ["css=#mat-tab-label-4-1 > div.mat-tab-label-content", "css"],
+        ["xpath=//div[@id='mat-tab-label-4-1']/div", "xpath:idRelative"],
+        ["xpath=//div/div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "19bc4ec1-951c-4ce9-b8c5-0630a8da8b95",
+      "comment": "",
+      "command": "click",
+      "target": "css=figure.mat-figure",
+      "targets": [
+        ["css=figure.mat-figure", "css"],
+        ["xpath=//mat-tab-body[@id='mat-tab-content-4-1']/div/mat-grid-list/div/mat-grid-tile/figure", "xpath:idRelative"],
+        ["xpath=//figure", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bf6d0bfd-06f3-44c5-b165-2436da81fc3b",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=1",
+      "targets": [
+        ["linkText=1", "linkText"],
+        ["css=a", "css"],
+        ["xpath=//a[contains(text(),'1')]", "xpath:link"],
+        ["xpath=//mat-tab-body[@id='mat-tab-content-4-1']/div/mat-grid-list/div/mat-grid-tile/figure/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/detail/camera/1')]", "xpath:href"],
+        ["xpath=//a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c37a1cf8-e595-47d3-8cd3-e92824b7b9b0",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=button.mat-button.mat-primary",
+      "targets": [
+        ["css=button.mat-button.mat-primary", "css"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1e8537db-fbb0-4f62-8afa-4c7e9a010a81",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//button",
+      "targets": [
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c3148e7a-174b-476d-bb68-7f22ca0ee3bd",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "xpath=//button",
+      "targets": [
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "085c6948-b417-4475-bfa0-dd890d325742",
+    "name": "Dashboard_Test",
+    "commands": [{
+      "id": "a017b9a4-56c0-485a-a29b-f10a32f8d93d",
+      "comment": "",
+      "command": "open",
+      "target": "/dashboard",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9f28d581-674c-4cba-8ff4-bb312496b106",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Temperature",
+      "targets": [
+        ["linkText=Temperature", "linkText"],
+        ["css=a", "css"],
+        ["xpath=//a[contains(text(),'Temperature')]", "xpath:link"],
+        ["xpath=//mat-tab-body[@id='mat-tab-content-1-0']/div/mat-grid-list/div/mat-grid-tile/figure/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/detail/temperature/temperature')]", "xpath:href"],
+        ["xpath=//a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7a60391e-6b8b-4b8f-9249-347b54089ebf",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//button",
+      "targets": [
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b3adafb1-d5d0-4770-ad05-7209a519d42c",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Light",
+      "targets": [
+        ["linkText=Light", "linkText"],
+        ["xpath=//a[contains(text(),'Light')]", "xpath:link"],
+        ["xpath=//mat-tab-body[@id='mat-tab-content-2-0']/div/mat-grid-list/div/mat-grid-tile[3]/figure/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/detail/light/light')]", "xpath:href"],
+        ["xpath=//mat-grid-tile[3]/figure/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "544d083d-c132-4cb7-96d1-126ea02d4520",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//button",
+      "targets": [
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4397985e-509b-4ea2-b8e4-d3d97ffc818b",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Air Quality",
+      "targets": [
+        ["linkText=Air Quality", "linkText"],
+        ["xpath=//a[contains(text(),'Air Quality')]", "xpath:link"],
+        ["xpath=//mat-tab-body[@id='mat-tab-content-3-0']/div/mat-grid-list/div/mat-grid-tile[2]/figure/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/detail/air/air')]", "xpath:href"],
+        ["xpath=//mat-grid-tile[2]/figure/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0b2b8ea1-cc6a-4551-ab7f-a290e7736922",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//button",
+      "targets": [
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "455b4497-eda0-4213-b41b-02411c425b47",
+      "comment": "",
+      "command": "click",
+      "target": "id=mat-tab-label-3-1",
+      "targets": [
+        ["id=mat-tab-label-3-1", "id"],
+        ["css=#mat-tab-label-3-1", "css"],
+        ["xpath=//div[@id='mat-tab-label-3-1']", "xpath:attributes"],
+        ["xpath=//div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8deb0f5d-b1d2-419c-b8c8-46dae0d6720a",
+      "comment": "",
+      "command": "click",
+      "target": "id=mat-tab-label-3-0",
+      "targets": [
+        ["id=mat-tab-label-3-0", "id"],
+        ["css=#mat-tab-label-3-0", "css"],
+        ["xpath=//div[@id='mat-tab-label-3-0']", "xpath:attributes"],
+        ["xpath=//div[2]/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "25f217dd-0887-4437-aeb8-0ca16998d73c",
+      "comment": "",
+      "command": "click",
+      "target": "id=mat-tab-label-3-1",
+      "targets": [
+        ["id=mat-tab-label-3-1", "id"],
+        ["css=#mat-tab-label-3-1", "css"],
+        ["xpath=//div[@id='mat-tab-label-3-1']", "xpath:attributes"],
+        ["xpath=//div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7478725d-943f-49ab-ab91-0df728f4e81f",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Kinect",
+      "targets": [
+        ["linkText=Kinect", "linkText"],
+        ["xpath=//a[contains(text(),'Kinect')]", "xpath:link"],
+        ["xpath=//mat-tab-body[@id='mat-tab-content-3-1']/div/mat-grid-list/div/mat-grid-tile[2]/figure/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/detail/camera/Kinect')]", "xpath:href"],
+        ["xpath=//mat-grid-tile[2]/figure/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "60d1ac45-b19c-4c69-a2ec-83d83d03da9b",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//button",
+      "targets": [
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "306ccc5e-228d-48cf-86f3-32948d04a04a",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://localhost:4200/"],
+  "plugins": [],
+  "version": "1.0"
+}
