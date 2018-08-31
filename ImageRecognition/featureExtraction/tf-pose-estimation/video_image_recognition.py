@@ -1,6 +1,5 @@
 import argparse
 import logging
-import sys
 import time
 import os
 
@@ -39,6 +38,8 @@ if __name__ == '__main__':
                              ' default=0x0, Recommends : 432x368 or 656x368 or 1312x736')
     parser.add_argument('--resize-out-ratio', type=float, default=4.0,
                         help='if provided, resize heatmaps before they are post-processed. default=1.0')
+    parser.add_argument('--framerate', type=int, default=75,
+                        help='if provided, resets the framerate to this number. default=75 fps')
     parser.add_argument('--output', type=str)
     args = parser.parse_args()
 
@@ -48,7 +49,7 @@ if __name__ == '__main__':
     else:
         e = TfPoseEstimator(get_graph_path(args.model), target_size=(w, h))
 
-    cap = cv2.VideoCapture("/Users/shahrozahmed/Desktop/video_footage/train_data.mp4")
+    cap = cv2.VideoCapture("/Users/video_footage/train_data.mp4")
 
     if cap.isOpened() is False:
         print("Error opening video stream or file")
@@ -57,16 +58,16 @@ if __name__ == '__main__':
     success = True
     while success:
         success, image = cap.read()
-        if count % 75 == 0:
+        fps = args.framerate
+        if count % fps == 0:
             try:
-                os.remove("/Users/shahrozahmed/Desktop/video_footage/output/")
+                os.remove("/Users/video_footage/output/")
                 print("image deleted")
             except:
                 # sleep(5)
                 pass
 
-            cv2.imwrite("/Users/shahrozahmed/Desktop/video_footage/images/image.jpg", image)
-            # cv2.imwrite("/Users/shahrozahmed/Desktop/video_footage/output/frame" + str(count) + ".jpg", image)
+            cv2.imwrite("/Users/video_footage/images/image.jpg", image)
             print("Read a new frame: ", success)
 
             args = parser.parse_args()
@@ -127,7 +128,10 @@ if __name__ == '__main__':
                         else:
                             f = open(args.output, 'a+')
                             f.write(
-                                "position,noseX,noseY,neckX,neckY,rshoulderX,rshoulderY,relbowX,relbowY,rwristX,rwristY,lshoulderX,lshoulderY,lelbowX,lelbowY,lwristX,lwristY,midhipX,midhipY,rhipX,rhipY,rkneeX,rkneeY,rankleX,rankleY,lhipX,lhipY,lkneeX,lkneeY,lankleX,lankleY,reyeX,reyeY,leyeX,leyeY\n" + string_humans)
+                                "position,noseX,noseY,neckX,neckY,rshoulderX,rshoulderY,relbowX,relbowY,rwristX,"
+                                "rwristY,lshoulderX,lshoulderY,lelbowX,lelbowY,lwristX,lwristY,midhipX,midhipY,rhipX,"
+                                "rhipY,rkneeX,rkneeY,rankleX,rankleY,lhipX,lhipY,lkneeX,lkneeY,lankleX,lankleY,reyeX,"
+                                "reyeY,leyeX,leyeY\n" + string_humans)
                             f.close()
                     X_train, y_train = get_data()
                     X_test, y_test = get_data(data_dir=args.output)
