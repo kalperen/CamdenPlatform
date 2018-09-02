@@ -15,7 +15,7 @@ const httpOptions = {
 })
 
 export class ClassificationService {
-  public serverUrl = "http://localhost:3000/classifications/getClassifications";
+  public serverUrl = "https://sapient-server.azurewebsites.net/classifications/getClassifications";
 
   constructor(private http: HttpClient) { }
 

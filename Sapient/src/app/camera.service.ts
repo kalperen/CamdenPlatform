@@ -9,7 +9,7 @@ import { Camera } from './camera';
   providedIn: 'root'
 })
 export class CameraService {
-  public serverUrl = 'http://localhost:3000/cameras/getCameras';
+  public serverUrl = 'https://sapient-server.azurewebsites.net/cameras/getCameras';
   
   constructor(private http: HttpClient) { }
 

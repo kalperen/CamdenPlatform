@@ -15,7 +15,7 @@ const httpOptions = {
 })
 
 export class TelemetryService {
-  public serverUrl = "http://localhost:3000/telemetries/getTelemetries";
+  public serverUrl = "https://sapient-server.azurewebsites.net/telemetries/getTelemetries";
 
   constructor(private http: HttpClient) { }
 

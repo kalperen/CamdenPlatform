@@ -33,4 +33,4 @@ app.use('/sensorTypes', sensorTypesRouter);
 app.use('/classifications', classificationRouter);
 app.use('/cameras', camerasRouter);
 
-app.listen(3000)
+app.listen(process.env.PORT || 3000)

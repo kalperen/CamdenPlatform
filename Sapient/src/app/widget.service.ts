@@ -10,7 +10,7 @@ import { Widget } from './widget';
   providedIn: 'root'
 })
 export class WidgetService {
-  public serverUrl = "http://localhost:3000/sensorTypes/sensorTypes";
+  public serverUrl = "https://sapient-server.azurewebsites.net/sensorTypes/sensorTypes";
   
   constructor(private http: HttpClient) { }
 
@@ -23,7 +23,7 @@ export class WidgetService {
   }
 
   getWidget(sensorId: string): Observable<Widget> {
-    var requestUrl = "http://localhost:3000/sensorTypes/sensorType/" + sensorId;
+    var requestUrl = "https://sapient-server.azurewebsites.net/sensorTypes/sensorType/" + sensorId;
     return this.http.get<Widget>(requestUrl)
     .pipe(
       tap(_ => console.log(`fetched widget id=${sensorId}`)),

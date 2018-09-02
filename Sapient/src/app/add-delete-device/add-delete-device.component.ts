@@ -14,7 +14,7 @@ import { ManageDevicesDialogComponent } from '../manage-devices-dialog/manage-de
 })
 export class AddDeleteDeviceComponent implements OnInit {
   private result = null;
-  public serverUrl = "http://localhost:3000/";
+  public serverUrl = "https://sapient-server.azurewebsites.net/";
   private deviceId: string;
   private httpOptions = {
     headers: new HttpHeaders({
