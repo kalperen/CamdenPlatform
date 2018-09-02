@@ -16,6 +16,11 @@ before_install:
 script:
   - node -v
   - gradle sapientAllStart -Ptest.mode=local -Ptest.output=true
+  - cd sapient-server/
+  - npm run test-cover
+  - mv ./coverage ./coverage-server
+  - mv ./coverage-server ..
+  - cd ..
   - cd Sapient/
   - ng test --watch false --code-coverage
   - codecov
