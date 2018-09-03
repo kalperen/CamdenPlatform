@@ -1,5 +1,5 @@
 import unittest
-import MLPClassifierKinect as MLP_Kinect
+import kinect_classification as MLP_Kinect
 
 
 class TestDataProcessing(unittest.TestCase):
