@@ -11,6 +11,10 @@ As a feature extraction technique we use a Microsoft Kinect to create data that 
 2. Microsoft Kinect v2
 3. Python 3: May require direct call to Python in MainWindow.xaml.cs file
 
+## Generate training data
+The TrainModel.xaml.cs file can be renamed to MainWindow.xaml.cs, template to train the data is alreayd in place. 
+The dataset should for each label should be trained seperately for the classifier to predict effectively.
+
 
 ### Classification
 
