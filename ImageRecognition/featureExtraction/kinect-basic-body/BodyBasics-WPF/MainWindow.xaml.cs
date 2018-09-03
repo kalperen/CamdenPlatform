@@ -382,7 +382,7 @@ namespace Microsoft.Samples.Kinect.BodyBasics
                                 human += position.X + "," + position.Y + "," + position.Z + ",";
                             }
 
-                            Console.WriteLine("NA," + human);
+                            // Console.WriteLine("NA," + human);
                             csvcontent.Append("NA," + human + Environment.NewLine);
                             File.AppendAllText(csvpath, csvcontent.ToString());
 
@@ -415,7 +415,7 @@ namespace Microsoft.Samples.Kinect.BodyBasics
             try
             {
                 // Generate path for MLPClassifier file 
-                string fileName = Path.GetFullPath(Path.Combine(fileDir, @"classification\MLPClassifierKinect.py"));
+                string fileName = Path.GetFullPath(Path.Combine(fileDir, @"classification\kinect_classification.py"));
                 Process p = new Process
                 {
                     // @NOTE: IF PYTHON EXE NOT FOUND THEN THE FILE WILL NOT WORK 
