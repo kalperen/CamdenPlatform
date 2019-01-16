@@ -26,7 +26,7 @@ for train_indices, test_indices in kf.split(data):
     Y_test = [labels[ii] for ii in test_indices]
 
     #Define the classifier
-    clf = MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(4, 16), random_state=1, activation='logistic')
+    clf = MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(32, 16, 8, 4, 2), random_state=1, activation='tanh',learning_rate='constant', learning_rate_init=0.003)
 
     #Fit the classifier
     clf.fit(X_train, Y_train)
